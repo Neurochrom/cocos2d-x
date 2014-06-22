@@ -77,8 +77,8 @@
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot)external\sqlite3\include;$(EngineRoot)external\unzip;$(EngineRoot)external\edtaa3func;$(EngineRoot)external\tinyxml2;$(EngineRoot)external\png\include\win32;$(EngineRoot)external\jpeg\include\win32;$(EngineRoot)external\tiff\include\win32;$(EngineRoot)external\webp\include\win32;$(EngineRoot)external\freetype2\include\win32;$(EngineRoot)external\win32-specific\icon\include;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external\xxhash;$(EngineRoot)external\ConvertUTF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_LIB;COCOS2DXWIN32_EXPORTS;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\sqlite3\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\unzip;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\edtaa3func;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\tinyxml2;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\png\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\jpeg\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\tiff\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\webp\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\freetype2\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\win32-specific\icon\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\win32-specific\zlib\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\xxhash;$(EngineRoot)external\ConvertUTF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_LIB;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;COCOS2DXWIN32_EXPORTS;GL_GLEXT_PROTOTYPES;COCOS2D_DEBUG=1;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -92,16 +92,16 @@
     </ClCompile>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\freetype2\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\glfw3\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\curl\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\jpeg\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\png\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\tiff\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\webp\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\zlib\prebuilt\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\icon\prebuilt\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\freetype2\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\glfw3\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\curl\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\jpeg\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\png\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\tiff\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\webp\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\win32-specific\zlib\prebuilt\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\win32-specific\icon\prebuilt\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\win32-specific\gles\prebuilt\*.*" "$(OutDir)"
 </Command>
     </PreLinkEvent>
     <Link>
@@ -125,8 +125,8 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot)external\sqlite3\include;$(EngineRoot)external\unzip;$(EngineRoot)external\edtaa3func;$(EngineRoot)external\tinyxml2;$(EngineRoot)external\png\include\win32;$(EngineRoot)external\jpeg\include\win32;$(EngineRoot)external\tiff\include\win32;$(EngineRoot)external\webp\include\win32;$(EngineRoot)external\freetype2\include\win32;$(EngineRoot)external\win32-specific\icon\include;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external\xxhash;$(EngineRoot)external\ConvertUTF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_LIB;COCOS2DXWIN32_EXPORTS;GL_GLEXT_PROTOTYPES;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\sqlite3\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\unzip;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\edtaa3func;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\tinyxml2;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\png\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\jpeg\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\tiff\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\webp\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\freetype2\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\win32-specific\icon\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\win32-specific\zlib\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\xxhash;$(EngineRoot)external\ConvertUTF;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_LIB;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;COCOS2DXWIN32_EXPORTS;GL_GLEXT_PROTOTYPES;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -138,16 +138,16 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     </ClCompile>
     <PreLinkEvent>
       <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\freetype2\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\glfw3\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\curl\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\jpeg\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\png\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\tiff\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\webp\prebuilt\win32\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\zlib\prebuilt\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\icon\prebuilt\*.*" "$(OutDir)"
-xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\freetype2\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\glfw3\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\curl\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\jpeg\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\png\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\tiff\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\webp\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\win32-specific\zlib\prebuilt\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\win32-specific\icon\prebuilt\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\cocos2d-x-3rd-party-libs-bin\win32-specific\gles\prebuilt\*.*" "$(OutDir)"
 </Command>
     </PreLinkEvent>
     <Link>
@@ -170,11 +170,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
   <ItemGroup>
     <ClCompile Include="..\..\external\ConvertUTF\ConvertUTF.c" />
     <ClCompile Include="..\..\external\ConvertUTF\ConvertUTFWrapper.cpp" />
-    <ClCompile Include="..\..\external\edtaa3func\edtaa3func.cpp" />
-    <ClCompile Include="..\..\external\tinyxml2\tinyxml2.cpp" />
-    <ClCompile Include="..\..\external\unzip\ioapi.cpp" />
-    <ClCompile Include="..\..\external\unzip\unzip.cpp" />
-    <ClCompile Include="..\..\external\xxhash\xxhash.c" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\edtaa3func\edtaa3func.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\ioapi.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\unzip.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\xxhash\xxhash.c" />
     <ClCompile Include="..\3d\CCMesh.cpp" />
     <ClCompile Include="..\3d\CCObjLoader.cpp" />
     <ClCompile Include="..\3d\CCSprite3D.cpp" />
@@ -341,11 +341,11 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\external\ConvertUTF\ConvertUTF.h" />
-    <ClInclude Include="..\..\external\edtaa3func\edtaa3func.h" />
-    <ClInclude Include="..\..\external\tinyxml2\tinyxml2.h" />
-    <ClInclude Include="..\..\external\unzip\ioapi.h" />
-    <ClInclude Include="..\..\external\unzip\unzip.h" />
-    <ClInclude Include="..\..\external\xxhash\xxhash.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\edtaa3func\edtaa3func.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\ioapi.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\unzip.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\xxhash\xxhash.h" />
     <ClInclude Include="..\3d\CCMesh.h" />
     <ClInclude Include="..\3d\CCObjLoader.h" />
     <ClInclude Include="..\3d\CCSprite3D.h" />

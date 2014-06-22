@@ -87,9 +87,6 @@
     <ClCompile Include="..\physics\chipmunk\CCPhysicsWorldInfo_chipmunk.cpp">
       <Filter>physics\chipmunk</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\external\xxhash\xxhash.c">
-      <Filter>external\xxhash</Filter>
-    </ClCompile>
     <ClCompile Include="..\deprecated\CCArray.cpp">
       <Filter>deprecated</Filter>
     </ClCompile>
@@ -535,18 +532,6 @@
     <ClCompile Include="..\platform\CCThread.cpp">
       <Filter>platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\external\tinyxml2\tinyxml2.cpp">
-      <Filter>external\tinyxml2</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\unzip\ioapi.cpp">
-      <Filter>external\unzip</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\unzip\unzip.cpp">
-      <Filter>external\unzip</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\external\edtaa3func\edtaa3func.cpp">
-      <Filter>external\edtaa</Filter>
-    </ClCompile>
     <ClCompile Include="..\base\CCIMEDispatcher.cpp">
       <Filter>base</Filter>
     </ClCompile>
@@ -565,6 +550,11 @@
     <ClCompile Include="..\3d\CCSprite3DDataCache.cpp">
       <Filter>3d</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\edtaa3func\edtaa3func.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\ioapi.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\unzip.cpp" />
+    <ClCompile Include="..\..\cocos2d-x-3rd-party-libs-bin\xxhash\xxhash.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\physics\CCPhysicsBody.h">
@@ -599,9 +589,6 @@
     </ClInclude>
     <ClInclude Include="..\physics\chipmunk\CCPhysicsWorldInfo_chipmunk.h">
       <Filter>physics\chipmunk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\xxhash\xxhash.h">
-      <Filter>external\xxhash</Filter>
     </ClInclude>
     <ClInclude Include="..\deprecated\CCArray.h">
       <Filter>deprecated</Filter>
@@ -1111,18 +1098,6 @@
     <ClInclude Include="..\platform\CCThread.h">
       <Filter>platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\external\tinyxml2\tinyxml2.h">
-      <Filter>external\tinyxml2</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\unzip\unzip.h">
-      <Filter>external\unzip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\unzip\ioapi.h">
-      <Filter>external\unzip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\external\edtaa3func\edtaa3func.h">
-      <Filter>external\edtaa</Filter>
-    </ClInclude>
     <ClInclude Include="..\base\CCIMEDelegate.h">
       <Filter>base</Filter>
     </ClInclude>
@@ -1144,6 +1119,11 @@
     <ClInclude Include="..\3d\CCSprite3DDataCache.h">
       <Filter>3d</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\edtaa3func\edtaa3func.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\ioapi.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\unzip\unzip.h" />
+    <ClInclude Include="..\..\cocos2d-x-3rd-party-libs-bin\xxhash\xxhash.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\math\Mat4.inl">
