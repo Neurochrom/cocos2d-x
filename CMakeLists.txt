@@ -138,37 +138,37 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/cocos/scripting/lua-bindings/manual
   ${CMAKE_CURRENT_SOURCE_DIR}/extensions
   ${CMAKE_CURRENT_SOURCE_DIR}/external
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyxml2
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/unzip
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/edtaa3func
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/tinyxml2
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/unzip
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/edtaa3func
   ${CMAKE_CURRENT_SOURCE_DIR}/external/chipmunk/include/chipmunk
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/jpeg/include/${PLATFORM_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/png/include/${PLATFORM_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/tiff/include/${PLATFORM_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/webp/include/${PLATFORM_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/glfw3/include/${PLATFORM_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/freetype2/include/${PLATFORM_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/websockets/include/${PLATFORM_FOLDER}
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/xxhash
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/jpeg/include/${PLATFORM_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/png/include/${PLATFORM_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/tiff/include/${PLATFORM_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/webp/include/${PLATFORM_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/glfw3/include/${PLATFORM_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/freetype2/include/${PLATFORM_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/websockets/include/${PLATFORM_FOLDER}
+  ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/xxhash
 )
 
 if(WIN32)
   include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/${PLATFORM_FOLDER}-specific/gles/include/OGLES
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/${PLATFORM_FOLDER}-specific/icon/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/${PLATFORM_FOLDER}-specific/zlib/include
-    external/curl/include/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/${PLATFORM_FOLDER}-specific/gles/include/OGLES
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/${PLATFORM_FOLDER}-specific/icon/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/${PLATFORM_FOLDER}-specific/zlib/include
+    cocos2d-x-3rd-party-libs-bin/curl/include/${PLATFORM_FOLDER}
   )
 elseif(APPLE)
   include_directories(
-  	${CMAKE_CURRENT_SOURCE_DIR}/external/curl/include/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/curl/include/${PLATFORM_FOLDER}
   )
 else()
   include_directories(
     /usr/include
     /usr/include/GLFW
     /usr/local/include/GLFW
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/${PLATFORM_FOLDER}-specific/fmod/include/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/${PLATFORM_FOLDER}-specific/fmod/include/${ARCH_DIR}
   )
 endif()
 
@@ -177,13 +177,13 @@ if(WIN32)
 
   if(NOT MINGW)
   link_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/jpeg/prebuilt/${PLATFORM_FOLDER}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/tiff/prebuilt/${PLATFORM_FOLDER}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/png/prebuilt/${PLATFORM_FOLDER}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/freetype2/prebuilt/${PLATFORM_FOLDER}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/curl/prebuilt/${PLATFORM_FOLDER}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/${PLATFORM_FOLDER}-specific/icon/prebuilt
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/${PLATFORM_FOLDER}-specific/zlib/prebuilt
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/jpeg/prebuilt/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/tiff/prebuilt/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/png/prebuilt/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/freetype2/prebuilt/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/curl/prebuilt/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/${PLATFORM_FOLDER}-specific/icon/prebuilt
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/${PLATFORM_FOLDER}-specific/zlib/prebuilt
   )
   endif()
 
@@ -193,13 +193,13 @@ else()
 
   link_directories(
     /usr/local/lib
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/jpeg/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/tiff/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/webp/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/png/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/freetype2/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/websockets/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/${PLATFORM_FOLDER}-specific/fmod/prebuilt/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/jpeg/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/tiff/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/webp/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/png/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/freetype2/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/websockets/prebuilt/${PLATFORM_FOLDER}/${ARCH_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d-x-3rd-party-libs-bin/${PLATFORM_FOLDER}-specific/fmod/prebuilt/${ARCH_DIR}
   )
 
 endif()
@@ -211,13 +211,13 @@ add_subdirectory(external/chipmunk/src)
 add_subdirectory(external/Box2D)
 
 # unzip library
-add_subdirectory(external/unzip)
+add_subdirectory(cocos2d-x-3rd-party-libs-bin/unzip)
 
 # tinyxml2 library
-add_subdirectory(external/tinyxml2)
+add_subdirectory(cocos2d-x-3rd-party-libs-bin/tinyxml2)
 
 # xxhash library
-add_subdirectory(external/xxhash)
+add_subdirectory(cocos2d-x-3rd-party-libs-bin/xxhash)
 
 # audio
 add_subdirectory(cocos/audio)
@@ -250,10 +250,10 @@ endif(BUILD_EDITOR_COCOSTUDIO)
 ## Scripting
 if(BUILD_LIBS_LUA)
 # lua
-add_subdirectory(external/lua/lua)
+add_subdirectory(cocos2d-x-3rd-party-libs-bin/lua/lua)
 
 # tolua
-add_subdirectory(external/lua/tolua)
+add_subdirectory(cocos2d-x-3rd-party-libs-bin/lua/tolua)
 
 # luabinding
 add_subdirectory(cocos/scripting/lua-bindings)
