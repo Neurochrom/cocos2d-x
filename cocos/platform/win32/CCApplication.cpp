@@ -94,7 +94,7 @@ int Application::run()
         }
         else
         {
-            Sleep(0);
+            Sleep(1); //0);
         }
     }
 
