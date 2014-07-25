@@ -33,8 +33,6 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-class Camera;
-
 /**
  * @addtogroup actions
  * @{
@@ -60,7 +58,7 @@ public:
     // Overrides
     virtual void startWithTarget(Node *target) override;
     virtual ActionCamera * reverse() const override;
-	virtual ActionCamera *clone() const override;
+    virtual ActionCamera *clone() const override;
 
     /* sets the Eye value of the Camera */
     void setEye(const Vec3 &eye);
@@ -101,7 +99,7 @@ public:
     void sphericalRadius(float *r, float *zenith, float *azimuth);
 
     // Overrides
-	OrbitCamera *clone() const override;
+    OrbitCamera *clone() const override;
     virtual void startWithTarget(Node *target) override;
     virtual void update(float time) override;
     

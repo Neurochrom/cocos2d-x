@@ -668,7 +668,6 @@ CC_DEPRECATED_ATTRIBUTE typedef AtlasNode CCAtlasNode;
 CC_DEPRECATED_ATTRIBUTE typedef TextureProtocol CCTextureProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef BlendProtocol CCBlendProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef DrawNode CCDrawNode;
-CC_DEPRECATED_ATTRIBUTE typedef Camera CCCamera;
 CC_DEPRECATED_ATTRIBUTE typedef LabelAtlas CCLabelAtlas;
 CC_DEPRECATED_ATTRIBUTE typedef LabelProtocol CCLabelProtocol;
 CC_DEPRECATED_ATTRIBUTE typedef Director CCDirector;
