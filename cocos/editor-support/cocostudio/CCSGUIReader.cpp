@@ -448,9 +448,11 @@ void WidgetPropertiesReader0250::setPropsForButtonFromJsonDictionary(Widget*widg
 {
     setPropsForWidgetFromJsonDictionary(widget, options);
     cocos2d::ui::Button* button = static_cast<Button*>(widget);
+#ifdef USE_SCALE9
     bool scale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
     button->setScale9Enabled(scale9Enable);
-    
+#endif
+
     std::string tp_n = m_strFilePath;
     std::string tp_p = m_strFilePath;
     std::string tp_d = m_strFilePath;
@@ -463,6 +465,8 @@ void WidgetPropertiesReader0250::setPropsForButtonFromJsonDictionary(Widget*widg
     const char* pressedFileName_tp = (pressedFileName && (strcmp(pressedFileName, "") != 0))?tp_p.append(pressedFileName).c_str():nullptr;
     const char* disabledFileName_tp =  (disabledFileName && (strcmp(disabledFileName, "") != 0))?tp_d.append(disabledFileName).c_str():nullptr;
     bool useMergedTexture = DICTOOL->getBooleanValue_json(options, "useMergedTexture");
+
+#ifdef USE_SCALE9
     if (scale9Enable)
     {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
@@ -489,6 +493,7 @@ void WidgetPropertiesReader0250::setPropsForButtonFromJsonDictionary(Widget*widg
         }
     }
     else
+#endif
     {
         if (useMergedTexture)
         {
@@ -568,6 +573,7 @@ void WidgetPropertiesReader0250::setPropsForImageViewFromJsonDictionary(Widget*w
     setPropsForWidgetFromJsonDictionary(widget, options);
     cocos2d::ui::ImageView* imageView = static_cast<ImageView*>(widget);
     const char* imageFileName = DICTOOL->getStringValue_json(options, "fileName");
+#ifdef USE_SCALE9
     bool scale9EnableExist = DICTOOL->checkObjectExist_json(options, "scale9Enable");
     bool scale9Enable = false;
     if (scale9EnableExist)
@@ -575,7 +581,8 @@ void WidgetPropertiesReader0250::setPropsForImageViewFromJsonDictionary(Widget*w
         scale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
     }
     imageView->setScale9Enabled(scale9Enable);
-    
+#endif
+
     std::string tp_i = m_strFilePath;
     const char* imageFileName_tp = nullptr;
     if (imageFileName && (strcmp(imageFileName, "") != 0))
@@ -584,6 +591,7 @@ void WidgetPropertiesReader0250::setPropsForImageViewFromJsonDictionary(Widget*w
     }
     
     bool useMergedTexture = DICTOOL->getBooleanValue_json(options, "useMergedTexture");
+#ifdef USE_SCALE9
     if (scale9Enable)
     {
         if (useMergedTexture)
@@ -612,6 +620,7 @@ void WidgetPropertiesReader0250::setPropsForImageViewFromJsonDictionary(Widget*w
         
     }
     else
+#endif
     {
         if (useMergedTexture)
         {
@@ -695,8 +704,10 @@ void WidgetPropertiesReader0250::setPropsForLayoutFromJsonDictionary(Widget*widg
         containerWidget->setClippingEnabled(DICTOOL->getBooleanValue_json(options, "clipAble"));
     }
     Layout* panel = (Layout*)widget;
+#ifdef USE_SCALE9
     bool backGroundScale9Enable = DICTOOL->getBooleanValue_json(options, "backGroundScale9Enable");
     panel->setBackGroundImageScale9Enabled(backGroundScale9Enable);
+#endif
     int cr = DICTOOL->getIntValue_json(options, "bgColorR");
     int cg = DICTOOL->getIntValue_json(options, "bgColorG");
     int cb = DICTOOL->getIntValue_json(options, "bgColorB");
@@ -725,6 +736,7 @@ void WidgetPropertiesReader0250::setPropsForLayoutFromJsonDictionary(Widget*widg
     const char* imageFileName = DICTOOL->getStringValue_json(options, "backGroundImage");
     const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():nullptr;
     bool useMergedTexture = DICTOOL->getBooleanValue_json(options, "useMergedTexture");
+#ifdef USE_SCALE9
     if (backGroundScale9Enable)
     {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
@@ -742,6 +754,7 @@ void WidgetPropertiesReader0250::setPropsForLayoutFromJsonDictionary(Widget*widg
         panel->setBackGroundImageCapInsets(Rect(cx, cy, cw, ch));
     }
     else
+#endif
     {
         
         if (useMergedTexture)
@@ -773,14 +786,17 @@ void WidgetPropertiesReader0250::setPropsForSliderFromJsonDictionary(Widget*widg
 {
     setPropsForWidgetFromJsonDictionary(widget, options);
     cocos2d::ui::Slider* slider = static_cast<cocos2d::ui::Slider*>(widget);
-    
+
+#ifdef USE_SCALE9
     bool barTextureScale9Enable = DICTOOL->getBooleanValue_json(options, "barTextureScale9Enable");
     slider->setScale9Enabled(barTextureScale9Enable);
+#endif
     bool bt = DICTOOL->checkObjectExist_json(options, "barFileName");
     float barLength = DICTOOL->getFloatValue_json(options, "length");
     bool useMergedTexture = DICTOOL->getBooleanValue_json(options, "useMergedTexture");
     if (bt)
     {
+#ifdef USE_SCALE9
         if (barTextureScale9Enable)
         {
             std::string tp_b = m_strFilePath;
@@ -797,6 +813,7 @@ void WidgetPropertiesReader0250::setPropsForSliderFromJsonDictionary(Widget*widg
             slider->setSize(Size(barLength, slider->getContentSize().height));
         }
         else
+#endif
         {
             std::string tp_b = m_strFilePath;
             const char* imageFileName = DICTOOL->getStringValue_json(options, "barFileName");
@@ -1270,9 +1287,11 @@ void WidgetPropertiesReader0300::setPropsForButtonFromJsonDictionary(Widget*widg
 {
     setPropsForWidgetFromJsonDictionary(widget, options);
     cocos2d::ui::Button* button = static_cast<cocos2d::ui::Button*>(widget);
+#ifdef USE_SCALE9
     bool scale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
     button->setScale9Enabled(scale9Enable);
-    
+#endif
+
     const rapidjson::Value& normalDic = DICTOOL->getSubDictionary_json(options, "normalData");
     int normalType = DICTOOL->getIntValue_json(normalDic, "resourceType");
     switch (normalType)
@@ -1336,6 +1355,7 @@ void WidgetPropertiesReader0300::setPropsForButtonFromJsonDictionary(Widget*widg
         default:
             break;
     }
+#ifdef USE_SCALE9
     if (scale9Enable)
     {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
@@ -1353,6 +1373,7 @@ void WidgetPropertiesReader0300::setPropsForButtonFromJsonDictionary(Widget*widg
             button->setSize(Size(swf, shf));
         }
     }
+#endif
     bool tt = DICTOOL->checkObjectExist_json(options, "text");
     if (tt)
     {
@@ -1532,7 +1553,8 @@ void WidgetPropertiesReader0300::setPropsForImageViewFromJsonDictionary(Widget*w
         default:
             break;
     }
-    
+
+#ifdef USE_SCALE9
     bool scale9EnableExist = DICTOOL->checkObjectExist_json(options, "scale9Enable");
     bool scale9Enable = false;
     if (scale9EnableExist)
@@ -1561,6 +1583,7 @@ void WidgetPropertiesReader0300::setPropsForImageViewFromJsonDictionary(Widget*w
         imageView->setCapInsets(Rect(cx, cy, cw, ch));
         
     }
+#endif
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -1659,8 +1682,10 @@ void WidgetPropertiesReader0300::setPropsForLayoutFromJsonDictionary(Widget*widg
     {
         panel->setClippingEnabled(DICTOOL->getBooleanValue_json(options, "clipAble"));
     }
+#ifdef USE_SCALE9
     bool backGroundScale9Enable = DICTOOL->getBooleanValue_json(options, "backGroundScale9Enable");
     panel->setBackGroundImageScale9Enabled(backGroundScale9Enable);
+#endif
     int cr = DICTOOL->getIntValue_json(options, "bgColorR");
     int cg = DICTOOL->getIntValue_json(options, "bgColorG");
     int cb = DICTOOL->getIntValue_json(options, "bgColorB");
@@ -1708,6 +1733,7 @@ void WidgetPropertiesReader0300::setPropsForLayoutFromJsonDictionary(Widget*widg
             break;
     }
     
+#ifdef USE_SCALE9
     if (backGroundScale9Enable)
     {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
@@ -1716,6 +1742,7 @@ void WidgetPropertiesReader0300::setPropsForLayoutFromJsonDictionary(Widget*widg
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
         panel->setBackGroundImageCapInsets(Rect(cx, cy, cw, ch));
     }
+#endif
     panel->setLayoutType((Layout::Type)DICTOOL->getIntValue_json(options, "layoutType"));
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
@@ -1737,13 +1764,16 @@ void WidgetPropertiesReader0300::setPropsForSliderFromJsonDictionary(Widget*widg
 {
     setPropsForWidgetFromJsonDictionary(widget, options);
     cocos2d::ui::Slider* slider = static_cast<cocos2d::ui::Slider*>(widget);
-    
+
+#ifdef USE_SCALE9
     bool barTextureScale9Enable = DICTOOL->getBooleanValue_json(options, "barTextureScale9Enable");
     slider->setScale9Enabled(barTextureScale9Enable);
+#endif
     bool bt = DICTOOL->checkObjectExist_json(options, "barFileName");
     float barLength = DICTOOL->getFloatValue_json(options, "length");
     if (bt)
     {
+#ifdef USE_SCALE9
         if (barTextureScale9Enable)
         {
             
@@ -1772,6 +1802,7 @@ void WidgetPropertiesReader0300::setPropsForSliderFromJsonDictionary(Widget*widg
             slider->setSize(Size(barLength, slider->getContentSize().height));
         }
         else
+#endif
         {
             const rapidjson::Value& imageFileNameDic = DICTOOL->getSubDictionary_json(options, "barFileNameData");
             int imageFileType = DICTOOL->getIntValue_json(imageFileNameDic, "resourceType");
@@ -1969,7 +2000,8 @@ void WidgetPropertiesReader0300::setPropsForLoadingBarFromJsonDictionary(Widget 
         default:
             break;
     }
-    
+
+#ifdef USE_SCALE9
     /* ui mark add load bar scale9 parse */
     bool scale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
     loadingBar->setScale9Enabled(scale9Enable);
@@ -1988,7 +2020,8 @@ void WidgetPropertiesReader0300::setPropsForLoadingBarFromJsonDictionary(Widget 
         loadingBar->setSize(Size(width, height));
     }
     /**/
-    
+#endif
+
     loadingBar->setDirection(LoadingBar::Direction(DICTOOL->getIntValue_json(options, "direction")));
     loadingBar->setPercent(DICTOOL->getIntValue_json(options, "percent"));
     setColorPropsForWidgetFromJsonDictionary(widget,options);

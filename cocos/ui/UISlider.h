@@ -77,7 +77,8 @@ public:
      * @param texType    @see UI_TEX_TYPE_LOCAL
      */
     void loadBarTexture(const std::string& fileName,TextureResType texType = TextureResType::LOCAL);
-    
+
+#ifdef USE_SCALE9
     /**
      * Sets if slider is using scale9 renderer.
      *
@@ -86,14 +87,15 @@ public:
     void setScale9Enabled(bool able);
     
     bool isScale9Enabled();
-    
+
     /**
      * Sets capinsets for slider, if slider is using scale9 renderer.
      *
      * @param capInsets    capinsets for slider
      */
     void setCapInsets(const Rect &capInsets);
-    
+#endif
+
     /**
      * Sets capinsets for slider, if slider is using scale9 renderer.
      *
@@ -236,8 +238,11 @@ protected:
     
     float _barLength;
     int _percent;
-    
+
+#ifdef USE_SCALE9
     bool _scale9Enabled;
+#endif
+
     bool _prevIgnoreSize;
     std::string _textureFile;
     std::string _progressBarTextureFile;

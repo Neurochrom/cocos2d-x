@@ -23,7 +23,9 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "ui/UISlider.h"
+#ifdef USE_SCALE9
 #include "extensions/GUI/CCControlExtension/CCScale9Sprite.h"
+#endif
 
 NS_CC_BEGIN
 
@@ -45,7 +47,9 @@ _slidBallDisabledRenderer(nullptr),
 _slidBallRenderer(nullptr),
 _barLength(0.0),
 _percent(0),
+#ifdef USE_SCALE9
 _scale9Enabled(false),
+#endif
 _prevIgnoreSize(true),
 _textureFile(""),
 _progressBarTextureFile(""),
@@ -124,21 +128,25 @@ void Slider::loadBarTexture(const std::string& fileName, TextureResType texType)
     switch (_barTexType)
     {
         case TextureResType::LOCAL:
+#ifdef USE_SCALE9
             if (_scale9Enabled)
             {
                 static_cast<extension::Scale9Sprite*>(_barRenderer)->initWithFile(fileName);
             }
             else
+#endif
             {
                 static_cast<Sprite*>(_barRenderer)->setTexture(fileName);
             }
             break;
         case TextureResType::PLIST:
+#ifdef USE_SCALE9
             if (_scale9Enabled)
             {
                 static_cast<extension::Scale9Sprite*>(_barRenderer)->initWithSpriteFrameName(fileName);
             }
             else
+#endif
             {
                 static_cast<Sprite*>(_barRenderer)->setSpriteFrame(fileName);
             }
@@ -163,21 +171,25 @@ void Slider::loadProgressBarTexture(const std::string& fileName, TextureResType 
     switch (_progressBarTexType)
     {
         case TextureResType::LOCAL:
+#ifdef USE_SCALE9
             if (_scale9Enabled)
             {
                 static_cast<extension::Scale9Sprite*>(_progressBarRenderer)->initWithFile(fileName);
             }
             else
+#endif
             {
                 static_cast<Sprite*>(_progressBarRenderer)->setTexture(fileName);
             }
             break;
         case TextureResType::PLIST:
+#ifdef USE_SCALE9
             if (_scale9Enabled)
             {
                 static_cast<extension::Scale9Sprite*>(_progressBarRenderer)->initWithSpriteFrameName(fileName);
             }
             else
+#endif
             {
                 static_cast<Sprite*>(_progressBarRenderer)->setSpriteFrame(fileName);
             }
@@ -191,6 +203,7 @@ void Slider::loadProgressBarTexture(const std::string& fileName, TextureResType 
     _progressBarRendererDirty = true;
 }
 
+#ifdef USE_SCALE9
 void Slider::setScale9Enabled(bool able)
 {
     if (_scale9Enabled == able)
@@ -235,30 +248,39 @@ bool Slider::isScale9Enabled()
 {
     return _scale9Enabled;
 }
+#endif
 
 void Slider::ignoreContentAdaptWithSize(bool ignore)
 {
+#ifdef USE_SCALE9
     if (!_scale9Enabled || (_scale9Enabled && !ignore))
+#endif
     {
         Widget::ignoreContentAdaptWithSize(ignore);
         _prevIgnoreSize = ignore;
     }
 }
 
+#ifdef USE_SCALE9
 void Slider::setCapInsets(const Rect &capInsets)
 {
     setCapInsetsBarRenderer(capInsets);
     setCapInsetProgressBarRebderer(capInsets);
 }
+#endif
 
 void Slider::setCapInsetsBarRenderer(const Rect &capInsets)
 {
     _capInsetsBarRenderer = capInsets;
+#ifdef USE_SCALE9
     if (!_scale9Enabled)
+#endif
     {
         return;
     }
+#ifdef USE_SCALE9
     static_cast<extension::Scale9Sprite*>(_barRenderer)->setCapInsets(capInsets);
+#endif
 }
     
 const Rect& Slider::getCapInsetsBarRenderer()
@@ -269,11 +291,15 @@ const Rect& Slider::getCapInsetsBarRenderer()
 void Slider::setCapInsetProgressBarRebderer(const Rect &capInsets)
 {
     _capInsetsProgressBarRenderer = capInsets;
+#ifdef USE_SCALE9
     if (!_scale9Enabled)
+#endif
     {
         return;
     }
+#ifdef USE_SCALE9
     static_cast<extension::Scale9Sprite*>(_progressBarRenderer)->setCapInsets(capInsets);
+#endif
 }
     
 const Rect& Slider::getCapInsetsProgressBarRebderer()
@@ -368,11 +394,13 @@ void Slider::setPercent(int percent)
     float res = percent / 100.0f;
     float dis = _barLength * res;
     _slidBallRenderer->setPosition(Vec2(dis, _contentSize.height / 2.0f));
+#ifdef USE_SCALE9
     if (_scale9Enabled)
     {
         static_cast<extension::Scale9Sprite*>(_progressBarRenderer)->setPreferredSize(Size(dis,_progressBarTextureSize.height));
     }
     else
+#endif
     {
         Sprite* spriteRenderer = static_cast<Sprite*>(_progressBarRenderer);
         Rect rect = spriteRenderer->getTextureRect();
@@ -496,11 +524,13 @@ void Slider::barRendererScaleChangedWithSize()
     else
     {
         _barLength = _size.width;
+#ifdef USE_SCALE9
         if (_scale9Enabled)
         {
             static_cast<extension::Scale9Sprite*>(_barRenderer)->setPreferredSize(_size);
         }
         else
+#endif
         {
             Size btextureSize = _barRenderer->getContentSize();
             if (btextureSize.width <= 0.0f || btextureSize.height <= 0.0f)
@@ -522,7 +552,9 @@ void Slider::progressBarRendererScaleChangedWithSize()
 {
     if (_ignoreSize)
     {
+#ifdef USE_SCALE9
         if (!_scale9Enabled)
+#endif
         {
             Size ptextureSize = _progressBarTextureSize;
             float pscaleX = _size.width / ptextureSize.width;
@@ -533,12 +565,14 @@ void Slider::progressBarRendererScaleChangedWithSize()
     }
     else
     {
+#ifdef USE_SCALE9
         if (_scale9Enabled)
         {
             static_cast<extension::Scale9Sprite*>(_progressBarRenderer)->setPreferredSize(_size);
             _progressBarTextureSize = _progressBarRenderer->getContentSize();
         }
         else
+#endif
         {
             Size ptextureSize = _progressBarTextureSize;
             if (ptextureSize.width <= 0.0f || ptextureSize.height <= 0.0f)
@@ -620,7 +654,9 @@ void Slider::copySpecialProperties(Widget *widget)
     if (slider)
     {
         _prevIgnoreSize = slider->_prevIgnoreSize;
+#ifdef USE_SCALE9
         setScale9Enabled(slider->_scale9Enabled);
+#endif
         loadBarTexture(slider->_textureFile, slider->_barTexType);
         loadProgressBarTexture(slider->_progressBarTextureFile, slider->_progressBarTexType);
         loadSlidBallTextureNormal(slider->_slidBallNormalTextureFile, slider->_ballNTexType);

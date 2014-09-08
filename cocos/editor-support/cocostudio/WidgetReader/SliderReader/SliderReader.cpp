@@ -37,10 +37,12 @@ namespace cocostudio
         
                 
         Slider* slider = static_cast<Slider*>(widget);
-        
+
+#ifdef USE_SCALE9
         bool barTextureScale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
         slider->setScale9Enabled(barTextureScale9Enable);
-        
+#endif
+
         slider->setPercent(DICTOOL->getIntValue_json(options, "percent"));
 
         
@@ -52,11 +54,13 @@ namespace cocostudio
             int imageFileNameType = DICTOOL->getIntValue_json(imageFileNameDic, "resourceType");
             std::string imageFileName = this->getResourcePath(imageFileNameDic, "path", (Widget::TextureResType)imageFileNameType);
             slider->loadBarTexture(imageFileName, (Widget::TextureResType)imageFileNameType);
-            
+
+#ifdef USE_SCALE9
             if (barTextureScale9Enable)
             {
                 slider->setSize(Size(barLength, slider->getContentSize().height));
             }
+#endif
         }
         
         //loading normal slider ball texture
