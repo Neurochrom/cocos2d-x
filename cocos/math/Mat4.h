@@ -124,7 +124,7 @@ public:
      *
      * @param mat An array containing 16 elements in column-major order.
      */
-    Mat4(const float* mat);
+    explicit Mat4(const float* mat);
 
     /**
      * Constructs a new matrix by copying the values from the specified matrix.
