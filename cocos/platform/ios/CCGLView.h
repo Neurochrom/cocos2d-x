@@ -48,7 +48,8 @@ public:
     static GLView* create(const std::string& viewName);
 
     /** creates a GLView with a title name, a rect and the zoom factor */
-    static GLView* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0f);
+    static GLView* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0f,
+                                  bool _ignored_resizable = false);
 
     /** creates a GLView with a name in fullscreen mode */
     static GLView* createWithFullScreen(const std::string& viewName);

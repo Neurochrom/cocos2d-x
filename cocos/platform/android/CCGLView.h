@@ -41,7 +41,8 @@ public:
 
     // static function
     static GLView* create(const std::string &viewname);
-    static GLView* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0f);
+    static GLView* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0f,
+                                  bool _ignored_resizable = false);
     static GLView* createWithFullScreen(const std::string& viewName);
 
     bool isOpenGLReady() override;
