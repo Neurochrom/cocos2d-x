@@ -183,6 +183,11 @@ public:
     /** returns the current Resolution policy */
     ResolutionPolicy getResolutionPolicy() const { return _resolutionPolicy; }
 
+    /**
+     * Adds a callback function executed when the window size changes
+     */
+    void addResizeCalback(const std::function<void(const Size&)>& callback);
+
 protected:
     void updateDesignResolutionSize();
     
@@ -200,6 +205,8 @@ protected:
     float _scaleX;
     float _scaleY;
     ResolutionPolicy _resolutionPolicy;
+
+    std::vector<std::function<void(const Size&)>> _resizeCallbacks;
 };
 
 // end of platform group
