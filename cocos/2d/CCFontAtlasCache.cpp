@@ -44,8 +44,21 @@ void FontAtlasCache::purgeCachedData()
     }
 }
 
+void FontAtlasCache::forceClear()
+{
+    for (auto & atlas : _atlasMap)
+    {
+        while (atlas.second->getReferenceCount() != 1)
+        {
+            atlas.second->release();
+        }
+        atlas.second->release();
+    }
+    _atlasMap.clear();
+}
+
 FontAtlas * FontAtlasCache::getFontAtlasTTF(const TTFConfig & config)
-{  
+{
     bool useDistanceField = config.distanceFieldEnabled;
     if(config.outlineSize > 0)
     {

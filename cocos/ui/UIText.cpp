@@ -29,7 +29,7 @@ NS_CC_BEGIN
 namespace ui {
 
 static const int LABEL_RENDERER_Z = (-1);
-    
+
 IMPLEMENT_CLASS_GUI_INFO(Text)
 
 Text::Text():
@@ -70,7 +70,7 @@ bool Text::init()
     }
     return false;
 }
-    
+
 Text* Text::create(const std::string &textContent, const std::string &fontName, int fontSize)
 {
     Text *text = new Text;
@@ -81,7 +81,7 @@ Text* Text::create(const std::string &textContent, const std::string &fontName, 
     CC_SAFE_DELETE(text);
     return nullptr;
 }
-    
+
 bool Text::init(const std::string &textContent, const std::string &fontName, int fontSize)
 {
     bool ret = true;
@@ -91,8 +91,24 @@ bool Text::init(const std::string &textContent, const std::string &fontName, int
             break;
         }
         this->setString(textContent);
-        this->setFontName(fontName);
-        this->setFontSize(fontSize);
+        _fontSize = fontSize;
+        _fontName = fontName;
+        if (FileUtils::getInstance()->isFileExist(fontName))
+        {
+            TTFConfig config = _labelRenderer->getTTFConfig();
+            config.fontFilePath = fontName;
+            config.fontSize = fontSize;
+            _labelRenderer->setTTFConfig(config);
+            _type = Type::TTF;
+        }
+        else
+        {
+            _labelRenderer->setSystemFontName(fontName);
+            _labelRenderer->setSystemFontSize(fontSize);
+            _type = Type::SYSTEM;
+        }
+        updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
+        _labelRendererAdaptDirty = true;
     } while (0);
     return ret;
 }
@@ -103,14 +119,14 @@ void Text::initRenderer()
     addProtectedChild(_labelRenderer, LABEL_RENDERER_Z, -1);
 }
 
-    
+
 void Text::setString(const std::string &text)
 {
     _labelRenderer->setString(text);
     updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
     _labelRendererAdaptDirty = true;
 }
-    
+
 const std::string& Text::getString() const
 {
     return _labelRenderer->getString();
@@ -123,10 +139,12 @@ ssize_t Text::getStringLength()const
 
 void Text::setFontSize(int size)
 {
-    if (_type == Type::SYSTEM) {
+    if (_type == Type::SYSTEM)
+    {
         _labelRenderer->setSystemFontSize(size);
     }
-    else{
+    else
+    {
         TTFConfig config = _labelRenderer->getTTFConfig();
         config.fontSize = size;
         _labelRenderer->setTTFConfig(config);
@@ -135,7 +153,7 @@ void Text::setFontSize(int size)
     updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
     _labelRendererAdaptDirty = true;
 }
-    
+
 int Text::getFontSize()
 {
     return _fontSize;
@@ -151,7 +169,8 @@ void Text::setFontName(const std::string& name)
         _labelRenderer->setTTFConfig(config);
         _type = Type::TTF;
     }
-    else{
+    else
+    {
         _labelRenderer->setSystemFontName(name);
         _type = Type::SYSTEM;
     }
@@ -159,12 +178,12 @@ void Text::setFontName(const std::string& name)
     updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
     _labelRendererAdaptDirty = true;
 }
-    
+
 const std::string& Text::getFontName()
 {
     return _fontName;
 }
-    
+
 Text::Type Text::getType() const
 {
     return _type;
@@ -176,7 +195,7 @@ void Text::setTextAreaSize(const Size &size)
     updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
     _labelRendererAdaptDirty = true;
 }
-    
+
 const Size& Text::getTextAreaSize()
 {
     return _labelRenderer->getDimensions();
@@ -188,7 +207,7 @@ void Text::setTextHorizontalAlignment(TextHAlignment alignment)
     updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
     _labelRendererAdaptDirty = true;
 }
-    
+
 TextHAlignment Text::getTextHorizontalAlignment()
 {
     return _labelRenderer->getHorizontalAlignment();
@@ -200,7 +219,7 @@ void Text::setTextVerticalAlignment(TextVAlignment alignment)
     updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
     _labelRendererAdaptDirty = true;
 }
-    
+
 TextVAlignment Text::getTextVerticalAlignment()
 {
     return _labelRenderer->getVerticalAlignment();
@@ -210,7 +229,7 @@ void Text::setTouchScaleChangeEnabled(bool enable)
 {
     _touchScaleChangeEnabled = enable;
 }
-    
+
 bool Text::isTouchScaleChangeEnabled()
 {
     return _touchScaleChangeEnabled;
@@ -243,22 +262,22 @@ void Text::onPressStateChangedToDisabled()
 
 void Text::updateFlippedX()
 {
-     if (_flippedX)
+    if (_flippedX)
     {
         _labelRenderer->setScaleX(-1.0f);
-    } 
+    }
     else
     {
         _labelRenderer->setScaleX(1.0f);
     }
 }
-    
+
 void Text::updateFlippedY()
 {
     if (_flippedY)
     {
         _labelRenderer->setScaleY(-1.0f);
-    } 
+    }
     else
     {
         _labelRenderer->setScaleY(1.0f);
@@ -270,7 +289,7 @@ void Text::onSizeChanged()
     Widget::onSizeChanged();
     _labelRendererAdaptDirty = true;
 }
-    
+
 void Text::adaptRenderers()
 {
     if (_labelRendererAdaptDirty)
@@ -321,7 +340,7 @@ std::string Text::getDescription() const
 {
     return "Label";
 }
-    
+
 void Text::updateTextureColor()
 {
     updateColorToRenderer(_labelRenderer);

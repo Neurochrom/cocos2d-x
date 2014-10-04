@@ -50,7 +50,13 @@ public:
      It will purge the textures atlas and if multiple texture exist in one FontAtlas.
      */
     static void purgeCachedData();
-    
+
+    /** Clears the Font Atlas cache even if some atlases seem to be in use.
+     Allows a graceful exit when FontFreeType::shutdownFreeType() is about to be called, and invalidates all
+     free type fonts, so that they cannot even close properly due to an invalid FT_Face font ref.
+     */
+    static void forceClear();
+
 private: 
     static std::string generateFontName(const std::string& fontFileName, int size, GlyphCollection theGlyphs, bool useDistanceField);
     static std::unordered_map<std::string, FontAtlas *> _atlasMap;

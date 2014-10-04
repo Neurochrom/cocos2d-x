@@ -50,11 +50,14 @@ static std::unordered_map<std::string, DataRef> s_cacheFontData;
 
 FontFreeType * FontFreeType::create(const std::string &fontName, int fontSize, GlyphCollection glyphs, const char *customGlyphs,bool distanceFieldEnabled /* = false */,int outline /* = 0 */)
 {
+    if (fontName.empty())
+        return nullptr;
+
     FontFreeType *tempFont =  new FontFreeType(distanceFieldEnabled,outline);
 
     if (!tempFont)
         return nullptr;
-    
+
     tempFont->setCurrentGlyphCollection(glyphs, customGlyphs);
     
     if (!tempFont->createFontObject(fontName, fontSize))
@@ -114,6 +117,9 @@ FontFreeType::FontFreeType(bool distanceFieldEnabled /* = false */,int outline /
 
 bool FontFreeType::createFontObject(const std::string &fontName, int fontSize)
 {
+    if (fontName.empty())
+        return false;
+
     FT_Face face;
     // save font name locally
     _fontName = fontName;
@@ -121,17 +127,17 @@ bool FontFreeType::createFontObject(const std::string &fontName, int fontSize)
     auto it = s_cacheFontData.find(fontName);
     if (it != s_cacheFontData.end())
     {
-        (*it).second.referenceCount += 1;
+        it->second.referenceCount += 1;
+        if (it->second.data.isNull())
+           return false;
     }
     else
     {
-        s_cacheFontData[fontName].referenceCount = 1;
-        s_cacheFontData[fontName].data = FileUtils::getInstance()->getDataFromFile(fontName);    
-
-        if (s_cacheFontData[fontName].data.isNull())
-        {
+        DataRef& dr = s_cacheFontData[fontName];
+        dr.referenceCount = 1;
+        dr.data = FileUtils::getInstance()->getDataFromFile(fontName);
+        if (dr.data.isNull())
             return false;
-        }
     }
 
     if (FT_New_Memory_Face(getFTLibrary(), s_cacheFontData[fontName].data.getBytes(), s_cacheFontData[fontName].data.getSize(), 0, &face ))
@@ -159,16 +165,21 @@ FontFreeType::~FontFreeType()
     if (_stroker)
     {
         FT_Stroker_Done(_stroker);
+        _stroker = nullptr;
     }
     if (_fontRef)
     {
         FT_Done_Face(_fontRef);
+        _fontRef = nullptr;
     }
 
-    s_cacheFontData[_fontName].referenceCount -= 1;
-    if (s_cacheFontData[_fontName].referenceCount == 0)
+    auto it = s_cacheFontData.find(_fontName);
+    if (it != s_cacheFontData.end()) 
     {
-        s_cacheFontData.erase(_fontName);
+        if(--it->second.referenceCount == 0)
+        {
+            s_cacheFontData.erase(_fontName);
+        }
     }
 }
 
