@@ -70,7 +70,9 @@ public:
      */
     static Text* create(const std::string& textContent,
                         const std::string& fontName,
-                        int fontSize);
+                        int fontSize,
+                        int outlineSize = 0,
+                        const Color4B& outlineColor = Color4B::BLACK);
 
     /**
      * Changes the string value of label.
@@ -95,7 +97,7 @@ public:
      *
      * @return  string length.
      */
-    ssize_t getStringLength()const;
+    ssize_t getStringLength() const;
 
     /**
      * Sets the font size of label.
@@ -104,7 +106,18 @@ public:
      */
     void setFontSize(int size);
 
-    int getFontSize();
+    int getFontSize() const;
+
+    /**
+    * Sets the font outline size and color of the label.
+    * Only supported for TTF.
+    * @param size Font outline size.
+    * @param color The color of the ont outline.
+    */
+    void setOutline(int size, const Color4B& color = Color4B::BLACK);
+
+    int getOutlineSize() const;
+    const Color4B& getOutlineColor() const;
 
     /**
      * Sets the font name of label.
@@ -117,7 +130,7 @@ public:
      */
     void setFontName(const std::string& name);
 
-    const std::string& getFontName();
+    const std::string& getFontName() const;
     
     Type getType() const;
 
@@ -133,7 +146,7 @@ public:
      *
      * @return  touch scale enabled of label.
      */
-    bool isTouchScaleChangeEnabled();
+    bool isTouchScaleChangeEnabled() const;
 
     //override "getVirtualRendererSize" method of widget.
     virtual const Size& getVirtualRendererSize() const override;
@@ -148,21 +161,25 @@ public:
 
     void setTextAreaSize(const Size &size);
 
-    const Size& getTextAreaSize();
+    const Size& getTextAreaSize() const;
 
     void setTextHorizontalAlignment(TextHAlignment alignment);
 
-    TextHAlignment getTextHorizontalAlignment();
+    TextHAlignment getTextHorizontalAlignment() const;
 
     void setTextVerticalAlignment(TextVAlignment alignment);
 
-    TextVAlignment getTextVerticalAlignment();
-    
+    TextVAlignment getTextVerticalAlignment() const;
+
+    Label* getLabel() { return _labelRenderer; }
+
 CC_CONSTRUCTOR_ACCESS:
     virtual bool init() override;
     virtual bool init(const std::string& textContent,
                       const std::string& fontName,
-                      int fontSize);
+                      int fontSize,
+                      int outlineSize = 0,
+                      const Color4B& outlineColor = Color4B::BLACK);
 
 protected:
     virtual void initRenderer() override;
@@ -185,6 +202,7 @@ protected:
     float _normalScaleValueY;
     std::string _fontName;
     int _fontSize;
+    int _outlineSize;
     float _onSelectedScaleOffset;
     Label* _labelRenderer;
     bool _labelRendererAdaptDirty;

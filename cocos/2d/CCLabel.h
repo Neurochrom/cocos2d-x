@@ -57,16 +57,34 @@ typedef struct _ttfConfig
     GlyphCollection glyphs;
     const char *customGlyphs;
     bool distanceFieldEnabled;
+
+    //union
+    //{
+
     int outlineSize;
 
+    //    struct
+    //    {
+    //        int shadowBlurRadius;
+    //        Size shadowOffset;
+    //    };
+    //};
+    //
+    //LabelEffect effect;
+    //Color4B textColor;
+
+    Color4B effectColor;
+
     _ttfConfig(const char* filePath = "",int size = 12, const GlyphCollection& glyphCollection = GlyphCollection::DYNAMIC,
-        const char *customGlyphCollection = nullptr,bool useDistanceField = false,int outline = 0)
+        const char *customGlyphCollection = nullptr,bool useDistanceField = false,int outline = 0,
+        const Color4B& effectColor = Color4B::BLACK)
         :fontFilePath(filePath)
         ,fontSize(size)
         ,glyphs(glyphCollection)
         ,customGlyphs(customGlyphCollection)
         ,distanceFieldEnabled(useDistanceField)
         ,outlineSize(outline)
+        ,effectColor(effectColor)
     {
         if(outline > 0)
         {
@@ -228,6 +246,8 @@ public:
     virtual float getScaleX() const override;
     virtual float getScaleY() const override;
 
+    const Color4B& getEffectColor() const { return _fontConfig.effectColor; }
+
     virtual void addChild(Node * child, int zOrder=0, int tag=0) override;
     virtual void sortAllChildren() override;
 
@@ -352,7 +372,6 @@ protected:
     bool _useA8Shader;
 
     LabelEffect _currLabelEffect;
-    Color4B _effectColor;
     Color4F _effectColorF;
 
     GLuint _uniformEffectColor;

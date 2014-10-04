@@ -71,10 +71,11 @@ bool Text::init()
     return false;
 }
 
-Text* Text::create(const std::string &textContent, const std::string &fontName, int fontSize)
+Text* Text::create(const std::string &textContent, const std::string &fontName, int fontSize,
+                   int outlineSize, const Color4B& outlineColor)
 {
     Text *text = new Text;
-    if (text && text->init(textContent, fontName, fontSize)) {
+    if (text && text->init(textContent, fontName, fontSize, outlineSize, outlineColor)) {
         text->autorelease();
         return text;
     }
@@ -82,7 +83,8 @@ Text* Text::create(const std::string &textContent, const std::string &fontName, 
     return nullptr;
 }
 
-bool Text::init(const std::string &textContent, const std::string &fontName, int fontSize)
+bool Text::init(const std::string &textContent, const std::string &fontName, int fontSize,
+                int outlineSize, const Color4B& outlineColor)
 {
     bool ret = true;
     do {
@@ -93,11 +95,14 @@ bool Text::init(const std::string &textContent, const std::string &fontName, int
         this->setString(textContent);
         _fontSize = fontSize;
         _fontName = fontName;
+        _outlineSize = outlineSize;
         if (FileUtils::getInstance()->isFileExist(fontName))
         {
             TTFConfig config = _labelRenderer->getTTFConfig();
             config.fontFilePath = fontName;
             config.fontSize = fontSize;
+            config.outlineSize = outlineSize;
+            config.effectColor = outlineColor;
             _labelRenderer->setTTFConfig(config);
             _type = Type::TTF;
         }
@@ -154,9 +159,33 @@ void Text::setFontSize(int size)
     _labelRendererAdaptDirty = true;
 }
 
-int Text::getFontSize()
+int Text::getFontSize() const
 {
     return _fontSize;
+}
+
+void Text::setOutline(int size, const Color4B& color)
+{
+   _labelRenderer->enableOutline(color, size);
+   updateContentSizeWithTextureSize(_labelRenderer->getContentSize());
+   _labelRendererAdaptDirty = true;
+}
+
+int Text::getOutlineSize() const
+{
+    if (_type == Type::SYSTEM)
+    {
+        return 0;
+    }
+    else
+    {
+        return _labelRenderer->getTTFConfig().outlineSize;
+    }
+}
+
+const Color4B& Text::getOutlineColor() const
+{
+    return _labelRenderer->getEffectColor();
 }
 
 void Text::setFontName(const std::string& name)
@@ -166,6 +195,7 @@ void Text::setFontName(const std::string& name)
         TTFConfig config = _labelRenderer->getTTFConfig();
         config.fontFilePath = name;
         config.fontSize = _fontSize;
+        config.outlineSize = _outlineSize;
         _labelRenderer->setTTFConfig(config);
         _type = Type::TTF;
     }
@@ -179,7 +209,7 @@ void Text::setFontName(const std::string& name)
     _labelRendererAdaptDirty = true;
 }
 
-const std::string& Text::getFontName()
+const std::string& Text::getFontName() const
 {
     return _fontName;
 }
@@ -196,7 +226,7 @@ void Text::setTextAreaSize(const Size &size)
     _labelRendererAdaptDirty = true;
 }
 
-const Size& Text::getTextAreaSize()
+const Size& Text::getTextAreaSize() const
 {
     return _labelRenderer->getDimensions();
 }
@@ -208,7 +238,7 @@ void Text::setTextHorizontalAlignment(TextHAlignment alignment)
     _labelRendererAdaptDirty = true;
 }
 
-TextHAlignment Text::getTextHorizontalAlignment()
+TextHAlignment Text::getTextHorizontalAlignment() const
 {
     return _labelRenderer->getHorizontalAlignment();
 }
@@ -220,7 +250,7 @@ void Text::setTextVerticalAlignment(TextVAlignment alignment)
     _labelRendererAdaptDirty = true;
 }
 
-TextVAlignment Text::getTextVerticalAlignment()
+TextVAlignment Text::getTextVerticalAlignment() const
 {
     return _labelRenderer->getVerticalAlignment();
 }
@@ -230,7 +260,7 @@ void Text::setTouchScaleChangeEnabled(bool enable)
     _touchScaleChangeEnabled = enable;
 }
 
-bool Text::isTouchScaleChangeEnabled()
+bool Text::isTouchScaleChangeEnabled() const
 {
     return _touchScaleChangeEnabled;
 }

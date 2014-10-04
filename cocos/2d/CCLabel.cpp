@@ -433,6 +433,10 @@ bool Label::setTTFConfig(const TTFConfig& ttfConfig)
     setFontAtlas(newAtlas,ttfConfig.distanceFieldEnabled,true);
 
     _fontConfig = ttfConfig;
+    _effectColorF.r = _fontConfig.effectColor.r / 255.0f;
+    _effectColorF.g = _fontConfig.effectColor.g / 255.0f;
+    _effectColorF.b = _fontConfig.effectColor.b / 255.0f;
+    _effectColorF.a = _fontConfig.effectColor.a / 255.0f;
     if (_fontConfig.outlineSize > 0)
     {
         _fontConfig.distanceFieldEnabled = false;
@@ -726,21 +730,21 @@ void Label::enableGlow(const Color4B& glowColor)
     if(! _useDistanceField)
         return;
     _currLabelEffect = LabelEffect::GLOW;
-    _effectColor = glowColor;
-    _effectColorF.r = _effectColor.r / 255.0f;
-    _effectColorF.g = _effectColor.g / 255.0f;
-    _effectColorF.b = _effectColor.b / 255.0f;
-    _effectColorF.a = _effectColor.a / 255.0f;
+    _fontConfig.effectColor = glowColor;
+    _effectColorF.r = _fontConfig.effectColor.r / 255.0f;
+    _effectColorF.g = _fontConfig.effectColor.g / 255.0f;
+    _effectColorF.b = _fontConfig.effectColor.b / 255.0f;
+    _effectColorF.a = _fontConfig.effectColor.a / 255.0f;
     updateShaderProgram();
 }
 
 void Label::enableOutline(const Color4B& outlineColor,int outlineSize /* = -1 */)
 {
-    _effectColor = outlineColor;
-    _effectColorF.r = _effectColor.r / 255.0f;
-    _effectColorF.g = _effectColor.g / 255.0f;
-    _effectColorF.b = _effectColor.b / 255.0f;
-    _effectColorF.a = _effectColor.a / 255.0f;
+    _fontConfig.effectColor = outlineColor;
+    _effectColorF.r = _fontConfig.effectColor.r / 255.0f;
+    _effectColorF.g = _fontConfig.effectColor.g / 255.0f;
+    _effectColorF.b = _fontConfig.effectColor.b / 255.0f;
+    _effectColorF.a = _fontConfig.effectColor.a / 255.0f;
 
     if (outlineSize > 0)
     {
@@ -981,9 +985,9 @@ void Label::updateContent()
             {
                 _fontDefinition._stroke._strokeEnabled = true;
                 _fontDefinition._stroke._strokeSize = _outlineSize;
-                _fontDefinition._stroke._strokeColor.r = _effectColor.r;
-                _fontDefinition._stroke._strokeColor.g = _effectColor.g;
-                _fontDefinition._stroke._strokeColor.b = _effectColor.b;
+                _fontDefinition._stroke._strokeColor.r = _fontConfig.effectColor.r;
+                _fontDefinition._stroke._strokeColor.g = _fontConfig.effectColor.g;
+                _fontDefinition._stroke._strokeColor.b = _fontConfig.effectColor.b;
             }
             else
             {
