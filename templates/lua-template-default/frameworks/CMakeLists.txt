@@ -5,8 +5,8 @@ project (${APP_NAME})
 
 include(cocos2d-x/build/BuildHelpers.CMakeLists.txt)
 
-option(USE_CHIPMUNK "Use chipmunk for physics library" ON)
-option(USE_BOX2D "Use box2d for physics library" OFF)
+option(USE_CHIPMUNK "Use chipmunk for physics library" OFF)
+option(USE_BOX2D "Use box2d for physics library" ON)
 option(DEBUG_MODE "Debug or release?" ON)
 
 if(DEBUG_MODE)
