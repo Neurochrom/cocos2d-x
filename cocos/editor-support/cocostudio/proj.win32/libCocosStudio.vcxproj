@@ -62,16 +62,16 @@
     <ClCompile Include="..\WidgetReader\WidgetReader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\external\json\document.h" />
-    <ClInclude Include="..\..\..\..\external\json\filestream.h" />
-    <ClInclude Include="..\..\..\..\external\json\internal\pow10.h" />
-    <ClInclude Include="..\..\..\..\external\json\internal\stack.h" />
-    <ClInclude Include="..\..\..\..\external\json\internal\strfunc.h" />
-    <ClInclude Include="..\..\..\..\external\json\prettywriter.h" />
-    <ClInclude Include="..\..\..\..\external\json\rapidjson.h" />
-    <ClInclude Include="..\..\..\..\external\json\reader.h" />
-    <ClInclude Include="..\..\..\..\external\json\stringbuffer.h" />
-    <ClInclude Include="..\..\..\..\external\json\writer.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\document.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\filestream.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\pow10.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\stack.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\strfunc.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\prettywriter.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\rapidjson.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\reader.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\stringbuffer.h" />
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\writer.h" />
     <ClInclude Include="..\CCActionFrame.h" />
     <ClInclude Include="..\CCActionFrameEasing.h" />
     <ClInclude Include="..\CCActionManagerEx.h" />
@@ -165,10 +165,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
     <IntDir>$(Configuration).win32\</IntDir>
+    <PreLinkEventUseInBuild>false</PreLinkEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
     <IntDir>$(Configuration).win32\</IntDir>
+    <PreLinkEventUseInBuild>false</PreLinkEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -197,6 +199,7 @@
       </SDLCheck>
       <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;GL_GLEXT_PROTOTYPES;COCOS2DXWIN32_EXPORTS;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)cocos2d-x-3rd-party-libs-bin;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\tinyxml2;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

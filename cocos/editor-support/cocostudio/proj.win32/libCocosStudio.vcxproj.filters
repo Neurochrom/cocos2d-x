@@ -311,36 +311,6 @@
     <ClInclude Include="..\CCBone.h">
       <Filter>armature</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\document.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\filestream.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\prettywriter.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\rapidjson.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\reader.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\stringbuffer.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\writer.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\internal\pow10.h">
-      <Filter>json\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\internal\stack.h">
-      <Filter>json\rapidjson\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\external\json\internal\strfunc.h">
-      <Filter>json\rapidjson\internal</Filter>
-    </ClInclude>
     <ClInclude Include="..\CCActionFrame.h">
       <Filter>action</Filter>
     </ClInclude>
@@ -415,6 +385,36 @@
     </ClInclude>
     <ClInclude Include="..\WidgetReader\PageViewReader\PageViewReader.h">
       <Filter>reader\WidgetReader\PageViewReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\pow10.h">
+      <Filter>json\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\stack.h">
+      <Filter>json\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\strfunc.h">
+      <Filter>json\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\document.h">
+      <Filter>json\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\filestream.h">
+      <Filter>json\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\prettywriter.h">
+      <Filter>json\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\rapidjson.h">
+      <Filter>json\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\reader.h">
+      <Filter>json\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\stringbuffer.h">
+      <Filter>json\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\writer.h">
+      <Filter>json\rapidjson</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

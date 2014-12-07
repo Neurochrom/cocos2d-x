@@ -100,10 +100,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
     <IntDir>$(Configuration).win32\</IntDir>
+    <PreLinkEventUseInBuild>false</PreLinkEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
     <IntDir>$(Configuration).win32\</IntDir>
+    <PreLinkEventUseInBuild>false</PreLinkEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -132,6 +134,7 @@
       </SDLCheck>
       <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;GL_GLEXT_PROTOTYPES;COCOS2DXWIN32_EXPORTS;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
