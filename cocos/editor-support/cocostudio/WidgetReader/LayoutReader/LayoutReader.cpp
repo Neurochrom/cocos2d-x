@@ -55,11 +55,9 @@ namespace cocostudio
         /**/
         
         panel->setClippingEnabled(DICTOOL->getBooleanValue_json(options, "clipAble"));
-
-#ifdef USE_SCALE9
+        
         bool backGroundScale9Enable = DICTOOL->getBooleanValue_json(options, "backGroundScale9Enable");
         panel->setBackGroundImageScale9Enabled(backGroundScale9Enable);
-#endif
         int cr = DICTOOL->getIntValue_json(options, "bgColorR");
         int cg = DICTOOL->getIntValue_json(options, "bgColorG");
         int cb = DICTOOL->getIntValue_json(options, "bgColorB");
@@ -90,7 +88,7 @@ namespace cocostudio
         std::string imageFileName = this->getResourcePath(imageFileNameDic, "path", (Widget::TextureResType)imageFileNameType);
         panel->setBackGroundImage(imageFileName, (Widget::TextureResType)imageFileNameType);
         
-#ifdef USE_SCALE9
+        
         if (backGroundScale9Enable)
         {
             float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
@@ -99,7 +97,6 @@ namespace cocostudio
             float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
             panel->setBackGroundImageCapInsets(Rect(cx, cy, cw, ch));
         }
-#endif
         panel->setLayoutType((Layout::Type)DICTOOL->getIntValue_json(options, "layoutType"));
         
         int bgimgcr = DICTOOL->getIntValue_json(options, "colorR");

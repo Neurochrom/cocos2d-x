@@ -88,8 +88,7 @@ public:
      * @param texType @see TextureResType. UI_TEX_TYPE_LOCAL means local file, UI_TEX_TYPE_PLIST means sprite frame.
      */
     void setBackGroundImage(const std::string& fileName,TextureResType texType = TextureResType::LOCAL);
-
-#ifdef USE_SCALE9
+    
     /**
      * Sets a background image capinsets for layout, if the background image is a scale9 render.
      *
@@ -97,8 +96,7 @@ public:
      *
      */
     void setBackGroundImageCapInsets(const Rect& capInsets);
-#endif
-
+    
     const Rect& getBackGroundImageCapInsets();
     
     /**
@@ -109,8 +107,7 @@ public:
     void setBackGroundColorType(BackGroundColorType type);
     
     BackGroundColorType getBackGroundColorType();
-
-#ifdef USE_SCALE9
+    
     /**
      * Sets background iamge use scale9 renderer.
      *
@@ -119,8 +116,7 @@ public:
     void setBackGroundImageScale9Enabled(bool enabled);
     
     bool isBackGroundImageScale9Enabled();
-#endif
-
+    
     /**
      * Sets background color for layout, if color type is LAYOUT_COLOR_SOLID
      *
@@ -438,9 +434,7 @@ protected:
     bool _clippingEnabled;
     
     //background
-#ifdef USE_SCALE9
     bool _backGroundScale9Enabled;
-#endif
     Node* _backGroundImage;
     std::string _backGroundImageFileName;
     Rect _backGroundImageCapInsets;

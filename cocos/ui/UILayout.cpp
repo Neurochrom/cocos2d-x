@@ -24,9 +24,7 @@ THE SOFTWARE.
 
 #include "ui/UILayout.h"
 #include "ui/UIHelper.h"
-#ifdef USE_SCALE9
 #include "extensions/GUI/CCControlExtension/CCScale9Sprite.h"
-#endif
 #include "renderer/CCGLProgram.h"
 #include "renderer/CCGLProgramCache.h"
 #include "base/CCDirector.h"
@@ -570,9 +568,7 @@ IMPLEMENT_CLASS_GUI_INFO(Layout)
 
 Layout::Layout():
 _clippingEnabled(false),
-#ifdef USE_SCALE9
 _backGroundScale9Enabled(false),
-#endif
 _backGroundImage(nullptr),
 _backGroundImageFileName(""),
 _backGroundImageCapInsets(Rect::ZERO),
@@ -1076,12 +1072,10 @@ void Layout::onSizeChanged()
     if (_backGroundImage)
     {
         _backGroundImage->setPosition(Vec2(_size.width/2.0f, _size.height/2.0f));
-#ifdef USE_SCALE9
         if (_backGroundScale9Enabled && _backGroundImage)
         {
             static_cast<extension::Scale9Sprite*>(_backGroundImage)->setPreferredSize(_size);
         }
-#endif
     }
     if (_colorRender)
     {
@@ -1093,7 +1087,6 @@ void Layout::onSizeChanged()
     }
 }
 
-#ifdef USE_SCALE9
 void Layout::setBackGroundImageScale9Enabled(bool able)
 {
     if (_backGroundScale9Enabled == able)
@@ -1112,7 +1105,6 @@ bool Layout::isBackGroundImageScale9Enabled()
 {
     return _backGroundScale9Enabled;
 }
-#endif
 
 void Layout::setBackGroundImage(const std::string& fileName,TextureResType texType)
 {
@@ -1126,7 +1118,6 @@ void Layout::setBackGroundImage(const std::string& fileName,TextureResType texTy
     }
     _backGroundImageFileName = fileName;
     _bgImageTexType = texType;
-#ifdef USE_SCALE9
     if (_backGroundScale9Enabled)
     {
         extension::Scale9Sprite* bgiScale9 = static_cast<extension::Scale9Sprite*>(_backGroundImage);
@@ -1144,7 +1135,6 @@ void Layout::setBackGroundImage(const std::string& fileName,TextureResType texTy
         bgiScale9->setPreferredSize(_size);
     }
     else
-#endif
     {
         switch (_bgImageTexType)
         {
@@ -1163,7 +1153,6 @@ void Layout::setBackGroundImage(const std::string& fileName,TextureResType texTy
     updateBackGroundImageRGBA();
 }
 
-#ifdef USE_SCALE9
 void Layout::setBackGroundImageCapInsets(const Rect &capInsets)
 {
     _backGroundImageCapInsets = capInsets;
@@ -1172,8 +1161,7 @@ void Layout::setBackGroundImageCapInsets(const Rect &capInsets)
         static_cast<extension::Scale9Sprite*>(_backGroundImage)->setCapInsets(capInsets);
     }
 }
-#endif
-
+    
 const Rect& Layout::getBackGroundImageCapInsets()
 {
     return _backGroundImageCapInsets;
@@ -1215,7 +1203,6 @@ void Layout::supplyTheLayoutParameterLackToChild(Widget *child)
 
 void Layout::addBackGroundImage()
 {
-#ifdef USE_SCALE9
     if (_backGroundScale9Enabled)
     {
         _backGroundImage = extension::Scale9Sprite::create();
@@ -1223,7 +1210,6 @@ void Layout::addBackGroundImage()
         static_cast<extension::Scale9Sprite*>(_backGroundImage)->setPreferredSize(_size);
     }
     else
-#endif
     {
         _backGroundImage = Sprite::create();
         addProtectedChild(_backGroundImage, BACKGROUNDIMAGE_Z, -1);
@@ -1518,13 +1504,9 @@ void Layout::copySpecialProperties(Widget *widget)
     Layout* layout = dynamic_cast<Layout*>(widget);
     if (layout)
     {
-#ifdef USE_SCALE9
         setBackGroundImageScale9Enabled(layout->_backGroundScale9Enabled);
-#endif
         setBackGroundImage(layout->_backGroundImageFileName,layout->_bgImageTexType);
-#ifdef USE_SCALE9
         setBackGroundImageCapInsets(layout->_backGroundImageCapInsets);
-#endif
         setBackGroundColorType(layout->_colorType);
         setBackGroundColor(layout->_cColor);
         setBackGroundColor(layout->_gStartColor, layout->_gEndColor);
