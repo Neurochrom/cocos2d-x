@@ -66,26 +66,27 @@ namespace experimental{
             virtual void setVisible(bool visible) override;
 
             virtual void setKeepAspectRatioEnabled(bool enable);
-            virtual bool isKeepAspectRatioEnabled() { return _keepAspectRatioEnabled;}
+            virtual bool isKeepAspectRatioEnabled()const { return _keepAspectRatioEnabled;}
 
             virtual void setFullScreenEnabled(bool enabled);
-            virtual bool isFullScreenEnabled();
+            virtual bool isFullScreenEnabled()const;
 
             virtual void addEventListener(const VideoPlayer::ccVideoPlayerCallback& callback);
 
-            virtual void onPlayEvent(VideoPlayer::EventType event);
-            virtual void draw(Renderer *renderer, const Mat4& transform, bool transformUpdated) override;
+            virtual void onPlayEvent(int event);
+            virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags) override;
 
         protected:
             virtual cocos2d::ui::Widget* createCloneInstance() override;
             virtual void copySpecialProperties(Widget* model) override;
             
+        CC_CONSTRUCTOR_ACCESS:
             VideoPlayer();
             virtual ~VideoPlayer();
 
+        protected:
 #if CC_VIDEOPLAYER_DEBUG_DRAW
-            CustomCommand _customDebugDrawCommand;
-            void VideoPlayer::drawDebugData();
+            DrawNode *_debugDrawNode;
 #endif
 
             enum class Source

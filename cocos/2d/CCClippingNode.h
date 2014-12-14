@@ -29,7 +29,7 @@
 #define __MISCNODE_CCCLIPPING_NODE_H__
 
 #include "2d/CCNode.h"
-#include "CCGL.h"
+#include "platform/CCGL.h"
 #include "renderer/CCGroupCommand.h"
 #include "renderer/CCCustomCommand.h"
 
@@ -58,7 +58,14 @@ public:
      */
     Node* getStencil() const;
     void setStencil(Node *stencil);
-    
+
+    /** If stencil has no childre it will not be drawn.
+    If you have custom stencil-based node with stencil drawing mechanics other then children-based,
+    then this method should return true every time you wish stencil to be visited.
+    By default returns true if has any children attached.
+    */
+    virtual bool hasContent() const;
+
     /** The alpha threshold.
      The content is drawn only where the stencil have pixel with alpha greater than the alphaThreshold.
      Should be a float between 0 and 1.
@@ -95,7 +102,7 @@ public:
      * @lua NA
      */
     virtual void onExit() override;
-    virtual void visit(Renderer *renderer, const Mat4 &parentTransform, bool parentTransformUpdated) override;
+    virtual void visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
     
 CC_CONSTRUCTOR_ACCESS:
     ClippingNode();

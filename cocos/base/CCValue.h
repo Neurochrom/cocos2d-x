@@ -25,7 +25,7 @@
 #ifndef __cocos2d_libs__CCValue__
 #define __cocos2d_libs__CCValue__
 
-#include "base/CCPlatformMacros.h"
+#include "platform/CCPlatformMacros.h"
 #include "base/ccMacros.h"
 #include <string>
 #include <vector>
@@ -39,11 +39,11 @@ typedef std::vector<Value> ValueVector;
 typedef std::unordered_map<std::string, Value> ValueMap;
 typedef std::unordered_map<int, Value> ValueMapIntKey;
 
-extern const ValueVector ValueVectorNull;
-extern const ValueMap ValueMapNull;
-extern const ValueMapIntKey ValueMapIntKeyNull;
+CC_DLL extern const ValueVector ValueVectorNull;
+CC_DLL extern const ValueMap ValueMapNull;
+CC_DLL extern const ValueMapIntKey ValueMapIntKeyNull;
 
-class Value
+class CC_DLL Value
 {
 public:
     static const Value Null;
@@ -90,6 +90,12 @@ public:
 
     Value& operator= (const ValueMapIntKey& v);
     Value& operator= (ValueMapIntKey&& v);
+
+    // equal operator
+    bool operator!= (const Value& v);
+    bool operator!= (const Value& v) const;
+    bool operator== (const Value& v);
+    bool operator== (const Value& v) const;
 
     unsigned char asByte() const;
     int asInt() const;

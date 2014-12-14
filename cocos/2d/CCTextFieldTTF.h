@@ -86,7 +86,7 @@ public:
     /**
     @brief    If the sender doesn't want to draw, return true.
     */
-    virtual bool onVisit(TextFieldTTF * sender,Renderer *renderer, const Mat4 &transform, bool transformUpdated)
+    virtual bool onVisit(TextFieldTTF * sender,Renderer *renderer, const Mat4 &transform, uint32_t flags)
     {
         CC_UNUSED_PARAM(sender);
         return false;
@@ -160,12 +160,12 @@ public:
     // place holder text property
     // place holder text displayed when there is no text in the text field.
     virtual void setPlaceHolder(const std::string& text);
-    virtual const std::string& getPlaceHolder(void) const;
+    virtual const std::string& getPlaceHolder() const;
 
     virtual void setSecureTextEntry(bool value);
     virtual bool isSecureTextEntry();
 
-    virtual void visit(Renderer *renderer, const Mat4 &parentTransform, bool parentTransformUpdated) override;
+    virtual void visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
 
 protected:
     //////////////////////////////////////////////////////////////////////////

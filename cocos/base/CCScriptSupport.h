@@ -27,8 +27,6 @@
 #define __SCRIPT_SUPPORT_H__
 
 #include "base/ccConfig.h"
-#if CC_ENABLE_SCRIPT_BINDING
-
 #include "platform/CCCommon.h"
 #include "base/CCTouch.h"
 #include "base/CCEventTouch.h"
@@ -36,6 +34,8 @@
 #include <map>
 #include <string>
 #include <list>
+
+#if CC_ENABLE_SCRIPT_BINDING
 
 typedef struct lua_State lua_State;
 
@@ -450,6 +450,7 @@ public:
     virtual bool parseConfig(ConfigType type, const std::string& str) = 0;
 };
 
+class Node;
 /**
  ScriptEngineManager is a singleton which holds an object instance of ScriptEngineProtocl
  It helps cocos2d-x and the user code to find back LuaEngine object
@@ -490,6 +491,21 @@ public:
      * @lua NA
      */
     static void destroyInstance();
+    /**
+     * @js NA
+     * @lua NA
+     */
+    static bool sendNodeEventToJS(Node* node, int action);
+    /**
+     * @js NA
+     * @lua NA
+     */
+    static bool sendNodeEventToJSExtended(Node* node, int action);
+    /**
+     * @js NA
+     * @lua NA
+     */
+    static void sendNodeEventToLua(Node* node, int action);
     /**
      * @js NA
      * @lua NA
