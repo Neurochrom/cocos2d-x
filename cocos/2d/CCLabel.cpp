@@ -727,17 +727,6 @@ void Label::sortAllChildren()
 
 void Label::enableGlow(const Color4B& glowColor)
 {
-<<<<<<< HEAD
-    if(! _useDistanceField)
-        return;
-    _currLabelEffect = LabelEffect::GLOW;
-    _fontConfig.effectColor = glowColor;
-    _effectColorF.r = _fontConfig.effectColor.r / 255.0f;
-    _effectColorF.g = _fontConfig.effectColor.g / 255.0f;
-    _effectColorF.b = _fontConfig.effectColor.b / 255.0f;
-    _effectColorF.a = _fontConfig.effectColor.a / 255.0f;
-    updateShaderProgram();
-=======
     if (_currentLabelType == LabelType::TTF)
     {
         if (_fontConfig.distanceFieldEnabled == false)
@@ -749,33 +738,22 @@ void Label::enableGlow(const Color4B& glowColor)
             _contentDirty = true;
         }
         _currLabelEffect = LabelEffect::GLOW;
-        _effectColor = glowColor;
-        _effectColorF.r = _effectColor.r / 255.0f;
-        _effectColorF.g = _effectColor.g / 255.0f;
-        _effectColorF.b = _effectColor.b / 255.0f;
-        _effectColorF.a = _effectColor.a / 255.0f;
+        _effectColorF.r = glowColor.r / 255.0f;
+        _effectColorF.g = glowColor.g / 255.0f;
+        _effectColorF.b = glowColor.b / 255.0f;
+        _effectColorF.a = glowColor.a / 255.0f;
         updateShaderProgram();
     }
->>>>>>> cocos2d-x-3.3
 }
 
 void Label::enableOutline(const Color4B& outlineColor,int outlineSize /* = -1 */)
 {
-<<<<<<< HEAD
-    _fontConfig.effectColor = outlineColor;
-    _effectColorF.r = _fontConfig.effectColor.r / 255.0f;
-    _effectColorF.g = _fontConfig.effectColor.g / 255.0f;
-    _effectColorF.b = _fontConfig.effectColor.b / 255.0f;
-    _effectColorF.a = _fontConfig.effectColor.a / 255.0f;
-=======
     CCASSERT(_currentLabelType == LabelType::STRING_TEXTURE || _currentLabelType == LabelType::TTF, "Only supported system font and TTF!");
 
-    _effectColor = outlineColor;
-    _effectColorF.r = _effectColor.r / 255.0f;
-    _effectColorF.g = _effectColor.g / 255.0f;
-    _effectColorF.b = _effectColor.b / 255.0f;
-    _effectColorF.a = _effectColor.a / 255.0f;
->>>>>>> cocos2d-x-3.3
+    _effectColorF.r = outlineColor.r / 255.0f;
+    _effectColorF.g = outlineColor.g / 255.0f;
+    _effectColorF.b = outlineColor.b / 255.0f;
+    _effectColorF.a = outlineColor.a / 255.0f;
 
     if (outlineSize > 0)
     {

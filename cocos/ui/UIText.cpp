@@ -77,7 +77,7 @@ Text* Text::create(const std::string &textContent, const std::string &fontName, 
                    int outlineSize, const Color4B& outlineColor)
 {
     Text *text = new (std::nothrow) Text;
-    if (text && text->init(textContent, fontName, fontSize, outlineSize, outlineColor)) {
+    if (text && text->init(textContent, fontName, fontSize, outlineSize, outlineColor))
     {
         text->autorelease();
         return text;
@@ -312,7 +312,7 @@ void Text::onPressStateChangedToDisabled()
 {
     
 }
-
+/*
 void Text::updateFlippedX()
 {
     if (_flippedX)
@@ -336,6 +336,7 @@ void Text::updateFlippedY()
         _labelRenderer->setScaleY(1.0f);
     }
 }
+*/
 
 void Text::onSizeChanged()
 {

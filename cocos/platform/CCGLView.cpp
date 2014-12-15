@@ -476,7 +476,7 @@ float GLView::getScaleY() const
     return _scaleY;
 }
 
-void GLViewProtocol::addResizeCalback(const std::function<void(const Size&)>& callback)
+void GLView::addResizeCalback(const std::function<void(const Size&)>& callback)
 {
    _resizeCallbacks.push_back(callback);
 }
