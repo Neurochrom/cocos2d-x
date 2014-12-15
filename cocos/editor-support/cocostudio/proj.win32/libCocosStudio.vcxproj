@@ -41,8 +41,8 @@
     <ClCompile Include="..\CCTransformHelp.cpp" />
     <ClCompile Include="..\CCTween.cpp" />
     <ClCompile Include="..\CCUtilMath.cpp" />
+    <ClCompile Include="..\CocoLoader.cpp" />
     <ClCompile Include="..\DictionaryHelper.cpp" />
-    <ClCompile Include="..\ObjectFactory.cpp" />
     <ClCompile Include="..\TriggerBase.cpp" />
     <ClCompile Include="..\TriggerMng.cpp" />
     <ClCompile Include="..\TriggerObj.cpp" />
@@ -62,16 +62,16 @@
     <ClCompile Include="..\WidgetReader\WidgetReader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\document.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\filestream.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\pow10.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\stack.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\strfunc.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\prettywriter.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\rapidjson.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\reader.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\stringbuffer.h" />
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\writer.h" />
+    <ClInclude Include="..\..\..\..\external\json\document.h" />
+    <ClInclude Include="..\..\..\..\external\json\filestream.h" />
+    <ClInclude Include="..\..\..\..\external\json\internal\pow10.h" />
+    <ClInclude Include="..\..\..\..\external\json\internal\stack.h" />
+    <ClInclude Include="..\..\..\..\external\json\internal\strfunc.h" />
+    <ClInclude Include="..\..\..\..\external\json\prettywriter.h" />
+    <ClInclude Include="..\..\..\..\external\json\rapidjson.h" />
+    <ClInclude Include="..\..\..\..\external\json\reader.h" />
+    <ClInclude Include="..\..\..\..\external\json\stringbuffer.h" />
+    <ClInclude Include="..\..\..\..\external\json\writer.h" />
     <ClInclude Include="..\CCActionFrame.h" />
     <ClInclude Include="..\CCActionFrameEasing.h" />
     <ClInclude Include="..\CCActionManagerEx.h" />
@@ -103,8 +103,8 @@
     <ClInclude Include="..\CCTransformHelp.h" />
     <ClInclude Include="..\CCTween.h" />
     <ClInclude Include="..\CCUtilMath.h" />
+    <ClInclude Include="..\CocoLoader.h" />
     <ClInclude Include="..\DictionaryHelper.h" />
-    <ClInclude Include="..\ObjectFactory.h" />
     <ClInclude Include="..\TriggerBase.h" />
     <ClInclude Include="..\TriggerMng.h" />
     <ClInclude Include="..\TriggerObj.h" />
@@ -178,8 +178,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)cocos2d-x-3rd-party-libs-bin;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\tinyxml2;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;GL_GLEXT_PROTOTYPES;COCOS2DXWIN32_EXPORTS;_LIB;COCOS2D_DEBUG=1;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;CC_STATIC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_LIB;COCOS2DXWIN32_EXPORTS;COCOS2D_DEBUG=1;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MinimalRebuild>false</MinimalRebuild>
@@ -197,8 +197,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;GL_GLEXT_PROTOTYPES;COCOS2DXWIN32_EXPORTS;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)cocos2d-x-3rd-party-libs-bin;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\tinyxml2;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;CC_STATIC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_LIB;COCOS2DXWIN32_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)external\win32-specific\zlib\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>

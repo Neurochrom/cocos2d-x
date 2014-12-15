@@ -70,8 +70,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot);$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\unzip;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\curl\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\sqlite3\include;$(EngineRoot)external\libwebsockets\win32\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\win32-specific\zlib\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_LIB;COCOS2D_DEBUG=1;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot);$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\unzip;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external\curl\include\win32;$(EngineRoot)external\sqlite3\include;$(EngineRoot)external\libwebsockets\win32\include;$(EngineRoot)external\win32-specific\zlib\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;CC_STATIC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_LIB;COCOS2D_DEBUG=1;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -87,8 +87,8 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot);$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\unzip;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\curl\include\win32;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\sqlite3\include;$(EngineRoot)external\libwebsockets\win32\include;$(EngineRoot)cocos2d-x-3rd-party-libs-bin\win32-specific\zlib\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(EngineRoot);$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\unzip;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)external\curl\include\win32;$(EngineRoot)external\sqlite3\include;$(EngineRoot)external\libwebsockets\win32\include;$(EngineRoot)external\win32-specific\zlib\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;CC_STATIC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -112,15 +112,11 @@
     <ClCompile Include="..\GUI\CCControlExtension\CCControlSwitch.cpp" />
     <ClCompile Include="..\GUI\CCControlExtension\CCControlUtils.cpp" />
     <ClCompile Include="..\GUI\CCControlExtension\CCInvocation.cpp" />
-    <ClCompile Include="..\GUI\CCControlExtension\CCScale9Sprite.cpp" />
-    <ClCompile Include="..\GUI\CCEditBox\CCEditBox.cpp" />
-    <ClCompile Include="..\GUI\CCEditBox\CCEditBoxImplWin.cpp" />
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp" />
     <ClCompile Include="..\GUI\CCScrollView\CCTableView.cpp" />
     <ClCompile Include="..\GUI\CCScrollView\CCTableViewCell.cpp" />
     <ClCompile Include="..\physics-nodes\CCPhysicsDebugNode.cpp" />
     <ClCompile Include="..\physics-nodes\CCPhysicsSprite.cpp" />
-    <ClCompile Include="Win32InputBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\assets-manager\AssetsManager.h" />
@@ -136,10 +132,6 @@
     <ClInclude Include="..\GUI\CCControlExtension\CCControlSwitch.h" />
     <ClInclude Include="..\GUI\CCControlExtension\CCControlUtils.h" />
     <ClInclude Include="..\GUI\CCControlExtension\CCInvocation.h" />
-    <ClInclude Include="..\GUI\CCControlExtension\CCScale9Sprite.h" />
-    <ClInclude Include="..\GUI\CCEditBox\CCEditBox.h" />
-    <ClInclude Include="..\GUI\CCEditBox\CCEditBoxImpl.h" />
-    <ClInclude Include="..\GUI\CCEditBox\CCEditBoxImplWin.h" />
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h" />
     <ClInclude Include="..\cocos-ext.h" />
     <ClInclude Include="..\ExtensionMacros.h" />
@@ -147,7 +139,6 @@
     <ClInclude Include="..\GUI\CCScrollView\CCTableViewCell.h" />
     <ClInclude Include="..\physics-nodes\CCPhysicsDebugNode.h" />
     <ClInclude Include="..\physics-nodes\CCPhysicsSprite.h" />
-    <ClInclude Include="Win32InputBox.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

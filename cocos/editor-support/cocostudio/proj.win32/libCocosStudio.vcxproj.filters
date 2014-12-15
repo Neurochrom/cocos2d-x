@@ -162,24 +162,6 @@
     <ClCompile Include="..\CCBone.cpp">
       <Filter>armature</Filter>
     </ClCompile>
-    <ClCompile Include="..\CCActionFrame.cpp">
-      <Filter>action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CCActionFrameEasing.cpp">
-      <Filter>action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CCActionManagerEx.cpp">
-      <Filter>action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CCActionNode.cpp">
-      <Filter>action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CCActionObject.cpp">
-      <Filter>action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ObjectFactory.cpp">
-      <Filter>trigger</Filter>
-    </ClCompile>
     <ClCompile Include="..\TriggerBase.cpp">
       <Filter>trigger</Filter>
     </ClCompile>
@@ -230,6 +212,22 @@
     </ClCompile>
     <ClCompile Include="..\WidgetReader\PageViewReader\PageViewReader.cpp">
       <Filter>reader\WidgetReader\PageViewReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoLoader.cpp" />
+    <ClCompile Include="..\CCActionObject.cpp">
+      <Filter>action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCActionNode.cpp">
+      <Filter>action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCActionManagerEx.cpp">
+      <Filter>action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCActionFrameEasing.cpp">
+      <Filter>action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCActionFrame.cpp">
+      <Filter>action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,24 +309,6 @@
     <ClInclude Include="..\CCBone.h">
       <Filter>armature</Filter>
     </ClInclude>
-    <ClInclude Include="..\CCActionFrame.h">
-      <Filter>action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CCActionFrameEasing.h">
-      <Filter>action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CCActionManagerEx.h">
-      <Filter>action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CCActionNode.h">
-      <Filter>action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CCActionObject.h">
-      <Filter>action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ObjectFactory.h">
-      <Filter>trigger</Filter>
-    </ClInclude>
     <ClInclude Include="..\TriggerBase.h">
       <Filter>trigger</Filter>
     </ClInclude>
@@ -386,35 +366,31 @@
     <ClInclude Include="..\WidgetReader\PageViewReader\PageViewReader.h">
       <Filter>reader\WidgetReader\PageViewReader</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\pow10.h">
-      <Filter>json\rapidjson\internal</Filter>
+    <ClInclude Include="..\..\..\..\external\json\document.h" />
+    <ClInclude Include="..\..\..\..\external\json\filestream.h" />
+    <ClInclude Include="..\..\..\..\external\json\internal\pow10.h" />
+    <ClInclude Include="..\..\..\..\external\json\internal\stack.h" />
+    <ClInclude Include="..\..\..\..\external\json\internal\strfunc.h" />
+    <ClInclude Include="..\..\..\..\external\json\prettywriter.h" />
+    <ClInclude Include="..\..\..\..\external\json\rapidjson.h" />
+    <ClInclude Include="..\..\..\..\external\json\reader.h" />
+    <ClInclude Include="..\..\..\..\external\json\stringbuffer.h" />
+    <ClInclude Include="..\..\..\..\external\json\writer.h" />
+    <ClInclude Include="..\CocoLoader.h" />
+    <ClInclude Include="..\CCActionObject.h">
+      <Filter>action</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\stack.h">
-      <Filter>json\rapidjson\internal</Filter>
+    <ClInclude Include="..\CCActionNode.h">
+      <Filter>action</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\internal\strfunc.h">
-      <Filter>json\rapidjson\internal</Filter>
+    <ClInclude Include="..\CCActionManagerEx.h">
+      <Filter>action</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\document.h">
-      <Filter>json\rapidjson</Filter>
+    <ClInclude Include="..\CCActionFrameEasing.h">
+      <Filter>action</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\filestream.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\prettywriter.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\rapidjson.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\reader.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\stringbuffer.h">
-      <Filter>json\rapidjson</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\cocos2d-x-3rd-party-libs-bin\json\writer.h">
-      <Filter>json\rapidjson</Filter>
+    <ClInclude Include="..\CCActionFrame.h">
+      <Filter>action</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

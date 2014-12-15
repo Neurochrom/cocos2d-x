@@ -17,12 +17,13 @@
     <ClInclude Include="..\UICheckBox.h" />
     <ClInclude Include="..\UIDeprecated.h" />
     <ClInclude Include="..\UIEditBox\UIEditBox.h" />
+    <ClInclude Include="..\UIEditBox\UIEditBoxImpl-win32.h" />
     <ClInclude Include="..\UIEditBox\UIEditBoxImpl.h" />
-    <ClInclude Include="..\UIEditBox\UIEditBoxImplWin.h" />
     <ClInclude Include="..\UIHBox.h" />
     <ClInclude Include="..\UIHelper.h" />
     <ClInclude Include="..\UIImageView.h" />
     <ClInclude Include="..\UILayout.h" />
+    <ClInclude Include="..\UILayoutComponent.h" />
     <ClInclude Include="..\UILayoutManager.h" />
     <ClInclude Include="..\UILayoutParameter.h" />
     <ClInclude Include="..\UIListView.h" />
@@ -38,11 +39,7 @@
     <ClInclude Include="..\UITextBMFont.h" />
     <ClInclude Include="..\UITextField.h" />
     <ClInclude Include="..\UIVBox.h" />
-    <ClInclude Include="..\UIWebView-inl.h" />
-    <ClInclude Include="..\UIWebView.h" />
-    <ClInclude Include="..\UIWebViewImpl-win32.h" />
     <ClInclude Include="..\UIWidget.h" />
-    <ClInclude Include="Win32InputBox.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CocosGUI.cpp" />
@@ -50,11 +47,12 @@
     <ClCompile Include="..\UICheckBox.cpp" />
     <ClCompile Include="..\UIDeprecated.cpp" />
     <ClCompile Include="..\UIEditBox\UIEditBox.cpp" />
-    <ClCompile Include="..\UIEditBox\UIEditBoxImplWin.cpp" />
+    <ClCompile Include="..\UIEditBox\UIEditBoxImpl-win32.cpp" />
     <ClCompile Include="..\UIHBox.cpp" />
     <ClCompile Include="..\UIHelper.cpp" />
     <ClCompile Include="..\UIImageView.cpp" />
     <ClCompile Include="..\UILayout.cpp" />
+    <ClCompile Include="..\UILayoutComponent.cpp" />
     <ClCompile Include="..\UILayoutManager.cpp" />
     <ClCompile Include="..\UILayoutParameter.cpp" />
     <ClCompile Include="..\UIListView.cpp" />
@@ -70,15 +68,9 @@
     <ClCompile Include="..\UITextBMFont.cpp" />
     <ClCompile Include="..\UITextField.cpp" />
     <ClCompile Include="..\UIVBox.cpp" />
-    <ClCompile Include="..\UIWebView.cpp" />
-    <ClCompile Include="..\UIWebViewImpl-win32.cpp" />
     <ClCompile Include="..\UIWidget.cpp" />
-    <ClCompile Include="Win32InputBox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\extensions\proj.win32\libextension.vcxproj">
-      <Project>{21b2c324-891f-48ea-ad1a-5ae13de12e28}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\2d\libcocos2d.vcxproj">
       <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
     </ProjectReference>
@@ -90,7 +82,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
@@ -100,7 +92,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
@@ -139,7 +131,7 @@
       <SDLCheck>
       </SDLCheck>
       <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;GL_GLEXT_PROTOTYPES;COCOS2DXWIN32_EXPORTS;COCOS2D_DEBUG=1;_DEBUG;_USEGUIDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;CC_STATIC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;COCOS2DXWIN32_EXPORTS;COCOS2D_DEBUG=1;_DEBUG;_USEGUIDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MinimalRebuild>false</MinimalRebuild>
@@ -159,7 +151,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;GL_GLEXT_PROTOTYPES;COCOS2DXWIN32_EXPORTS;_USEGUIDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;GL_GLEXT_PROTOTYPES;CC_ENABLE_BOX2D_INTEGRATION=1;CC_USE_PHYSICS=0;ENABLE_PHYSICS_BOX2D_DETECT=1;ENABLE_PHYSICS_SAVE_CALCULATED_VERTEX=0;CC_ENABLE_CHIPMUNK_INTEGRATION=0;CC_STATIC;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;COCOS2DXWIN32_EXPORTS;_USEGUIDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)cocos;$(EngineRoot)cocos\audio\include;$(EngineRoot)cocos\editor-support;$(EngineRoot)external;$(EngineRoot)extensions;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DebugInformationFormat>None</DebugInformationFormat>
