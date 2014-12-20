@@ -43,7 +43,7 @@ TrianglesCommand::TrianglesCommand()
 void TrianglesCommand::init(float globalOrder, GLuint textureID, GLProgramState* glProgramState, BlendFunc blendType, const Triangles& triangles,const Mat4& mv)
 {
     CCASSERT(glProgramState, "Invalid GLProgramState");
-    CCASSERT(glProgramState->getVertexAttribsFlags() == 0, "No custom attributes are supported in QuadCommand");
+    CCASSERT(glProgramState->getVertexAttribsFlags() == 0, "No custom attributes are supported in TrianglesCommand");
     
     _globalOrder = globalOrder;
     
