@@ -31,7 +31,7 @@ THE SOFTWARE.
 #define __JSB_LOCALSTORAGE_H
 
 #include <string>
-#include "CCPlatformMacros.h"
+#include "platform/CCPlatformMacros.h"
 
 /** Initializes the database. If path is null, it will create an in-memory DB */
 void CC_DLL localStorageInit( const std::string& fullpath = "");
