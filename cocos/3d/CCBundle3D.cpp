@@ -1218,7 +1218,7 @@ bool Bundle3D::loadSkinDataBinary(SkinData* skindata)
             CCLOG("warning: Failed to load SkinData: bindpos '%s'.", _path.c_str());
             return false;
         }
-        skindata->inverseBindPoseMatrices.push_back(bindpos);
+        skindata->inverseBindPoseMatrices.push_back(Mat4(bindpos));
     }
     
     skindata->skinBoneOriginMatrices.resize(boneNum);
@@ -1232,11 +1232,11 @@ bool Bundle3D::loadSkinDataBinary(SkinData* skindata)
     {
         skindata->addNodeBoneNames(boneName);
         rootIndex = skindata->getBoneNameIndex(boneName);
-        skindata->nodeBoneOriginMatrices.push_back(bindShape);
+        skindata->nodeBoneOriginMatrices.push_back(Mat4(bindShape));
     }
     else
     {
-        skindata->skinBoneOriginMatrices[rootIndex] = bindShape;
+        skindata->skinBoneOriginMatrices[rootIndex] = Mat4(bindShape);
     }
     
     // set root bone index
@@ -1264,11 +1264,11 @@ bool Bundle3D::loadSkinDataBinary(SkinData* skindata)
         {
             skindata->addNodeBoneNames(id);
             index = skindata->getBoneNameIndex(id);
-            skindata->nodeBoneOriginMatrices.push_back(transform);
+            skindata->nodeBoneOriginMatrices.push_back(Mat4(transform));
         }
         else
         {
-            skindata->skinBoneOriginMatrices[index] = transform;
+            skindata->skinBoneOriginMatrices[index] = Mat4(transform);
         }
         
         int parentIndex = skindata->getSkinBoneNameIndex(parentid);
