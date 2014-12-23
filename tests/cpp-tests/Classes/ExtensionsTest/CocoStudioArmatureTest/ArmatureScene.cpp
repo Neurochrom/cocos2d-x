@@ -788,7 +788,7 @@ void TestColliderDetector::onFrameEvent(cocostudio::Bone *bone, const std::strin
     */
 
     Vec2 p = armature->getBone("Layer126")->getDisplayRenderNode()->convertToWorldSpaceAR(Vec2(0, 0));
-    bullet->setPosition(p.x + 60, p.y);
+    bullet->setPosition(Vec2(p.x + 60, p.y));
 
     bullet->stopAllActions();
     bullet->runAction(CCMoveBy::create(1.5f, Vec2(350, 0)));
@@ -869,7 +869,7 @@ void TestColliderDetector::update(float delta)
     {
         Contact &contact = *it;
 
-        Bone *bb = static_cast<Bone *>(contact.fixtureB->GetUserData);
+        Bone *bb = static_cast<Bone *>(contact.fixtureB->GetUserData());
 
         bb->getArmature()->setVisible(false);
     }
@@ -916,7 +916,7 @@ void TestColliderDetector::initWorld()
 
     bullet->setB2Body(body);
     bullet->setPTMRatio(PT_RATIO);
-    bullet->setPosition(-100, -100);
+    bullet->setPosition(Vec2(-100, -100));
 
     body = world->CreateBody(&bodyDef);
     armature2->setBody(body);
