@@ -26,6 +26,7 @@
 NS_CC_MATH_BEGIN
 
 class Mat4;
+class Vec2;
 class Quaternion;
 
 /**
@@ -76,6 +77,14 @@ public:
      * @param array An array containing the elements of the vector in the order x, y, z.
      */
     explicit Vec3(const float* array);
+
+    /**
+     * Constructs a new vector from a 2D vector and a z value.
+     *
+     * @param v The 2D vector.
+     * @param zz The z coordinate.
+     */
+    explicit Vec3(const Vec2& v, float zz);
 
     /**
      * Constructs a vector that describes the direction between the specified points.

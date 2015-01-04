@@ -19,6 +19,7 @@
  */
 
 #include "math/Vec3.h"
+#include "math/Vec2.h"
 #include "math/MathUtil.h"
 #include "base/ccMacros.h"
 
@@ -37,6 +38,11 @@ Vec3::Vec3(float xx, float yy, float zz)
 Vec3::Vec3(const float* array)
 {
     set(array);
+}
+
+Vec3::Vec3(const Vec2& v, float zz)
+    : x(v.x), y(v.y), z(zz)
+{
 }
 
 Vec3::Vec3(const Vec3& p1, const Vec3& p2)
