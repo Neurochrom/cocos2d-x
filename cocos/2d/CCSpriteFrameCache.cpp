@@ -90,7 +90,11 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
     ZWTCoordinatesFormatOptionXML1_2 = 3, // Desktop Version 1.0.2+
     */
 
-    
+    if (dictionary.find("frames") == dictionary.end())
+    {
+        CCLOGWARN("cocos2d: WARNING: frames not present in the dictionary. Regenrate the .plist");
+        return;
+    }
     ValueMap& framesDict = dictionary["frames"].asValueMap();
     int format = 0;
 
