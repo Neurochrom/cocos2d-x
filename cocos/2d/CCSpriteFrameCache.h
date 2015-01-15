@@ -156,13 +156,13 @@ public:
     /** @deprecated use getSpriteFrameByName() instead */
     CC_DEPRECATED_ATTRIBUTE SpriteFrame* spriteFrameByName(const std::string&name) { return getSpriteFrameByName(name); }
 
-protected:
-    // MARMALADE: Made this protected not private, as deriving from this class is pretty useful
-    SpriteFrameCache(){}
-
     /*Adds multiple Sprite Frames with a dictionary. The texture will be associated with the created sprite frames.
      */
     void addSpriteFramesWithDictionary(ValueMap& dictionary, Texture2D *texture);
+
+protected:
+    // MARMALADE: Made this protected not private, as deriving from this class is pretty useful
+    SpriteFrameCache(){}
 
     /** Removes multiple Sprite Frames from Dictionary.
     * @since v0.99.5
