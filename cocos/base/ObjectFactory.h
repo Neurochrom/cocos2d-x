@@ -53,7 +53,6 @@ public:
     typedef std::unordered_map<std::string, TInfo>  FactoryMap;
 
     static ObjectFactory* getInstance();
-    static void destroyInstance();
     cocos2d::Ref* createObject(const std::string &name);
 
     void registerType(const TInfo &t);

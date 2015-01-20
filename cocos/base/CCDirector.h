@@ -263,12 +263,17 @@ public:
      If level is 1, it will pop all scenes until it reaches to root scene.
      If level is <= than the current stack level, it won't do anything.
      */
- 	void popToSceneStackLevel(int level);
+    void popToSceneStackLevel(int level);
 
     /** Replaces the running scene with a new one. The running scene is terminated.
      * ONLY call it if there is a running scene.
      */
     void replaceScene(Scene *scene);
+
+    /**
+     * Adds a callback function executed when the Director is purged.
+     */
+    void addPurgeCalback(const std::function<void()>& callback);
 
     /** Ends the execution, releases the running scene.
      It doesn't remove the OpenGL view from its parent. You have to do it manually.
@@ -312,7 +317,7 @@ public:
      */
     void purgeCachedData();
 
-	/** sets the default values based on the Configuration info */
+    /** sets the default values based on the Configuration info */
     void setDefaultValues();
 
     // OpenGL Helper
@@ -355,7 +360,7 @@ public:
      @since v2.0
      */
     void setActionManager(ActionManager* actionManager);
-    
+
     /** Gets the EventDispatcher associated with this director 
      @since v3.0
      */
@@ -377,8 +382,8 @@ public:
     Console* getConsole() const { return _console; }
 
     /* Gets delta time since last tick to main loop */
-	float getDeltaTime() const;
-    
+    float getDeltaTime() const;
+
     /**
      *  get Frame Rate
      */
@@ -395,14 +400,14 @@ public:
 protected:
     void purgeDirector();
     bool _purgeDirectorInNextLoop; // this flag will be set to true in end()
-    
+
     void setNextScene();
-    
+
     void showStats();
     void createStatsLabel();
     void calculateMPF();
     void getFPSImageData(unsigned char** datapointer, ssize_t* length);
-    
+
     /** calculates delta time since last time it was called */    
     void calculateDeltaTime();
 
@@ -420,21 +425,21 @@ protected:
      @since v2.0
      */
     Scheduler *_scheduler;
-    
+
     /** ActionManager associated with this director
      @since v2.0
      */
     ActionManager *_actionManager;
-    
+
     /** EventDispatcher associated with this director
      @since v3.0
      */
     EventDispatcher* _eventDispatcher;
     EventCustom *_eventProjectionChanged, *_eventAfterDraw, *_eventAfterVisit, *_eventAfterUpdate;
-        
+
     /* delta time since last tick to main loop */
-	float _deltaTime;
-    
+    float _deltaTime;
+
     /* The _openGLView, where everything is rendered, GLView is a abstract class,cocos2d-x provide GLViewImpl
      which inherit from it as default renderer context,you can have your own by inherit from it*/
     GLView *_openGLView;
@@ -447,47 +452,50 @@ protected:
 
     /* landscape mode ? */
     bool _landscape;
-    
+
     bool _displayStats;
     float _accumDt;
     float _frameRate;
-    
+
     LabelAtlas *_FPSLabel;
     LabelAtlas *_drawnBatchesLabel;
     LabelAtlas *_drawnVerticesLabel;
-    
+
     /** Whether or not the Director is paused */
     bool _paused;
 
     /* How many frames were called since the director started */
     unsigned int _totalFrames;
     float _secondsPerFrame;
-    
+
     /* The running scene */
     Scene *_runningScene;
-    
+
     /* will be the next 'runningScene' in the next frame
      nextScene is a weak reference. */
     Scene *_nextScene;
-    
+
     /* If true, then "old" scene will receive the cleanup message */
     bool _sendCleanupToScene;
 
     /* scheduled scenes */
     Vector<Scene*> _scenesStack;
-    
+
+    /* To be called just before the Director is purged (usually when it is being destroyed). */
+    std::vector<std::function<void()>> _purgeCallbacks;
+
     /* last time the main loop was updated */
     struct timeval *_lastUpdate;
 
     /* whether or not the next delta time will be zero */
     bool _nextDeltaTimeZero;
-    
+
     /* projection used */
     Projection _projection;
 
     /* window size in points */
     Size _winSizeInPoints;
-    
+
     /* content scale factor */
     float _contentScaleFactor;
 

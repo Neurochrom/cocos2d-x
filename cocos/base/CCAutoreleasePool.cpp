@@ -105,8 +105,14 @@ void AutoreleasePool::dump()
 
 PoolManager* PoolManager::s_singleInstance = nullptr;
 
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+static bool deleted = false;
+#endif
 PoolManager* PoolManager::getInstance()
 {
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+    CCASSERT(!deleted, "PoolManager::getInstance() called after ~PoolManager()");
+#endif
     if (s_singleInstance == nullptr)
     {
         s_singleInstance = new (std::nothrow) PoolManager();
@@ -137,6 +143,9 @@ PoolManager::~PoolManager()
         
         delete pool;
     }
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+    deleted = true;
+#endif
 }
 
 

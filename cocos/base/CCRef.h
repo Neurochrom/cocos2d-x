@@ -74,6 +74,9 @@ public:
      * @see release, autorelease
      * @js NA
      */
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+    virtual
+#endif
     void retain();
 
     /**
@@ -87,6 +90,9 @@ public:
      * @see retain, autorelease
      * @js NA
      */
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+    virtual
+#endif
     void release();
 
     /**

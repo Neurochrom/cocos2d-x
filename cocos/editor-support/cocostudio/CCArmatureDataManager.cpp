@@ -23,6 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "2d/CCSpriteFrameCache.h"
+#include "base/CCDirector.h"
 
 #include "cocostudio/CCArmatureDataManager.h"
 #include "cocostudio/CCTransformHelp.h"
@@ -61,6 +62,11 @@ ArmatureDataManager::ArmatureDataManager(void)
     _animationDatas.clear();
     _textureDatas.clear();
     _autoLoadSpriteFile = false;
+
+    Director::getInstance()->addPurgeCalback([]()
+    {
+        ArmatureDataManager::destroyInstance();
+    });
 }
 
 

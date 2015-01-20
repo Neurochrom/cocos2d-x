@@ -56,6 +56,11 @@ SpriteFrameCache* SpriteFrameCache::getInstance()
     {
         _sharedSpriteFrameCache = new (std::nothrow) SpriteFrameCache();
         _sharedSpriteFrameCache->init();
+
+        Director::getInstance()->addPurgeCalback([]()
+        {
+            SpriteFrameCache::destroyInstance();
+        });
     }
 
     return _sharedSpriteFrameCache;
@@ -76,6 +81,7 @@ bool SpriteFrameCache::init()
 
 SpriteFrameCache::~SpriteFrameCache()
 {
+    removeSpriteFrames();
     CC_SAFE_DELETE(_loadedFileNames);
 }
 

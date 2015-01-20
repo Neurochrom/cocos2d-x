@@ -88,16 +88,8 @@ ObjectFactory::~ObjectFactory(void)
 
 ObjectFactory* ObjectFactory::getInstance()
 {
-    if ( nullptr == _sharedFactory)
-    {
-        _sharedFactory = new (std::nothrow) ObjectFactory();
-    }
-    return _sharedFactory;
-}
-
-void ObjectFactory::destroyInstance()
-{
-    CC_SAFE_DELETE(_sharedFactory);
+    static ObjectFactory of;
+    return &of;
 }
 
 Ref* ObjectFactory::createObject(const std::string &name)

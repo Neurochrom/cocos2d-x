@@ -85,15 +85,21 @@ const char *Director::EVENT_AFTER_DRAW = "director_after_draw";
 const char *Director::EVENT_AFTER_VISIT = "director_after_visit";
 const char *Director::EVENT_AFTER_UPDATE = "director_after_update";
 
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+static bool deleted = false;
+#endif
+
 Director* Director::getInstance()
 {
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+    CCASSERT(!deleted, "Director::getInstance() called after ~Director()");
+#endif
     if (!s_SharedDirector)
     {
         s_SharedDirector = new (std::nothrow) DisplayLinkDirector();
         CCASSERT(s_SharedDirector, "FATAL: Not enough memory");
         s_SharedDirector->init();
     }
-
     return s_SharedDirector;
 }
 
@@ -134,6 +140,9 @@ bool Director::init(void)
 
     // scheduler
     _scheduler = new (std::nothrow) Scheduler();
+    _scheduler->autorelease();
+    _scheduler->retain();
+
     // action manager
     _actionManager = new (std::nothrow) ActionManager();
     _scheduler->scheduleUpdate(_actionManager, Scheduler::PRIORITY_SYSTEM, false);
@@ -191,6 +200,9 @@ Director::~Director(void)
     Configuration::destroyInstance();
 
     s_SharedDirector = nullptr;
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+    deleted = true;
+#endif
 }
 
 void Director::setDefaultValues(void)
@@ -922,6 +934,11 @@ void Director::popToSceneStackLevel(int level)
     _sendCleanupToScene = true;
 }
 
+void Director::addPurgeCalback(const std::function<void()>& callback)
+{
+    _purgeCallbacks.push_back(callback);
+}
+
 void Director::end()
 {
     _purgeDirectorInNextLoop = true;
@@ -929,9 +946,12 @@ void Director::end()
 
 void Director::purgeDirector()
 {
+    for (auto& pcb : _purgeCallbacks)
+       pcb();
+
     // cleanup scheduler
     getScheduler()->unscheduleAll();
-    
+
     // Disable event dispatching
     if (_eventDispatcher)
     {
