@@ -92,7 +92,7 @@ void MciPlayer::Open(const char* pFileName, UINT uId)
 		WCHAR* fileNameWideChar = new WCHAR[nLen + 1];
 		BREAK_IF(! fileNameWideChar);
 		MultiByteToWideChar(CP_ACP, 0, pFileName, nLen + 1, fileNameWideChar, nLen + 1);
-        mciOpen.lpstrElementName = (LPCWSTR)fileNameWideChar;
+        mciOpen.lpstrElementName = (LPCSTR)fileNameWideChar;
 
         mciError = mciSendCommand(0,MCI_OPEN, MCI_OPEN_ELEMENT, reinterpret_cast<DWORD_PTR>(&mciOpen));
 		CC_SAFE_DELETE_ARRAY(mciOpen.lpstrElementName);
