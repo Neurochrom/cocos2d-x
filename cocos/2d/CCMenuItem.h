@@ -28,6 +28,8 @@ THE SOFTWARE.
 #ifndef __CCMENU_ITEM_H__
 #define __CCMENU_ITEM_H__
 
+#ifdef COCOS_MENU_ENABLED
+
 // C++ includes
 #include <functional>
 
@@ -581,5 +583,7 @@ private:
 /// @}
 
 NS_CC_END
+
+#endif
 
 #endif //__CCMENU_ITEM_H__

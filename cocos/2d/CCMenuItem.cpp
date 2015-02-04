@@ -25,6 +25,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#ifdef COCOS_MENU_ENABLED
+
 #include "2d/CCMenuItem.h"
 #include "2d/CCActionInterval.h"
 #include "2d/CCSprite.h"
@@ -1000,4 +1002,6 @@ NS_CC_END
 #pragma GCC diagnostic warning "-Wdeprecated-declarations"
 #elif _MSC_VER >= 1400 //vs 2005 or higher
 #pragma warning (pop)
+#endif
+
 #endif

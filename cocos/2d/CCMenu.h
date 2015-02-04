@@ -26,6 +26,8 @@ THE SOFTWARE.
 #ifndef __CCMENU_H_
 #define __CCMENU_H_
 
+#ifdef COCOS_MENU_ENABLED
+
 #include "2d/CCMenuItem.h"
 #include "2d/CCLayer.h"
 #include "base/CCValue.h"
@@ -173,5 +175,7 @@ private:
 /// @}
 
 NS_CC_END
+
+#endif
 
 #endif//__CCMENU_H_
