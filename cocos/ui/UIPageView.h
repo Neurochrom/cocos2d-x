@@ -42,37 +42,36 @@ typedef void (Ref::*SEL_PageViewEvent)(Ref*, PageViewEventType);
 
 class CC_GUI_DLL PageView : public Layout
 {
-    
     DECLARE_CLASS_GUI_INFO
-    
+
 public:
     enum class EventType
     {
         TURNING
     };
-    
+
     enum class TouchDirection
     {
         LEFT,
         RIGHT
     };
-    
+
     typedef std::function<void(Ref*,EventType)> ccPageViewCallback;
     /**
      * Default constructor
      */
     PageView();
-    
+
     /**
      * Default destructor
      */
     virtual ~PageView();
-    
+
     /**
      * Allocates and initializes.
      */
     static PageView* create();
-    
+
     /**
      * Add a widget to a page of pageview.
      *
@@ -83,21 +82,21 @@ public:
      * @param forceCreate   if force create and there is no page exsit, pageview would create a default page for adding widget.
      */
     void addWidgetToPage(Widget* widget, ssize_t pageIdx, bool forceCreate);
-    
+
     /**
      * Push back a page to pageview.
      *
      * @param page    page to be added to pageview.
      */
     void addPage(Layout* page);
-    
+
     /**
      * Insert a page to pageview.
      *
      * @param page    page to be added to pageview.
      */
     void insertPage(Layout* page, int idx);
-    
+
     /**
      * Remove a page of pageview.
      *
@@ -111,37 +110,47 @@ public:
      * @param index    index of page.
      */
     void removePageAtIndex(ssize_t index);
-    
+
     void removeAllPages();
-    
-    /**
-     * scroll pageview to index.
+
+   /**
+     * Immediately jump pageview to index.
      *
      * @param idx    index of page.
      */
-    void scrollToPage(ssize_t idx);
-    
+    void jumpToPage(ssize_t idx);
+
     /**
-     * Gets current page index.
+     * Scroll pageview to index.
      *
-     * @return current page index.
+     * @param idx    index of page.
+     */
+    void scrollToPage(ssize_t idx, float speedMult = 1.0f);
+
+    /**
+     * @return The total number of pages.
+     */
+    ssize_t getPageCount() const;
+
+    /**
+     * @return Current page index.
      */
     ssize_t getCurPageIndex() const;
-    
-    
+
+
     Vector<Layout*>& getPages();
-    
+
     Layout* getPage(ssize_t index);
-    
+
     // event
     CC_DEPRECATED_ATTRIBUTE void addEventListenerPageView(Ref *target, SEL_PageViewEvent selector);
     void addEventListener(const ccPageViewCallback& callback);
-    
+
     virtual bool onTouchBegan(Touch *touch, Event *unusedEvent) override;
     virtual void onTouchMoved(Touch *touch, Event *unusedEvent) override;
     virtual void onTouchEnded(Touch *touch, Event *unusedEvent) override;
     virtual void onTouchCancelled(Touch *touch, Event *unusedEvent) override;
-    
+
     //override "update" method of widget.
     virtual void update(float dt) override;
     /**
@@ -151,8 +160,8 @@ public:
      *
      * @param type LayoutType
      */
-    virtual void setLayoutType(Type type) override{};
-    
+    virtual void setLayoutType(Type type) override {}
+
     /**
      * Gets LayoutType.
      *
@@ -160,10 +169,10 @@ public:
      *
      * @return LayoutType
      */
-    virtual Type getLayoutType() const override{return Type::ABSOLUTE;};
-    
+    virtual Type getLayoutType() const override {return Type::ABSOLUTE;}
+
     /**
-     * Returns the "class name" of widget.
+     * @return The "class name" of widget.
      */
     virtual std::string getDescription() const override;
 
@@ -175,7 +184,7 @@ public:
     /**
      *@brief Return user defined scroll page threshold
      */
-    float getCustomScrollThreshold()const;
+    float getCustomScrollThreshold() const;
     /**
      *@brief Set using user defined scroll page threshold or not
      * If you set it to false, then the default scroll threshold is pageView.width / 2
@@ -184,7 +193,17 @@ public:
     /**
      *@brief Query whether we are using user defined scroll page threshold or not
      */
-    bool isUsingCustomScrollThreshold()const;
+    bool isUsingCustomScrollThreshold() const;
+
+    /**
+     * Set a multiplier for the automatic scroll speed.
+     */
+    void setScrollSpeed(float speed);
+
+    /**
+     * @return The screoll speed multiplier.
+     */
+    float getScrollSpeed() const { return _scrollSpeedMult; }
 
 CC_CONSTRUCTOR_ACCESS:
     virtual bool init() override;
@@ -193,7 +212,6 @@ protected:
 
     Layout* createPage();
     float getPositionXByIndex(ssize_t idx)const;
-    ssize_t getPageCount()const;
 
     void updateBoundaryPages();
     virtual bool scrollPages(float touchOffset);
@@ -206,8 +224,8 @@ protected:
     virtual void handleMoveLogic(Touch *touch) ;
     virtual void handleReleaseLogic(Touch *touch) ;
     virtual void interceptTouchEvent(TouchEventType event, Widget* sender,Touch *touch) ;
-    
-    
+
+
     virtual void onSizeChanged() override;
     virtual Widget* createCloneInstance() override;
     virtual void copySpecialProperties(Widget* model) override;
@@ -225,15 +243,17 @@ protected:
     float _autoScrollDistance;
     float _autoScrollSpeed;
     AutoScrollDirection _autoScrollDirection;
-    
+
+    float _scrollSpeedMult;
+
     ssize_t _curPageIdx;
     Vector<Layout*> _pages;
 
     TouchDirection _touchMoveDirection;
-   
+
     Widget* _leftBoundaryChild;
     Widget* _rightBoundaryChild;
-    
+
     float _leftBoundary;
     float _rightBoundary;
     float _customScrollThreshold;

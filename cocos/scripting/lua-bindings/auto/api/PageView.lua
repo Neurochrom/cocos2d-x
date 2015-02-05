@@ -76,11 +76,19 @@
 -- @param #int idx
         
 --------------------------------
--- scroll pageview to index.<br>
+-- Immediately jump pageview to index.<br>
+-- param idx    index of page.
+-- @function [parent=#PageView] jumpToPage
+-- @param self
+-- @param #long idx
+
+--------------------------------
+-- Scroll pageview to index.<br>
 -- param idx    index of page.
 -- @function [parent=#PageView] scrollToPage 
 -- @param self
 -- @param #long idx
+-- @param #float speedMult
         
 --------------------------------
 -- Remove a page at index of pageview.<br>
