@@ -50,8 +50,9 @@ std::string s_attributeNames[] = {GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram:
 Sprite3D* Sprite3D::create(const std::string &modelPath)
 {
     if (modelPath.length() < 4)
+    {
         CCASSERT(false, "improper name specified when creating Sprite3D");
-    
+    }
     auto sprite = new (std::nothrow) Sprite3D();
     if (sprite && sprite->initWithFile(modelPath))
     {
