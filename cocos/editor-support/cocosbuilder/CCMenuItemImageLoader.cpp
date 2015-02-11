@@ -1,3 +1,5 @@
+#ifdef COCOS_MENU_ENABLED
+
 #include "CCMenuItemImageLoader.h"
 
 using namespace cocos2d;
@@ -27,3 +29,5 @@ void MenuItemImageLoader::onHandlePropTypeSpriteFrame(Node * pNode, Node * pPare
 }
 
 }
+
+#endif

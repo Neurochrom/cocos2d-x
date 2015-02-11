@@ -1,6 +1,8 @@
 #ifndef _CCB_CCMENUITEMLOADER_H_
 #define _CCB_CCMENUITEMLOADER_H_
 
+#ifdef COCOS_MENU_ENABLED
+
 #include "base/CCRef.h"
 #include "2d/CCMenuItem.h"
 
@@ -38,5 +40,7 @@ protected:
 };
 
 }
+
+#endif
 
 #endif

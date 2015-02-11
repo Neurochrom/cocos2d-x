@@ -38,8 +38,10 @@ void NodeLoaderLibrary::registerDefaultNodeLoaders() {
     this->registerNodeLoader("CCScale9Sprite", Scale9SpriteLoader::loader());
     this->registerNodeLoader("CCScrollView", ScrollViewLoader::loader());
     this->registerNodeLoader("CCBFile", CCBFileLoader::loader());
+#ifdef COCOS_MENU_ENABLED
     this->registerNodeLoader("CCMenu", MenuLoader::loader());
     this->registerNodeLoader("CCMenuItemImage", MenuItemImageLoader::loader());
+#endif
     this->registerNodeLoader("CCControlButton", ControlButtonLoader::loader());
     this->registerNodeLoader("CCParticleSystemQuad", ParticleSystemQuadLoader::loader());
 }

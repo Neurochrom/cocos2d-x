@@ -1,6 +1,8 @@
 #ifndef _CCB_CCMENULOADER_H_
 #define _CCB_CCMENULOADER_H_
 
+#ifdef COCOS_MENU_ENABLED
+
 #include "CCLayerLoader.h"
 #include "base/CCRef.h"
 #include "2d/CCMenu.h"
@@ -35,5 +37,7 @@ protected:
 };
 
 }
+
+#endif
 
 #endif

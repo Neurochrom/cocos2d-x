@@ -1,6 +1,8 @@
 #ifndef _CCB_CCMENUITEMIMAGELOADER_H_
 #define _CCB_CCMENUITEMIMAGELOADER_H_
 
+#ifdef COCOS_MENU_ENABLED
+
 #include "CCMenuItemLoader.h"
 
 namespace cocosbuilder {
@@ -35,5 +37,7 @@ protected:
 };
 
 }
+
+#endif
 
 #endif
