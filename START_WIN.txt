@@ -1,0 +1,40 @@
+Start a Project in Windows
+==========================
+
+http://www.cocos2d-x.org/wiki/how_to_start_a_new_cocos2d-x_game
+
+Install git-scm (so you have git bash)
+and Visual C++ 2015 (with android tools) (ultimate preview works)
+and Visual 2013 community edition (for it works well)
+
+Open git bash
+ py --version
+should give 2.7.x e.g. 2.7.6 (even with python 3.x installed)
+
+Go to cocos2d and run
+ py setup.py
+input
+ NDK_ROOT
+ C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\android-ndk-r10
+ ANDROID_SDK_ROOT
+ C:\Program Files (x86)\Android\android-sdk
+ ANT_ROOT
+ C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\apache-ant-1.9.3\bin
+
+Restart git bash. Go to cocos2d\tools\cocos2d-console\bin and run
+ py cocos.py new NameOfGame -p com.company.nameofgame -l cpp -d 'C:\destinationfolder_without_NameOfGame'
+
+Go to C:\destinationfolder_without_NameOfGame\NameOfGame and run
+ mv cocos2d cocos2d_delme
+
+Open cmd and goto C:\destinationfolder_without_NameOfGame\NameOfGame and run
+ mklink /J cocos2d cocos2d_directory
+cocos2d_directory can be relative
+
+Delete cocos2d_delme.
+Open the .sln file in proj.win32 folder.
+If you want cocos to be static remove the libococos2d project form the solution and add
+ cocos2d\cocos\2d\cocos2d.vcxproj
+and define
+ CC_STATIC
+in your projects.
