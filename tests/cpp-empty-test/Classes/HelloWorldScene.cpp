@@ -32,6 +32,7 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
 
+#ifdef COCOS_MENU_ENABLED
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -48,7 +49,8 @@ bool HelloWorld::init()
     auto menu = Menu::create(closeItem, nullptr);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
-    
+#endif
+
     /////////////////////////////
     // 3. add your codes below...
 
