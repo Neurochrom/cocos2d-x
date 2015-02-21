@@ -38,3 +38,29 @@ If you want cocos to be static remove the libococos2d project form the solution 
 and define
  CC_STATIC
 in your projects.
+If you do so remember to:
+- Add the libcocos2d project refernce to your project
+- Once use the prelink event.
+
+
+
+Setting up git for the new project
+==================================
+
+In git bash whilst in C:\destinationfolder_without_NameOfGame\NameOfGame do
+ git init
+Add a proper .gitignore
+ git gui
+Add stuff WITHOUT cocos2d and do a commit
+ mv cocos2d cocos2d_
+ git submodle add --force 'C:\path_to_cocos2d' cocos2d
+ rm -rf cocos2d
+ mv cocos2d_ cocos2d
+Edit .gitmodules
+ Change url to https://github.com/Neurochrom/cocos2d-x.git
+In git bash
+ git add .gitmodules
+ git commit -m "Cocos2d-x as a submodule."
+ git add cocos2d
+ git commit --amend 
+
