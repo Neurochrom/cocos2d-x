@@ -86,6 +86,14 @@ public:
     virtual void setFrameSize(float width, float height) override;
     virtual void setIMEKeyboardState(bool bOpen) override;
 
+    enum class MouseMode
+    {
+        NORMAL = GLFW_CURSOR_NORMAL,
+        NO_CURSOR = GLFW_CURSOR_HIDDEN,
+        CAPTIVE = GLFW_CURSOR_DISABLED
+    };
+    void setMouseMode(MouseMode mm);
+
     /*
      * Set zoom factor for frame. This method is for debugging big resolution (e.g.new ipad) app on desktop.
      */
@@ -146,6 +154,8 @@ protected:
 
     float _mouseX;
     float _mouseY;
+
+    MouseMode _mouseMode;
 
     friend class GLFWEventHandler;
 

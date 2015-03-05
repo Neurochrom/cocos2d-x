@@ -490,6 +490,29 @@ void GLViewImpl::setFrameZoomFactor(float zoomFactor)
     updateFrameSize();
 }
 
+void GLViewImpl::setMouseMode(MouseMode mm)
+{
+    _mouseMode = mm;
+    //*
+#ifdef _WIN32
+    // Center the mouse to be sure we hide any 'edgy' glfw bugs.
+    if (mm == MouseMode::CAPTIVE)
+    {
+        RECT clientRect;
+        HWND hwnd = getWin32Window();
+        GetClientRect(hwnd, &clientRect);
+        POINT center;
+        center.x = (clientRect.left + clientRect.right)>>1;
+        center.y = (clientRect.top + clientRect.bottom)>>1;
+        ClientToScreen(hwnd, &center);
+        SetCursorPos(center.x, center.y);
+    }
+#endif
+    // */
+    glfwSetInputMode(getWindow(), GLFW_CURSOR, (int)mm);
+}
+
+
 float GLViewImpl::getFrameZoomFactor() const
 {
     return _frameZoomFactor;
@@ -561,18 +584,26 @@ void GLViewImpl::onGLFWError(int errorID, const char* errorDesc)
 
 void GLViewImpl::onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int modify)
 {
-    if(GLFW_MOUSE_BUTTON_LEFT == button)
+    //CCLOG("onGLFWMouseCallBack: button=%d action=%d modify=%d", button, action, modify);
+    if (GLFW_MOUSE_BUTTON_LEFT == button)
     {
-        if(GLFW_PRESS == action)
+        if (GLFW_PRESS == action)
         {
+            CCLOG("GLFW_PRESS");
             _captured = true;
-            if (this->getViewPortRect().equals(Rect::ZERO) || this->getViewPortRect().containsPoint(Vec2(_mouseX,_mouseY)))
+            if (this->getViewPortRect().equals(Rect::ZERO) ||
+                _mouseMode == MouseMode::CAPTIVE ||
+                this->getViewPortRect().containsPoint(Vec2(_mouseX,_mouseY)))
             {
                 intptr_t id = 0;
                 this->handleTouchesBegin(1, &id, &_mouseX, &_mouseY);
             }
+            //else
+            //{
+            //   CCLOG("onGLFWMouseCallBack: GLFW_PRESS not happened");
+            //}
         }
-        else if(GLFW_RELEASE == action)
+        else if (GLFW_RELEASE == action)
         {
             if (_captured)
             {
@@ -582,19 +613,19 @@ void GLViewImpl::onGLFWMouseCallBack(GLFWwindow* window, int button, int action,
             }
         }
     }
-    
+
     //Because OpenGL and cocos2d-x uses different Y axis, we need to convert the coordinate here
     float cursorX = (_mouseX - _viewPortRect.origin.x) / _scaleX;
     float cursorY = (_viewPortRect.origin.y + _viewPortRect.size.height - _mouseY) / _scaleY;
 
-    if(GLFW_PRESS == action)
+    if (GLFW_PRESS == action)
     {
         EventMouse event(EventMouse::MouseEventType::MOUSE_DOWN);
         event.setCursorPosition(cursorX, cursorY);
         event.setMouseButton(button);
         Director::getInstance()->getEventDispatcher()->dispatchEvent(&event);
     }
-    else if(GLFW_RELEASE == action)
+    else if (GLFW_RELEASE == action)
     {
         EventMouse event(EventMouse::MouseEventType::MOUSE_UP);
         event.setCursorPosition(cursorX, cursorY);
