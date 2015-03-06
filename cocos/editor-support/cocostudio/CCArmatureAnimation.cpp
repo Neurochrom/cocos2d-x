@@ -164,7 +164,7 @@ float ArmatureAnimation::getSpeedScale() const
 }
 
 
-void ArmatureAnimation::play(const std::string& animationName, int durationTo,  int loop)
+void ArmatureAnimation::play(const std::string& animationName, int durationTo, int loop)
 {
     CCASSERT(_animationData, "_animationData can not be null");
 
@@ -261,7 +261,7 @@ void ArmatureAnimation::playWithIndex(int animationIndex, int durationTo, int lo
 }
 
 
-void ArmatureAnimation::playWithNames(const std::vector<std::string>& movementNames, int durationTo, bool loop)
+void ArmatureAnimation::playWithNames(const std::vector<std::string>& movementNames, int durationTo, int loop)
 {
     _movementList.clear();
     _movementListLoop = loop;
@@ -274,7 +274,7 @@ void ArmatureAnimation::playWithNames(const std::vector<std::string>& movementNa
     updateMovementList();
 }
 
-void ArmatureAnimation::playWithIndexes(const std::vector<int>& movementIndexes, int durationTo, bool loop)
+void ArmatureAnimation::playWithIndexes(const std::vector<int>& movementIndexes, int durationTo, int loop)
 {
     _movementList.clear();
     _movementListLoop = loop;
@@ -521,19 +521,19 @@ void ArmatureAnimation::updateMovementList()
     {
         if (_movementListLoop)
         {
-            play(_movementList.at(_movementIndex).c_str(), _movementListDurationTo, 0);
+            play(_movementList[_movementIndex], _movementListDurationTo, 0);
             _movementIndex++;
 
             if (_movementIndex >= _movementList.size())
-             {
-                 _movementIndex = 0;
+            {
+                _movementIndex = _movementListLoop - 1;
             }
         }
         else
         {
             if (_movementIndex < _movementList.size())
             {
-                play(_movementList.at(_movementIndex).c_str(), _movementListDurationTo, 0);
+                play(_movementList[_movementIndex], _movementListDurationTo, 0);
                 _movementIndex++;
             }
             else

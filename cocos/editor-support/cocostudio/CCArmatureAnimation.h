@@ -124,7 +124,7 @@ public:
      *         loop = 0 : this animation is not loop
      *         loop > 0 : this animation is loop
      */
-    virtual void play(const std::string& animationName, int durationTo = -1,  int loop = -1);
+    virtual void play(const std::string& animationName, int durationTo = -1, int loop = -1);
 
     /**
      * Play animation by index, the other param is the same to play.
@@ -134,8 +134,20 @@ public:
     CC_DEPRECATED_ATTRIBUTE virtual void playByIndex(int animationIndex,  int durationTo = -1, int loop = -1);
     virtual void playWithIndex(int animationIndex,  int durationTo = -1, int loop = -1);
 
-    virtual void playWithNames(const std::vector<std::string>& movementNames, int durationTo = -1, bool loop = true);
-    virtual void playWithIndexes(const std::vector<int>& movementIndexes, int durationTo = -1, bool loop = true);
+    /**
+     * @param loop 0: do not loop, 1: loop all, n: loop (the_number_of_movements + 1 - n) last movements.
+     */
+    virtual void playWithNames(const std::vector<std::string>& movementNames, int durationTo = -1, int loop = 1);
+    virtual void playWithIndexes(const std::vector<int>& movementIndexes, int durationTo = -1, int loop = 1);
+
+    /**
+     * Adds a movement to the curently playing Movement list
+     */
+    virtual void queueMovement(const std::string& movementName)
+    {
+        _movementList.push_back(movementName);
+        _onMovementList = true;
+    }
 
     /**
      * Go to specified frame and play current movement.
@@ -293,7 +305,7 @@ protected:
     std::vector<std::string> _movementList;
     
     bool _onMovementList;
-    bool _movementListLoop;
+    int _movementListLoop;
     unsigned int _movementIndex;
     int _movementListDurationTo;
 
