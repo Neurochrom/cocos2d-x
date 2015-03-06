@@ -589,7 +589,7 @@ void GLViewImpl::onGLFWMouseCallBack(GLFWwindow* window, int button, int action,
     {
         if (GLFW_PRESS == action)
         {
-            CCLOG("GLFW_PRESS");
+            //CCLOG("GLFW_PRESS");
             _captured = true;
             if (this->getViewPortRect().equals(Rect::ZERO) ||
                 _mouseMode == MouseMode::CAPTIVE ||
