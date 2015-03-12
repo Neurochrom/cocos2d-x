@@ -140,14 +140,14 @@ public:
     virtual void playWithNames(const std::vector<std::string>& movementNames, int durationTo = -1, int loop = 1);
     virtual void playWithIndexes(const std::vector<int>& movementIndexes, int durationTo = -1, int loop = 1);
 
+    enum class AnimQueuing { APPEND, REPLACE_NEXT_TO_LAST, REPLACE_LAST /*,INSERT_NEXT*/ };
     /**
-     * Adds a movement to the curently playing Movement list
+     * Adds a movement to the curently playing Movement list, and plays the animation if not playing.\
+     * @param loop 0: do not loop, 1: loop all, n: loop (the_number_of_movements + 1 - n) last movements, -1 keep old looping parameter.
+
+     * param appendIfLastIsSame If false the movement name will not be appended unless the last movement to be executed is different than the given one.
      */
-    virtual void queueMovement(const std::string& movementName)
-    {
-        _movementList.push_back(movementName);
-        _onMovementList = true;
-    }
+    virtual void queueMovement(const std::string& movementName, int loop = -1, AnimQueuing queuing = AnimQueuing::APPEND, bool appendIfLastIsSame = false);
 
     /**
      * Go to specified frame and play current movement.
@@ -254,7 +254,7 @@ protected:
      * @js NA
      * @lua NA
      */
-    void updateHandler();
+    void updateHandler() override;
 
     /**
      * Update current key frame, and process auto stop, pause

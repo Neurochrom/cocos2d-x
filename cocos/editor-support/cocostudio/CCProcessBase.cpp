@@ -89,8 +89,12 @@ void ProcessBase::play(int durationTo, int durationTween,  int loop, int tweenEa
 
 void ProcessBase::update(float dt)
 {
-
-    if (_isComplete || _isPause)
+    if (_isComplete)
+    {
+        _currentPercent = 1;
+        return;
+    }
+    if (_isPause)
     {
         return;
     }

@@ -169,7 +169,9 @@ void ArmatureAnimation::play(const std::string& animationName, int durationTo, i
     CCASSERT(_animationData, "_animationData can not be null");
 
     _movementData = _animationData->getMovement(animationName.c_str());
-    CCASSERT(_movementData, "_movementData can not be null");
+    if (_movementData == nullptr)
+       return;
+    //CCASSERT(_movementData, "_movementData can not be null");
 
     //! Get key frame count
     _rawDuration = _movementData->duration;
@@ -291,6 +293,55 @@ void ArmatureAnimation::playWithIndexes(const std::vector<int>& movementIndexes,
     }
 
     updateMovementList();
+}
+
+void ArmatureAnimation::queueMovement(const std::string& movementName, int loop, AnimQueuing queuing, bool appendIfLastIsSame)
+{
+    if (loop >= 0)
+        _movementListLoop = loop;
+    _onMovementList = true;
+
+    if (isComplete())
+      _movementList.clear();
+
+    switch (queuing)
+    {
+        case AnimQueuing::APPEND:
+            if (appendIfLastIsSame || _movementList.empty() ||
+                (_movementIndex != _movementList.size() && _movementList.back() != movementName))
+                _movementList.push_back(movementName);
+            break;
+        case AnimQueuing::REPLACE_LAST:
+            if (_movementList.size() && _movementIndex != _movementList.size())
+                _movementList.back() = movementName;
+            else
+            {
+                if (appendIfLastIsSame || _movementList.empty() ||
+                    (_movementIndex != _movementList.size() && _movementList.back() != movementName))
+                    _movementList.push_back(movementName);
+            }
+            break;
+        case AnimQueuing::REPLACE_NEXT_TO_LAST:
+            if (_movementList.size() && _movementIndex < _movementList.size())
+            {
+                if (_movementIndex + 1 < _movementList.size())
+                    _movementList.erase(_movementList.begin() + _movementIndex + 1, _movementList.end());
+                _movementList[_movementIndex] = movementName;
+            }
+            else
+            {
+                if (appendIfLastIsSame || _movementList.empty() ||
+                    (_movementIndex != _movementList.size() && _movementList.back() != movementName))
+                    _movementList.push_back(movementName);
+            }
+            break;
+    }
+
+    if (!isPlaying())
+    {
+        _movementIndex = 0;
+        updateMovementList();
+    }
 }
 
 void ArmatureAnimation::gotoAndPlay(int frameIndex)
