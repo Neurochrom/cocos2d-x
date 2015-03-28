@@ -1217,6 +1217,7 @@ void Texture2D::generateMipmap()
 {
     CCASSERT(_pixelsWide == ccNextPOT(_pixelsWide) && _pixelsHigh == ccNextPOT(_pixelsHigh), "Mipmap texture only works in POT textures");
     GL::bindTexture2D( _name );
+    glHint(GL_GENERATE_MIPMAP_HINT, GL_NICEST);
     glGenerateMipmap(GL_TEXTURE_2D);
     _hasMipmaps = true;
 #if CC_ENABLE_CACHE_TEXTURE_DATA
