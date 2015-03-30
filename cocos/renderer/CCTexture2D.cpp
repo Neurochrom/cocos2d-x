@@ -486,9 +486,9 @@ GLuint Texture2D::getName() const
 Size Texture2D::getContentSize() const
 {
     Size ret;
-    ret.width = _contentSize.width / CC_CONTENT_SCALE_FACTOR();
-    ret.height = _contentSize.height / CC_CONTENT_SCALE_FACTOR();
-    
+    float contentScaleFactor = CC_CONTENT_SCALE_FACTOR();
+    ret.width = _contentSize.width / contentScaleFactor;
+    ret.height = _contentSize.height / contentScaleFactor;
     return ret;
 }
 
@@ -1238,9 +1238,13 @@ void Texture2D::setTexParameters(const TexParams &texParams)
 
     GL::bindTexture2D( _name );
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, texParams.minFilter );
+    CHECK_GL_ERROR_DEBUG();
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, texParams.magFilter );
+    CHECK_GL_ERROR_DEBUG();
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, texParams.wrapS );
+    CHECK_GL_ERROR_DEBUG();
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, texParams.wrapT );
+    CHECK_GL_ERROR_DEBUG();
 
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     VolatileTextureMgr::setTexParameters(this, texParams);

@@ -34,6 +34,9 @@ THE SOFTWARE.
 
 #include "base/CCConsole.h"
 #include "platform/CCStdC.h"
+#if defined(COCOS2D_DEBUG) && COCOS2D_DEBUG != 0
+#include "platform/CCCommon.h"
+#endif
 
 #ifndef CCASSERT
 #if COCOS2D_DEBUG > 0
@@ -248,7 +251,11 @@ It should work same as apples CFSwapInt32LittleToHost(..)
     do { \
         GLenum __error = glGetError(); \
         if(__error) { \
-            cocos2d::log("OpenGL error 0x%04X in %s %s %d\n", __error, __FILE__, __FUNCTION__, __LINE__); \
+            char str[MAX_LOG_LENGTH]; \
+            snprintf(str, MAX_LOG_LENGTH-3, "OpenGL error 0x%04X in %s %s %d!", __error, __FILE__, __FUNCTION__, __LINE__); \
+            cocos2d::log("%s", str); \
+            cocos2d::MessageBox(str, "FATAL ERROR"); \
+            exit(-1); \
         } \
     } while (false)
 #endif
