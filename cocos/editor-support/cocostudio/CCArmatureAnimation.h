@@ -194,6 +194,12 @@ public:
     std::string getCurrentMovementID() const;
 
     /**
+     * Get currently queued and playing movementID list.
+     * Can't be const as it must do some lazy celanup sometimes.
+     */
+    const std::vector<std::string>& getCurrentMovementList();
+
+    /**
      * Set armature's movement event callback function
      * To disconnect this event, just setMovementEventCallFunc(nullptr, nullptr);
      */

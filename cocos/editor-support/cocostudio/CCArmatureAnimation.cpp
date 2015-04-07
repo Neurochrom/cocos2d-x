@@ -307,19 +307,14 @@ void ArmatureAnimation::queueMovement(const std::string& movementName, int loop,
     switch (queuing)
     {
         case AnimQueuing::APPEND:
-            if (appendIfLastIsSame || _movementList.empty() ||
-                (_movementIndex != _movementList.size() && _movementList.back() != movementName))
+            if (_movementList.empty() || appendIfLastIsSame || _movementList.back() != movementName)
                 _movementList.push_back(movementName);
             break;
         case AnimQueuing::REPLACE_LAST:
             if (_movementList.size() && _movementIndex != _movementList.size())
                 _movementList.back() = movementName;
-            else
-            {
-                if (appendIfLastIsSame || _movementList.empty() ||
-                    (_movementIndex != _movementList.size() && _movementList.back() != movementName))
-                    _movementList.push_back(movementName);
-            }
+            else if (_movementList.empty()|| appendIfLastIsSame || _movementList.back() != movementName )
+                _movementList.push_back(movementName);
             break;
         case AnimQueuing::REPLACE_NEXT_TO_LAST:
             if (_movementList.size() && _movementIndex < _movementList.size())
@@ -328,12 +323,8 @@ void ArmatureAnimation::queueMovement(const std::string& movementName, int loop,
                     _movementList.erase(_movementList.begin() + _movementIndex + 1, _movementList.end());
                 _movementList[_movementIndex] = movementName;
             }
-            else
-            {
-                if (appendIfLastIsSame || _movementList.empty() ||
-                    (_movementIndex != _movementList.size() && _movementList.back() != movementName))
-                    _movementList.push_back(movementName);
-            }
+            else if (_movementList.empty() || appendIfLastIsSame || _movementList.back() != movementName)
+                _movementList.push_back(movementName);
             break;
     }
 
@@ -510,6 +501,16 @@ std::string ArmatureAnimation::getCurrentMovementID() const
     return _movementID;
 }
 
+const std::vector<std::string>& ArmatureAnimation::getCurrentMovementList()
+{
+    if (!_isComplete && _onMovementList)
+        return _movementList;
+
+    _movementList.clear();
+    _movementList.push_back(getCurrentMovementID());
+    return _movementList;
+}
+
 void ArmatureAnimation::setMovementEventCallFunc(Ref *target, SEL_MovementEventCallFunc callFunc)
 {
     _movementEventTarget = target;
@@ -572,13 +573,13 @@ void ArmatureAnimation::updateMovementList()
     {
         if (_movementListLoop)
         {
-            play(_movementList[_movementIndex], _movementListDurationTo, 0);
-            _movementIndex++;
-
             if (_movementIndex >= _movementList.size())
             {
                 _movementIndex = _movementListLoop - 1;
             }
+
+            play(_movementList[_movementIndex], _movementListDurationTo, 0);
+            _movementIndex++;
         }
         else
         {
