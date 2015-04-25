@@ -176,10 +176,10 @@ public:
     /** initializes a RenderTexture object with width and height in Points and a pixel format( only RGB and RGBA formats are valid ) and depthStencil format*/
     bool initWithWidthAndHeight(int w, int h, Texture2D::PixelFormat format, GLuint depthStencilFormat);
 
-protected:
     virtual void beginWithClear(float r, float g, float b, float a, float depthValue, int stencilValue, GLbitfield flags);
-    
-    //flags: whether generate new modelView and projection matrix or not
+
+protected:
+   //flags: whether generate new modelView and projection matrix or not
     bool         _keepMatrix;
     Rect         _rtTextureRect;
     Rect         _fullRect;
