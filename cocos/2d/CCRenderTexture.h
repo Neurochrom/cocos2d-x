@@ -156,8 +156,22 @@ public:
     virtual void visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 
-    //flag: use stack matrix computed from scene hierarchy or generate new modelView and projection matrix
-    void setKeepMatrix(bool keepMatrix);
+    enum MatrixPick
+    {
+       CALCULATE = 0,
+       KEEP = 1,
+       USE_GIVEN
+    };
+
+    void setKeepMatrix(bool keep) { setKeepMatrix((MatrixPick)keep); }
+
+    //flag: use stack matrix computed from scene hierarchy or generate new modelView and projection matrix,
+    //      or use the matrix given with setProjectionMatrix
+    void setKeepMatrix(MatrixPick matrixToUse);
+
+    // Set the matrix to use in case setKeepMatrix was set to USE_GIVEN.
+    void setProjectionMatrix(const Mat4& m) { _projMat = m; }
+
     /**Used for grab part of screen to a texture. 
     //rtBegin: the position of renderTexture on the fullRect
     //fullRect: the total size of screen
@@ -179,8 +193,8 @@ public:
     virtual void beginWithClear(float r, float g, float b, float a, float depthValue, int stencilValue, GLbitfield flags);
 
 protected:
-   //flags: whether generate new modelView and projection matrix or not
-    bool         _keepMatrix;
+    MatrixPick   _keepMatrix;
+    Mat4         _projMat;
     Rect         _rtTextureRect;
     Rect         _fullRect;
     Rect         _fullviewPort;

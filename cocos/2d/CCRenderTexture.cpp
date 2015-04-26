@@ -40,7 +40,8 @@ NS_CC_BEGIN
 
 // implementation RenderTexture
 RenderTexture::RenderTexture()
-: _keepMatrix(false)
+: _keepMatrix(MatrixPick::CALCULATE)
+, _projMat(Mat4::IDENTITY)
 , _rtTextureRect(Rect::ZERO)
 , _fullRect(Rect::ZERO)
 , _fullviewPort(Rect::ZERO)
@@ -298,9 +299,9 @@ bool RenderTexture::initWithWidthAndHeight(int w, int h, Texture2D::PixelFormat 
     return ret;
 }
 
-void RenderTexture::setKeepMatrix(bool keepMatrix)
+void RenderTexture::setKeepMatrix(MatrixPick matrixToUse)
 {
-    _keepMatrix = keepMatrix;
+    _keepMatrix = matrixToUse;
 }
 
 void RenderTexture::setVirtualViewport(const Vec2& rtBegin, const Rect& fullRect, const Rect& fullViewport)
@@ -541,14 +542,14 @@ void RenderTexture::onBegin()
 {
     //
     Director *director = Director::getInstance();
-    
+
     _oldProjMatrix = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, _projectionMatrix);
-    
+
     _oldTransMatrix = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _transformMatrix);
-    
-    if(!_keepMatrix)
+
+    if (_keepMatrix == MatrixPick::CALCULATE)
     {
         director->setProjection(director->getProjection());
 
@@ -559,17 +560,17 @@ void RenderTexture::onBegin()
 #endif
 
         const Size& texSize = _texture->getContentSizeInPixels();
-        
+
         // Calculate the adjustment ratios based on the old and new projections
         Size size = director->getWinSizeInPixels();
         float widthRatio = size.width / texSize.width;
         float heightRatio = size.height / texSize.height;
-        
+
         Mat4 orthoMatrix;
         Mat4::createOrthographicOffCenter((float)-1.0 / widthRatio, (float)1.0 / widthRatio, (float)-1.0 / heightRatio, (float)1.0 / heightRatio, -1, 1, &orthoMatrix);
         director->multiplyMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, orthoMatrix);
     }
-    else
+    else if (_keepMatrix == MatrixPick::KEEP)
     {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
         auto modifiedProjection = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
@@ -577,8 +578,29 @@ void RenderTexture::onBegin()
         director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, modifiedProjection);
 #endif
     }
-    
+    else
+    {
+        CCASSERT(_keepMatrix == MatrixPick::USE_GIVEN, "Unsuported keep matrix mode for render texture");
+        director->setProjection(director->getProjection());
+
+#if CC_TARGET_PLATFORM == CC_PLATFORM_WP8
+        auto modifiedProjection = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION);
+        modifiedProjection = GLViewImpl::sharedOpenGLView()->getReverseOrientationMatrix() * modifiedProjection;
+        director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION,modifiedProjection);
+#endif
+
+        const Size& texSize = _texture->getContentSizeInPixels();
+
+        // Calculate the adjustment ratios based on the old and new projections
+        Size size = director->getWinSizeInPixels();
+        float widthRatio = size.width / texSize.width;
+        float heightRatio = size.height / texSize.height;
+
+        director->multiplyMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_PROJECTION, _projMat);
+    }
+
     //calculate viewport
+    //if (_todo)
     {
         Rect viewport;
         viewport.size.width = _fullviewPort.size.width;
@@ -590,9 +612,12 @@ void RenderTexture::onBegin()
         //glViewport(_fullviewPort.origin.x, _fullviewPort.origin.y, (GLsizei)_fullviewPort.size.width, (GLsizei)_fullviewPort.size.height);
         glViewport(viewport.origin.x, viewport.origin.y, (GLsizei)viewport.size.width, (GLsizei)viewport.size.height);
     }
+    //else
+    //{
+    //    glViewport(_fullRect.origin.x, _fullRect.origin.y, _fullRect.size.width, _fullRect.size.height);
+    //}
 
     // Adjust the orthographic projection and viewport
-    
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &_oldFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, _FBO);
 
