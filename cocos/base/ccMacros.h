@@ -244,15 +244,17 @@ It should work same as apples CFSwapInt32LittleToHost(..)
 
 #endif
 
+const char* gl_ErrorString(unsigned int errCode);
 #if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0
 #define CHECK_GL_ERROR_DEBUG()
 #else
 #define CHECK_GL_ERROR_DEBUG() \
     do { \
-        GLenum __error = glGetError(); \
-        if(__error) { \
+        GLenum errCode = glGetError(); \
+        if(errCode != GL_NO_ERROR) { \
             char str[MAX_LOG_LENGTH]; \
-            snprintf(str, MAX_LOG_LENGTH-3, "OpenGL error 0x%04X in %s %s %d!", __error, __FILE__, __FUNCTION__, __LINE__); \
+            const char* errString = gl_ErrorString(errCode); \
+            snprintf(str, MAX_LOG_LENGTH-3, "OpenGL error %s (0x%04X) in %s %s %d!", errString, errCode, __FILE__, __FUNCTION__, __LINE__); \
             cocos2d::log("%s", str); \
             cocos2d::MessageBox(str, "FATAL ERROR"); \
             exit(-1); \

@@ -282,4 +282,6 @@ protected:
 
 NS_CC_END
 
+const char* gl_ErrorString(unsigned int errCode);
+
 #endif /* __CCGLVIEW_H__ */

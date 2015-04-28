@@ -489,3 +489,21 @@ void GLView::addResizeCalback(const std::function<void(const Size&)>& callback)
 }
 
 NS_CC_END
+
+const char* gl_ErrorString(unsigned int errCode)
+{
+   switch (errCode)
+   {
+#define GLERCASE_(x) case x: return #x
+      GLERCASE_(GL_NO_ERROR);
+      GLERCASE_(GL_INVALID_ENUM);
+      GLERCASE_(GL_INVALID_VALUE);
+      GLERCASE_(GL_INVALID_OPERATION);
+      GLERCASE_(GL_INVALID_FRAMEBUFFER_OPERATION);
+      GLERCASE_(GL_OUT_OF_MEMORY);
+      GLERCASE_(GL_STACK_UNDERFLOW);
+      GLERCASE_(GL_STACK_OVERFLOW);
+#undef GLERCASE_
+   }
+   return "Unknown GL error";
+}
