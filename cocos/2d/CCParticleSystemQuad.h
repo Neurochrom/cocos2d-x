@@ -69,7 +69,7 @@ public:
     static ParticleSystemQuad * create(ValueMap &dictionary);
 
     /** Sets a new SpriteFrame as particle.
-    WARNING: this method is experimental. Use setTextureWithRect instead.
+    WARNING: QuadParticle only supports SpriteFrames with no offsets.
     @since v0.99.4
     */
     void setDisplayFrame(SpriteFrame *spriteFrame);
