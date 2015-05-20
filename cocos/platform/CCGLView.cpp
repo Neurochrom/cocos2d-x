@@ -501,8 +501,10 @@ const char* gl_ErrorString(unsigned int errCode)
       GLERCASE_(GL_INVALID_OPERATION);
       GLERCASE_(GL_INVALID_FRAMEBUFFER_OPERATION);
       GLERCASE_(GL_OUT_OF_MEMORY);
+#ifdef GL_STACK_OVERFLOW
       GLERCASE_(GL_STACK_UNDERFLOW);
       GLERCASE_(GL_STACK_OVERFLOW);
+#endif
 #undef GLERCASE_
    }
    return "Unknown GL error";
