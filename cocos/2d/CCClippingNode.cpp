@@ -52,8 +52,7 @@ static void setProgram(Node *n, GLProgram *p)
 }
 
 ClippingNode::ClippingNode()
-: _stencil(nullptr)
-, _alphaThreshold(0.0f)
+: _alphaThreshold(0.0f)
 , _inverted(false)
 , _currentStencilEnabled(GL_FALSE)
 , _currentStencilWriteMask(~0)
@@ -73,10 +72,16 @@ ClippingNode::ClippingNode()
 
 ClippingNode::~ClippingNode()
 {
-    if (_stencil)
+    if (_stencils.size())
     {
-        _stencil->stopAllActions();
-        _stencil->release();
+        for (auto s : _stencils)
+        {
+            if (s->getParent() == nullptr)
+            {
+                s->stopAllActions();
+                s->release();
+            }
+        }
     }
 }
 
@@ -117,10 +122,9 @@ bool ClippingNode::init()
 
 bool ClippingNode::init(Node *stencil)
 {
-    CC_SAFE_RELEASE(_stencil);
-    _stencil = stencil;
-    CC_SAFE_RETAIN(_stencil);
-    
+    if (stencil != nullptr)
+        setStencil(stencil);
+
     _alphaThreshold = 1;
     _inverted = false;
     // get (only once) the number of bits of the stencil buffer
@@ -147,46 +151,38 @@ void ClippingNode::onEnter()
             return;
     }
 #endif
-    
+
     Node::onEnter();
-    
-    if (_stencil != nullptr)
-    {
-        _stencil->onEnter();
-    }
-    else
-    {
-        CCLOG("ClippingNode warning: _stencil is nil.");
-    }
+
+    for (auto s : _stencils)
+        if (s->getParent() == nullptr)
+            s->onEnter();
 }
 
 void ClippingNode::onEnterTransitionDidFinish()
 {
     Node::onEnterTransitionDidFinish();
-    
-    if (_stencil != nullptr)
-    {
-        _stencil->onEnterTransitionDidFinish();
-    }
+
+    for (auto s : _stencils)
+        if (s->getParent() == nullptr)
+            s->onEnterTransitionDidFinish();
 }
 
 void ClippingNode::onExitTransitionDidStart()
 {
-    if (_stencil != nullptr)
-    {
-        _stencil->onExitTransitionDidStart();
-    }
-   
+    for (auto s : _stencils)
+        if (s->getParent() == nullptr)
+            s->onExitTransitionDidStart();
+
     Node::onExitTransitionDidStart();
 }
 
 void ClippingNode::onExit()
 {
-    if (_stencil != nullptr)
-    {
-        _stencil->onExit();
-    }
-    
+    for (auto s : _stencils)
+        if (s->getParent() == nullptr)
+            s->onExit();
+
     Node::onExit();
 }
 
@@ -267,12 +263,13 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
         program->setUniformLocationWith1f(alphaValueLocation, _alphaThreshold);
         // we need to recursively apply this shader to all the nodes in the stencil node
         // FIXME: we should have a way to apply shader to all nodes without having to do this
-        setProgram(_stencil, program);
-        
+        for (auto s : _stencils)
+            setProgram(s, program);
 #endif
 
     }
-    _stencil->visit(renderer, _modelViewTransform, flags);
+    for (auto s : _stencils)
+        s->visit(renderer, _modelViewTransform, flags);
 
     _afterDrawStencilCmd.init(_globalZOrder);
     _afterDrawStencilCmd.func = CC_CALLBACK_0(ClippingNode::onAfterDrawStencil, this);
@@ -315,16 +312,31 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
-Node* ClippingNode::getStencil() const
+Node* ClippingNode::getStencil(size_t i) const
 {
-    return _stencil;
+    return _stencils[i];
 }
 
 void ClippingNode::setStencil(Node *stencil)
 {
+    CCASSERT(nullptr != stencil, "Setting a null stencil");
+
+    for (auto s : _stencils)
+    {
+       if (s->getParent() == nullptr)
+       {
+           CC_SAFE_RELEASE(s);
+       }
+    }
+    _stencils.clear();
     CC_SAFE_RETAIN(stencil);
-    CC_SAFE_RELEASE(_stencil);
-    _stencil = stencil;
+    _stencils.push_back(stencil);
+}
+
+void ClippingNode::addStencil(Node *stencil)
+{
+    CC_SAFE_RETAIN(stencil);
+    _stencils.push_back(stencil);
 }
 
 bool ClippingNode::hasContent() const

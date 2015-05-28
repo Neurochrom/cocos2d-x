@@ -52,12 +52,12 @@ public:
      */
     static ClippingNode* create(Node *stencil);
 
-    /** The Node to use as a stencil to do the clipping.
-     The stencil node will be retained.
-     This default to nil.
+    /** The Nodes to use as a stencil to do the clipping.
+     The stencil nodes will be retained.
      */
-    Node* getStencil() const;
+    Node* getStencil(unsigned i = 0) const;
     void setStencil(Node *stencil);
+    void addStencil(Node *stencil);
 
     /** If stencil has no childre it will not be drawn.
     If you have custom stencil-based node with stencil drawing mechanics other then children-based,
@@ -127,7 +127,7 @@ protected:
     */
     void drawFullScreenQuadClearStencil();
 
-    Node* _stencil;
+    std::vector<Node*> _stencils;
     GLfloat _alphaThreshold;
     bool    _inverted;
 
