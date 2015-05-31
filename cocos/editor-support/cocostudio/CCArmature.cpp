@@ -424,6 +424,11 @@ void Armature::draw(cocos2d::Renderer *renderer, const Mat4 &transform, uint32_t
                         skin->setBlendFunc(_blendFunc);
                     }
                 }
+
+                auto glProgram = bone->getGLProgram();
+                if (glProgram)
+                    skin->setGLProgram(glProgram);
+
                 skin->draw(renderer, transform, flags);
             }
             break;
