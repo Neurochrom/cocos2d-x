@@ -312,7 +312,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
-Node* ClippingNode::getStencil(size_t i) const
+Node* ClippingNode::getStencil(unsigned i) const
 {
     return _stencils[i];
 }
