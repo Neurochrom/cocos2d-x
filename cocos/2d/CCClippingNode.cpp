@@ -28,6 +28,7 @@
 #include "2d/CCClippingNode.h"
 #include "2d/CCDrawingPrimitives.h"
 #include "renderer/CCGLProgramCache.h"
+//#include "renderer/CCGLProgramState.h"
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCRenderer.h"
 #include "base/CCDirector.h"
@@ -50,6 +51,17 @@ static void setProgram(Node *n, GLProgram *p)
         setProgram(child, p);
     }
 }
+/*
+static void setProgramState(Node *n, GLProgramState *ps)
+{
+   n->setGLProgramState(ps);
+
+   auto& children = n->getChildren();
+   for(const auto &child : children) {
+      setProgramState(child, ps);
+   }
+}
+//*/
 
 ClippingNode::ClippingNode()
 : _alphaThreshold(0.0f)
@@ -250,13 +262,18 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     _beforeVisitCmd.init(_globalZOrder);
     _beforeVisitCmd.func = CC_CALLBACK_0(ClippingNode::onBeforeVisit, this);
     renderer->addCommand(&_beforeVisitCmd);
-    if (_alphaThreshold < 1)
-    {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #else
+    if (_alphaThreshold < 1)
+    {
         // since glAlphaTest do not exists in OES, use a shader that writes
         // pixel only if greater than an alpha threshold
+        /*
+        auto glps = GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST_NO_MV);
+        GLProgram *program = glps->getGLProgram();
+        /*/
         GLProgram *program = GLProgramCache::getInstance()->getGLProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST_NO_MV);
+        // */
         GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), GLProgram::UNIFORM_NAME_ALPHA_TEST_VALUE);
         // set our alphaThreshold
         program->use();
@@ -264,12 +281,25 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
         // we need to recursively apply this shader to all the nodes in the stencil node
         // FIXME: we should have a way to apply shader to all nodes without having to do this
         for (auto s : _stencils)
+            //setProgramState(s, glps);
             setProgram(s, program);
+    }
 #endif
 
-    }
     for (auto s : _stencils)
         s->visit(renderer, _modelViewTransform, flags);
+
+/*
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#else
+   if (_alphaThreshold < 1)
+   {
+      auto glps = GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP);
+      for (auto s : _stencils)
+         setProgramState(s, glps);
+   }
+#endif
+// */
 
     _afterDrawStencilCmd.init(_globalZOrder);
     _afterDrawStencilCmd.func = CC_CALLBACK_0(ClippingNode::onAfterDrawStencil, this);
@@ -308,7 +338,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     renderer->addCommand(&_afterVisitCmd);
 
     renderer->popGroup();
-    
+
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
