@@ -28,10 +28,16 @@
 #include "2d/CCClippingNode.h"
 #include "2d/CCDrawingPrimitives.h"
 #include "renderer/CCGLProgramCache.h"
-//#include "renderer/CCGLProgramState.h"
+#include "renderer/CCGLProgramState.h"
 #include "renderer/ccGLStateCache.h"
 #include "renderer/CCRenderer.h"
 #include "base/CCDirector.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#define USE_GL_ALPHA_TEST 1
+#else
+#define USE_GL_ALPHA_TEST 0
+#endif
 
 
 NS_CC_BEGIN
@@ -42,6 +48,7 @@ static GLint g_sStencilBits = -1;
 // where n is the number of bits of the stencil buffer.
 static GLint s_layer = -1;
 
+/*
 static void setProgram(Node *n, GLProgram *p)
 {
     n->setGLProgram(p);
@@ -51,7 +58,7 @@ static void setProgram(Node *n, GLProgram *p)
         setProgram(child, p);
     }
 }
-/*
+/*/
 static void setProgramState(Node *n, GLProgramState *ps)
 {
    n->setGLProgramState(ps);
@@ -262,13 +269,13 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     _beforeVisitCmd.init(_globalZOrder);
     _beforeVisitCmd.func = CC_CALLBACK_0(ClippingNode::onBeforeVisit, this);
     renderer->addCommand(&_beforeVisitCmd);
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#if USE_GL_ALPHA_TEST
 #else
     if (_alphaThreshold < 1)
     {
         // since glAlphaTest do not exists in OES, use a shader that writes
         // pixel only if greater than an alpha threshold
-        /*
+        //*
         auto glps = GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST_NO_MV);
         GLProgram *program = glps->getGLProgram();
         /*/
@@ -281,20 +288,22 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
         // we need to recursively apply this shader to all the nodes in the stencil node
         // FIXME: we should have a way to apply shader to all nodes without having to do this
         for (auto s : _stencils)
-            //setProgramState(s, glps);
-            setProgram(s, program);
+            setProgramState(s, glps);
+            //setProgram(s, program);
     }
 #endif
 
     for (auto s : _stencils)
         s->visit(renderer, _modelViewTransform, flags);
 
-/*
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+//*
+#if USE_GL_ALPHA_TEST
 #else
    if (_alphaThreshold < 1)
    {
       auto glps = GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP);
+      GLProgram *program = glps->getGLProgram();
+      program->use();
       for (auto s : _stencils)
          setProgramState(s, glps);
    }
@@ -471,7 +480,7 @@ void ClippingNode::onBeforeVisit()
     // enable alpha test only if the alpha threshold < 1,
     // indeed if alpha threshold == 1, every pixel will be drawn anyways
     if (_alphaThreshold < 1) {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#if USE_GL_ALPHA_TEST
         // manually save the alpha test state
         _currentAlphaTestEnabled = glIsEnabled(GL_ALPHA_TEST);
         glGetIntegerv(GL_ALPHA_TEST_FUNC, (GLint *)&_currentAlphaTestFunc);
@@ -483,7 +492,6 @@ void ClippingNode::onBeforeVisit()
         // pixel will be drawn only if greater than an alpha threshold
         glAlphaFunc(GL_GREATER, _alphaThreshold);
 #else
-        
 #endif
     }
 
@@ -495,7 +503,7 @@ void ClippingNode::onAfterDrawStencil()
     // restore alpha test state
     if (_alphaThreshold < 1)
     {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#if USE_GL_ALPHA_TEST
         // manually restore the alpha test state
         glAlphaFunc(_currentAlphaTestFunc, _currentAlphaTestRef);
         if (!_currentAlphaTestEnabled)
