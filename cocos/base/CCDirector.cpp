@@ -103,11 +103,23 @@ Director* Director::getInstance()
     return s_SharedDirector;
 }
 
+Director* Director::initInstance(Renderer* renderer)
+{
+#ifdef COCOS2D_EXIT_SEQUENCE_DEBUG
+    CCASSERT(!deleted, "Director::getInstance() called after ~Director()");
+#endif
+    CCASSERT(!s_SharedDirector, "FATAL: Director::initInstance called after getInstance");
+    s_SharedDirector = new (std::nothrow) DisplayLinkDirector();
+    CCASSERT(s_SharedDirector, "FATAL: Not enough memory");
+    s_SharedDirector->init(renderer);
+    return s_SharedDirector;
+}
+
 Director::Director()
 {
 }
 
-bool Director::init(void)
+bool Director::init(Renderer* renderer)
 {
     setDefaultValues();
 
@@ -162,7 +174,10 @@ bool Director::init(void)
     initTextureCache();
     initMatrixStack();
 
-    _renderer = new (std::nothrow) Renderer;
+    if (renderer == nullptr)
+        _renderer = new (std::nothrow) Renderer;
+    else
+        _renderer = renderer;
 
     _console = new (std::nothrow) Console;
 

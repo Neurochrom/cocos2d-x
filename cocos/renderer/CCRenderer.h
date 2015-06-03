@@ -105,7 +105,7 @@ public:
     void initGLView();
 
     /** Adds a `RenderComamnd` into the renderer */
-    void addCommand(RenderCommand* command);
+    virtual void addCommand(RenderCommand* command);
 
     /** Adds a `RenderComamnd` into the renderer specifying a particular render queue ID */
     void addCommand(RenderCommand* command, int renderQueue);
@@ -123,7 +123,7 @@ public:
     void render();
 
     /** Cleans all `RenderCommand`s in the queue */
-    void clean();
+    virtual void clean();
 
     /* returns the number of drawn batches in the last frame */
     ssize_t getDrawnBatches() const { return _drawnBatches; }

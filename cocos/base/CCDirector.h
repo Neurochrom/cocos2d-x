@@ -117,6 +117,9 @@ public:
     /** returns a shared instance of the director */
     static Director* getInstance();
 
+    /** returns a shared instance of the director while passing additional init paramters */
+    static Director* initInstance(Renderer* renderer);
+
     /** @deprecated Use getInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static Director* sharedDirector() { return Director::getInstance(); }
     /**
@@ -128,7 +131,7 @@ public:
      * @lua NA
      */
     virtual ~Director();
-    virtual bool init();
+    virtual bool init(Renderer* renderer = nullptr);
 
     // attribute
 
