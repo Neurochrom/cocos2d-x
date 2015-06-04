@@ -32,6 +32,8 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
+class Renderer;
+
 /**
  * @addtogroup platform
  * @{
@@ -133,7 +135,12 @@ public:
      * @lua NA
      */
     virtual Platform getTargetPlatform() = 0;
-    
+
+    /**
+     @brief Give the application a chance to create a customized Renderer instance
+     */
+    virtual Renderer* createCustomRenderer() { return nullptr; }
+
     /**
      @brief Open url in default browser
      @param String with url to open.
