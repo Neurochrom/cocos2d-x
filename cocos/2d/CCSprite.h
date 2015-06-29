@@ -235,6 +235,11 @@ public:
     virtual bool isFrameDisplayed(SpriteFrame *pFrame) const;
 
     /**
+     * Returns whether or not the sprite was inside bounds the previous frame, and thus if it was rendered or not
+     */
+    virtual bool isInsideBounds() const { return _insideBounds; }
+
+    /**
      * Returns the current displayed frame.
      */
     virtual SpriteFrame* getSpriteFrame() const;
