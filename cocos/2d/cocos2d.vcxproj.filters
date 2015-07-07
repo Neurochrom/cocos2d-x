@@ -4,9 +4,6 @@
     <Filter Include="physics">
       <UniqueIdentifier>{08593631-5bf5-46aa-9436-62595c4f7bf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="physics\chipmunk">
-      <UniqueIdentifier>{aeadfa95-9c89-4212-98ae-89ad57db596a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="deprecated">
       <UniqueIdentifier>{0b1152b1-c732-4560-8629-87843b0fbd7c}</UniqueIdentifier>
     </Filter>
@@ -58,6 +55,9 @@
     <Filter Include="renderer\shaders">
       <UniqueIdentifier>{e7940f97-b71c-40b3-a4af-109aad1c9895}</UniqueIdentifier>
     </Filter>
+    <Filter Include="network">
+      <UniqueIdentifier>{a48e3615-59b9-4104-ae89-05f14b8a9840}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\physics\CCPhysicsBody.cpp">
@@ -74,21 +74,6 @@
     </ClCompile>
     <ClCompile Include="..\physics\CCPhysicsWorld.cpp">
       <Filter>physics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\physics\chipmunk\CCPhysicsBodyInfo_chipmunk.cpp">
-      <Filter>physics\chipmunk</Filter>
-    </ClCompile>
-    <ClCompile Include="..\physics\chipmunk\CCPhysicsContactInfo_chipmunk.cpp">
-      <Filter>physics\chipmunk</Filter>
-    </ClCompile>
-    <ClCompile Include="..\physics\chipmunk\CCPhysicsJointInfo_chipmunk.cpp">
-      <Filter>physics\chipmunk</Filter>
-    </ClCompile>
-    <ClCompile Include="..\physics\chipmunk\CCPhysicsShapeInfo_chipmunk.cpp">
-      <Filter>physics\chipmunk</Filter>
-    </ClCompile>
-    <ClCompile Include="..\physics\chipmunk\CCPhysicsWorldInfo_chipmunk.cpp">
-      <Filter>physics\chipmunk</Filter>
     </ClCompile>
     <ClCompile Include="..\..\external\xxhash\xxhash.c">
       <Filter>external\xxhash</Filter>
@@ -619,6 +604,9 @@
     <ClCompile Include="..\..\external\unzip\ioapi_mem.cpp">
       <Filter>external\unzip</Filter>
     </ClCompile>
+    <ClCompile Include="..\network\HttpClient.cpp">
+      <Filter>network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\physics\CCPhysicsBody.h">
@@ -635,24 +623,6 @@
     </ClInclude>
     <ClInclude Include="..\physics\CCPhysicsWorld.h">
       <Filter>physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\physics\chipmunk\CCPhysicsBodyInfo_chipmunk.h">
-      <Filter>physics\chipmunk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\physics\chipmunk\CCPhysicsContactInfo_chipmunk.h">
-      <Filter>physics\chipmunk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\physics\chipmunk\CCPhysicsHelper_chipmunk.h">
-      <Filter>physics\chipmunk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\physics\chipmunk\CCPhysicsJointInfo_chipmunk.h">
-      <Filter>physics\chipmunk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\physics\chipmunk\CCPhysicsShapeInfo_chipmunk.h">
-      <Filter>physics\chipmunk</Filter>
-    </ClInclude>
-    <ClInclude Include="..\physics\chipmunk\CCPhysicsWorldInfo_chipmunk.h">
-      <Filter>physics\chipmunk</Filter>
     </ClInclude>
     <ClInclude Include="..\..\external\xxhash\xxhash.h">
       <Filter>external\xxhash</Filter>
@@ -1263,6 +1233,15 @@
     </ClInclude>
     <ClInclude Include="..\..\external\unzip\ioapi_mem.h">
       <Filter>external\unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\HttpClient.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\HttpRequest.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\network\HttpResponse.h">
+      <Filter>network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
