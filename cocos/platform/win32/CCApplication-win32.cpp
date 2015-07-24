@@ -63,11 +63,9 @@ int Application::run()
     PVRFrameEnableControlWindow(false);
 
     // Main message loop:
-    LARGE_INTEGER nFreq;
     LARGE_INTEGER nLast;
     LARGE_INTEGER nNow;
 
-    QueryPerformanceFrequency(&nFreq);
     QueryPerformanceCounter(&nLast);
 
     initGLContextAttrs();
@@ -79,7 +77,7 @@ int Application::run()
     // Initialize instance and cocos2d.
     if (!applicationDidFinishLaunching())
     {
-        return 0;
+        return 1;
     }
 
     auto director = Director::getInstance();
@@ -112,7 +110,7 @@ int Application::run()
         director = nullptr;
     }
     glview->release();
-    return true;
+    return 0;
 }
 
 void Application::setAnimationInterval(double interval)
@@ -140,7 +138,7 @@ Application* Application::sharedApplication()
 LanguageType Application::getCurrentLanguage()
 {
     LanguageType ret = LanguageType::ENGLISH;
-
+    
     LCID localeID = GetUserDefaultLCID();
     unsigned short primaryLanguageID = localeID & 0xFF;
     
@@ -185,14 +183,26 @@ LanguageType Application::getCurrentLanguage()
         case LANG_ARABIC:
             ret = LanguageType::ARABIC;
             break;
-	    case LANG_NORWEGIAN:
+        case LANG_NORWEGIAN:
             ret = LanguageType::NORWEGIAN;
             break;
- 	    case LANG_POLISH:
+        case LANG_POLISH:
             ret = LanguageType::POLISH;
             break;
+        case LANG_TURKISH:
+            ret = LanguageType::TURKISH;
+            break;
+        case LANG_UKRAINIAN:
+            ret = LanguageType::UKRAINIAN;
+            break;
+        case LANG_ROMANIAN:
+            ret = LanguageType::ROMANIAN;
+            break;
+        case LANG_BULGARIAN:
+            ret = LanguageType::BULGARIAN;
+            break;
     }
-
+    
     return ret;
 }
 
