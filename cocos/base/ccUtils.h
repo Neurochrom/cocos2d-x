@@ -50,7 +50,7 @@ Examples:
 @since v0.99.5
 */
 
-int ccNextPOT(int value);
+int CC_DLL ccNextPOT(int value);
 
 namespace utils
 {

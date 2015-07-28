@@ -35,7 +35,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-int ccNextPOT(int x)
+int CC_DLL ccNextPOT(int x)
 {
     x = x - 1;
     x = x | (x >> 1);
