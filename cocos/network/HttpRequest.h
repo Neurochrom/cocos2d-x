@@ -232,7 +232,10 @@ public:
     {
         return _pUserData;
     };
-    
+
+// Disable the deprecated methods by default as they cause errors when building Windows Phone version
+// (C4996 is promoted to an error)
+#ifdef CC_ENABLE_DEPRECATED_HTTP
     /**
      * Set the target and related callback selector.
      * When response come back, it would call (pTarget->*pSelector) to process something.
@@ -262,6 +265,8 @@ public:
             _pTarget->retain();
         }
     }
+#endif
+
     /**
      * Set response callback function of HttpRequest object.
      * When response come back, we would call _pCallback to process response data.

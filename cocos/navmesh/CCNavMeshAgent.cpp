@@ -244,8 +244,8 @@ OffMeshLinkData NavMeshAgent::getCurrentOffMeshLinkData()
             Mat4 mat;
             if (_owner && _owner->getParent())
                 mat = _owner->getParent()->getWorldToNodeTransform();
-            mat.transformPoint(agentAnim->startPos, &data.startPosition);
-            mat.transformPoint(agentAnim->endPos, &data.endPosition);
+            mat.transformPoint(Vec3(agentAnim->startPos), &data.startPosition);
+            mat.transformPoint(Vec3(agentAnim->endPos), &data.endPosition);
         }
     }
     return data;
