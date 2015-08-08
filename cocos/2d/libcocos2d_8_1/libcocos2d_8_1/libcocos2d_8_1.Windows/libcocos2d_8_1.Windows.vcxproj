@@ -113,6 +113,8 @@
     <TargetName>libcocos2d_v3.7_Windows_8.1</TargetName>
     <LinkIncremental>
     </LinkIncremental>
+    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -120,18 +122,24 @@
     <TargetName>libcocos2d_v3.7_Windows_8.1</TargetName>
     <LinkIncremental>
     </LinkIncremental>
+    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <TargetName>libcocos2d_v3.7_Windows_8.1</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <TargetName>libcocos2d_v3.7_Windows_8.1</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -139,6 +147,8 @@
     <TargetName>libcocos2d_v3.7_Windows_8.1</TargetName>
     <LinkIncremental>
     </LinkIncremental>
+    <OutDir>$(ProjectDir)$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -146,6 +156,8 @@
     <TargetName>libcocos2d_v3.7_Windows_8.1</TargetName>
     <LinkIncremental>
     </LinkIncremental>
+    <OutDir>$(ProjectDir)$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

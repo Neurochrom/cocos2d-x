@@ -12,4 +12,4 @@
         url = git://github.com/dumganhar/ccs-res.git
 [submodule "cocos2d-x-3rd-party-libs-bin"]
         path = external
-        url = git://github.com/Neurochrom/cocos2d-x-3rd-party-libs-bin
+        url = https://github.com/Neurochrom/cocos2d-x-3rd-party-libs-bin.git
