@@ -12,7 +12,7 @@ set(_curl_libs crypto ssl libeay32 ssleay32 curl libcurl_imp libcurl)
 set(_freetype2_prefix FREETYPE)
 set(_freetype2_inc ft2build.h freetype/freetype.h)
 set(_freetype2_inc_paths freetype2)
-set(_freetype2_libs freetype freetype250)
+set(_freetype2_libs freetype)
 
 set(_jpeg_inc jpeglib.h)
 set(_jpeg_libs jpeg libjpeg)
