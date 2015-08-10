@@ -76,23 +76,27 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(ProjectDir)out-$(ProjectName)-$(Platform)-$(Configuration)\</OutDir>
+    <IntDir>obj-$(ProjectName)-$(Platform)-$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-$(Platform)-$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(ProjectDir)out-$(ProjectName)-$(Platform)-$(Configuration)\</OutDir>
+    <IntDir>obj-$(ProjectName)-$(Platform)-$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-$(Platform)-$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(ProjectDir)out-$(ProjectName)-$(Platform)-$(Configuration)\</OutDir>
+    <IntDir>obj-$(ProjectName)-$(Platform)-$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-$(Platform)-$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <OutDir>$(ProjectDir)out-$(Configuration)-$(Platform)\</OutDir>
-    <IntDir>obj-$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(ProjectDir)out-$(ProjectName)-$(Platform)-$(Configuration)\</OutDir>
+    <IntDir>obj-$(ProjectName)-$(Platform)-$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-$(Platform)-$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
