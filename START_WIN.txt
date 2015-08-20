@@ -1,4 +1,4 @@
-Start a Project in Windows
+Start a project in Windows
 ==========================
 
 http://www.cocos2d-x.org/wiki/how_to_start_a_new_cocos2d-x_game
@@ -64,3 +64,33 @@ In git bash
  git add cocos2d
  git commit --amend 
 
+
+Setting up Android development
+==================================
+Install Visula Stuidio Community editin 2015 or get Android SDK and ANT and...
+
+Install java and jdk.
+Fix the tools.jar problem: open administrative cmd
+ cd C:\Program Files\Java\jre1.8.0_51\lib
+ mklink tools.jar ..\..\jdk1.8.0_51\lib\tools.jar
+
+Install eclipse with jdt, cdt, adt.
+Install ndk TO A PATH with no spaces or special signs.
+
+Verify that ant works from console.
+
+Install usb driver for your device.
+Enable developer mode on the device.
+Verify from console via
+ adb -d get-serialno
+
+Once the project is generated
+go to its proj.android subdirectory in a console and run
+ py build_native.py
+// py myst be installed and py --version myst be pointing to python 2.x
+
+to install
+ adb -d install bin\NameOfGame-debug.apk
+
+Now lunch eclipse.
+Pick the main folder of the project as the workspace.
