@@ -492,7 +492,7 @@ void GLView::addResizeCalback(const std::function<void(const Size&)>& callback)
 
 NS_CC_END
 
-const char* gl_ErrorString(unsigned int errCode)
+CC_DLL const char* gl_ErrorString(unsigned int errCode)
 {
    switch (errCode)
    {
