@@ -94,7 +94,7 @@ WICImageLoader::~WICImageLoader()
 bool WICImageLoader::decodeImageData(ImageBlob blob, size_t size)
 {
 	bool bRet = false;
-	HRESULT hr = S_FALSE;
+	HRESULT hr = -1;  // note that SUCCEEDED(S_FALSE) == true
 
 	IWICStream* pWicStream = NULL;
 	IWICImagingFactory* pWicFactory = getWICFactory();
@@ -102,11 +102,10 @@ bool WICImageLoader::decodeImageData(ImageBlob blob, size_t size)
 	if(NULL != pWicFactory)
 	{
 		hr = pWicFactory->CreateStream(&pWicStream);
-	}
-
-	if(SUCCEEDED(hr))
-	{
-		hr = pWicStream->InitializeFromMemory((BYTE*)blob, size);
+		if(SUCCEEDED(hr))
+		{
+			hr = pWicStream->InitializeFromMemory((BYTE*)blob, size);
+		}
 	}
 
 	IWICBitmapDecoder* pDecoder = NULL;
@@ -126,17 +125,20 @@ bool WICImageLoader::decodeImageData(ImageBlob blob, size_t size)
 
 bool WICImageLoader::processImage(IWICBitmapDecoder* pDecoder)
 {
-	HRESULT hr = S_FALSE;
+	HRESULT hr = -1;  // note that SUCCEEDED(S_FALSE) == true
 	IWICBitmapFrameDecode* pFrame = NULL;
 
 	if(NULL != pDecoder)
 	{
 		hr = pDecoder->GetFrame(0, &pFrame);
+		if(SUCCEEDED(hr))
+		{
+			hr = pFrame->GetPixelFormat(&_format);
+		}
 	}
-
-	if(SUCCEEDED(hr))
+	else
 	{
-		hr = pFrame->GetPixelFormat(&_format);
+		return SUCCEEDED(hr);
 	}
 
 	IWICFormatConverter* pConv = NULL;
@@ -239,7 +241,7 @@ HRESULT WICImageLoader::convertFormatIfRequired(IWICBitmapFrameDecode* pFrame, I
 
 size_t WICImageLoader::getBitsPerPixel(WICPixelFormatGUID format)
 {
-	HRESULT hr = S_FALSE;
+	HRESULT hr = -1;  // note that SUCCEEDED(S_FALSE) == true
 
 	IWICImagingFactory* pfactory = getWICFactory();
 
