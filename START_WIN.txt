@@ -3,9 +3,18 @@ Start a project in Windows
 
 http://www.cocos2d-x.org/wiki/how_to_start_a_new_cocos2d-x_game
 
-Install git-scm (so you have git bash)
-and Visual C++ 2015 (with android tools) (ultimate preview works)
-and Visual 2013 community edition (for it works well)
+Install
+ git-scm (so you have git bash)  https://git-scm.com/download/win
+ Visual Studio 2013 community edition  https://www.visualstudio.com/en-us/news/vs2013-community-vs.aspx
+ Python 2.7.x  https://www.python.org/downloads/
+ Python launcher for windows
+  If you have python3.x installed you should have it, if not
+  get https://bitbucket.org/vinay.sajip/pylauncher/downloads
+  In command line select the python version
+   py -2
+  If you get Requested Python version (2) not installed
+  check out http://stackoverflow.com/questions/27503003/py-launcher-does-not-find-my-python-2-7
+
 
 Open git bash
  py --version
@@ -13,13 +22,6 @@ should give 2.7.x e.g. 2.7.6 (even with python 3.x installed)
 
 Go to cocos2d and run
  py setup.py
-input
- NDK_ROOT
- C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\android-ndk-r10
- ANDROID_SDK_ROOT
- C:\Program Files (x86)\Android\android-sdk
- ANT_ROOT
- C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\apache-ant-1.9.3\bin
 
 Restart git bash. Go to cocos2d\tools\cocos2d-console\bin and run
  py cocos.py new NameOfGame -p com.company.nameofgame -l cpp -d 'C:\destinationfolder_without_NameOfGame'
@@ -41,7 +43,6 @@ in your projects.
 If you do so remember to:
 - Add the libcocos2d project refernce to your project
 - Once use the prelink event.
-
 
 
 Setting up git for the new project
@@ -67,15 +68,28 @@ In git bash
 
 Setting up Android development
 ==================================
-Install Visula Stuidio Community editin 2015 or get Android SDK and ANT and...
 
-Install java and jdk.
+Install Android SDK, NDK, ANT. Can be the ones that come with Visual Studio 2015,
+but except for ANT standalone versions are prefered.
+
+It's important that the Android SDK and NDK paths do not contain spaces or special
+characters in them!
+
+install Java and JDK (JRE JDK).
 Fix the tools.jar problem: open administrative cmd
  cd C:\Program Files\Java\jre1.8.0_51\lib
  mklink tools.jar ..\..\jdk1.8.0_51\lib\tools.jar
 
-Install eclipse with jdt, cdt, adt.
-Install ndk TO A PATH with no spaces or special signs.
+In the console (can be git bash) go to the cocos2d-x dorectory and run
+ py setup.py
+
+input (with examples)
+ NDK_ROOT
+ C:\Users\pc\AppData\Local\Android\sdk\ndk-bundle
+ ANDROID_SDK_ROOT
+ C:\Users\pc\AppData\Local\Android\sdk
+ ANT_ROOT
+ C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\apache-ant-1.9.3\bin
 
 Verify that ant works from console.
 
@@ -85,12 +99,14 @@ Verify from console via
  adb -d get-serialno
 
 Once the project is generated
-go to its proj.android subdirectory in a console and run
+go to its proj.android subdirectory in a console and (from git bash - not from cmd) run
  py build_native.py
-// py myst be installed and py --version myst be pointing to python 2.x
+// py myst be installed and py --version must be pointing to python 2.x
 
 to install
- adb -d install bin\NameOfGame-debug.apk
+ adb -d install ../bin/debug/android/NameOfGame-debug.apk
 
-Now lunch eclipse.
-Pick the main folder of the project as the workspace.
+/// @todo - how to build release
+
+To add/remove source files to your project modify
+proj.android/Android.mk
