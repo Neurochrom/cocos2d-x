@@ -24,7 +24,7 @@ Go to cocos2d and run
  py setup.py
 
 Restart git bash. Go to cocos2d\tools\cocos2d-console\bin and run
- py cocos.py new NameOfGame -p com.company.nameofgame -l cpp -d 'C:\destinationfolder_without_NameOfGame'
+ py cocos.py new NameOfGame -p com.company.nameofgame -l cpp -d "C:\destinationfolder_without_NameOfGame"
 
 Go to C:\destinationfolder_without_NameOfGame\NameOfGame and run
  mv cocos2d cocos2d_delme
@@ -110,3 +110,6 @@ to install
 
 To add/remove source files to your project modify
 proj.android/Android.mk
+
+To plainly add all needed .cpp files (with no ant tricks) the find command can be useful.
+
