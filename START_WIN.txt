@@ -24,26 +24,10 @@ Go to cocos2d and run
  py setup.py
 
 Restart git bash. Go to cocos2d\tools\cocos2d-console\bin and run
- py cocos.py new NameOfGame -p com.company.nameofgame -l cpp -d "C:\destinationfolder_without_NameOfGame"
+ py cocos.py new NameOfGame -p com.company.nameofgame -l cpp
 
-Go to C:\destinationfolder_without_NameOfGame\NameOfGame and run
- mv cocos2d cocos2d_delme
-
-Open cmd and goto C:\destinationfolder_without_NameOfGame\NameOfGame and run
- mklink /J cocos2d cocos2d_directory
-cocos2d_directory can be relative
-
-Delete cocos2d_delme.
-Open the .sln file in proj.win32 folder.
-If you want cocos to be static remove the libococos2d project form the solution and add
- cocos2d\cocos\2d\cocos2d.vcxproj
-and define
- CC_STATIC
-in your projects.
-If you do so remember to:
-- Add the libcocos2d project refernce to your project
-- Once use the prelink event.
-
+Copy glew32.dll, zlib1.dll and any other .dll files you might need into the directory where your
+executable is generated to.
 
 Setting up git for the new project
 ==================================
@@ -51,14 +35,11 @@ Setting up git for the new project
 In git bash whilst in C:\destinationfolder_without_NameOfGame\NameOfGame do
  git init
 Add a proper .gitignore
- git gui
 Add stuff WITHOUT cocos2d and do a commit
- mv cocos2d cocos2d_
- git submodle add --force 'C:\path_to_cocos2d' cocos2d
- rm -rf cocos2d
- mv cocos2d_ cocos2d
-Edit .gitmodules
- Change url to https://github.com/Neurochrom/cocos2d-x.git
+It's best to refernece cocos as a submodule. From a windows console (cmd) do
+ mklink /J cocos ..\cocos2d-x
+ git submodule add "https://github.com/Neurochrom/cocos2d-x.git" cocos2d
+
 In git bash
  git add .gitmodules
  git commit -m "Cocos2d-x as a submodule."
@@ -100,9 +81,9 @@ Verify from console via
 
 Once the project is generated
 go to its proj.android subdirectory in a console and (from git bash - not from cmd) run
- py build_native.py
-// py myst be installed and py --version must be pointing to python 2.x
-
+ py build_lib.py
+ ant debug -f build.xml -Dsdk.dir=$ANDROID_SDK_ROOT
+ 
 to install
  adb -d install ../bin/debug/android/NameOfGame-debug.apk
 
