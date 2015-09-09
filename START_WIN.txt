@@ -15,6 +15,7 @@ Install
   If you get Requested Python version (2) not installed
   check out http://stackoverflow.com/questions/27503003/py-launcher-does-not-find-my-python-2-7
 
+IMPORTANT: put this library in a folder called cocos2d-x
 
 Open git bash
  py --version
@@ -23,7 +24,7 @@ should give 2.7.x e.g. 2.7.6 (even with python 3.x installed)
 Go to cocos2d and run
  py setup.py
 
-Restart git bash. Go to cocos2d\tools\cocos2d-console\bin and run
+Restart git bash. Go to cocos2d-x\tools\cocos2d-console\bin and run
  py cocos.py new NameOfGame -p com.company.nameofgame -l cpp
 
 Copy glew32.dll, zlib1.dll and any other .dll files you might need into the directory where your
@@ -35,9 +36,9 @@ Setting up git for the new project
 In git bash whilst in C:\destinationfolder_without_NameOfGame\NameOfGame do
  git init
 Add a proper .gitignore
-Add stuff WITHOUT cocos2d and do a commit
-It's best to refernece cocos as a submodule. From a windows console (cmd) do
- mklink /J cocos ..\cocos2d-x
+Add stuff and do a commit
+It's best to reference cocos as a submodule. From a windows console (cmd) do
+ mklink /J cocos2d ..\cocos2d-x
  git submodule add "https://github.com/Neurochrom/cocos2d-x.git" cocos2d
 
 In git bash
@@ -51,7 +52,7 @@ Setting up Android development
 ==================================
 
 Install Android SDK, NDK, ANT. Can be the ones that come with Visual Studio 2015,
-but except for ANT standalone versions are prefered.
+but except for ANT, standalone versions are preferred.
 
 It's important that the Android SDK and NDK paths do not contain spaces or special
 characters in them!
@@ -61,7 +62,7 @@ Fix the tools.jar problem: open administrative cmd
  cd C:\Program Files\Java\jre1.8.0_51\lib
  mklink tools.jar ..\..\jdk1.8.0_51\lib\tools.jar
 
-In the console (can be git bash) go to the cocos2d-x dorectory and run
+In the console (can be git bash) go to the cocos2d-x directory and run
  py setup.py
 
 input (with examples)
@@ -93,4 +94,3 @@ To add/remove source files to your project modify
 proj.android/Android.mk
 
 To plainly add all needed .cpp files (with no ant tricks) the find command can be useful.
-
