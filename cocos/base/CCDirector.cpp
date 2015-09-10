@@ -181,6 +181,8 @@ bool Director::init()
     initMatrixStack();
 
     _renderer = Application::getInstance()->createCustomRenderer();
+    if (_renderer == nullptr)
+       _renderer = new (std::nothrow) Renderer;
     RenderState::initialize();
 
     return true;
