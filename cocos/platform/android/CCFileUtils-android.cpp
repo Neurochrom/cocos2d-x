@@ -34,7 +34,7 @@ THE SOFTWARE.
 #include "jni/CocosPlayClient.h"
 #include <stdlib.h>
 
-#define  LOG_TAG    "CCFileUtils-android.cpp"
+#define  LOG_TAG    "cocos2d-x"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 
 using namespace std;

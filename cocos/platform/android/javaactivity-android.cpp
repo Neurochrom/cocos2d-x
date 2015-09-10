@@ -39,7 +39,7 @@ THE SOFTWARE.
 #include <android/log.h>
 #include <jni.h>
 
-#define  LOG_TAG    "main"
+#define  LOG_TAG    "cocos2d-x"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 
 void cocos_android_app_init(JNIEnv* env) __attribute__((weak));

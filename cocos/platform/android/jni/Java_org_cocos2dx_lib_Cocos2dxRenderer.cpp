@@ -17,6 +17,7 @@ extern "C" {
     }
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnPause() {
+        __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x", "Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnPause");
         if (Director::getInstance()->getOpenGLView()) {
                 Application::getInstance()->applicationDidEnterBackground();
                 cocos2d::EventCustom backgroundEvent(EVENT_COME_TO_BACKGROUND);
@@ -25,6 +26,7 @@ extern "C" {
     }
 
     JNIEXPORT void JNICALL Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnResume() {
+        __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x", "Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeOnResume");
         if (Director::getInstance()->getOpenGLView()) {
             Application::getInstance()->applicationWillEnterForeground();
             cocos2d::EventCustom foregroundEvent(EVENT_COME_TO_FOREGROUND);

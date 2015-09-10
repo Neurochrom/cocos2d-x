@@ -39,7 +39,7 @@
 
 #define CLASS_NAME "org/cocos2dx/lib/Cocos2dxWebViewHelper"
 
-#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,"",__VA_ARGS__)
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,"cocos2d-x",__VA_ARGS__)
 
 static const std::string s_defaultBaseUrl = "file:///android_asset/";
 static const std::string s_sdRootBaseUrl = "file://";

@@ -60,7 +60,7 @@ AndroidJavaEngine::AndroidJavaEngine()
     if (len > 0)
     {
         auto sdk_ver = atoi(sdk_ver_str);
-        __android_log_print(ANDROID_LOG_DEBUG, "cocos2d", "android build version:%d", sdk_ver);
+        __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x", "android build version:%d", sdk_ver);
         if (sdk_ver == 21)
         {
             _implementBaseOnAudioEngine = true;
@@ -68,7 +68,7 @@ AndroidJavaEngine::AndroidJavaEngine()
     }
     else
     {
-        __android_log_print(ANDROID_LOG_DEBUG, "cocos2d", "%s", "Fail to get android build version.");
+        __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x", "%s", "Fail to get android build version.");
     }
 }
 
