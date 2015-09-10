@@ -241,7 +241,7 @@ static void _log(const char *format, va_list args)
     strcat(buf, "\n");
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x debug info",  "%s", buf);
+    __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x",  "%s", buf);
 
 #elif CC_TARGET_PLATFORM ==  CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT
     WCHAR wszBuf[MAX_LOG_LENGTH] = {0};
@@ -257,8 +257,9 @@ static void _log(const char *format, va_list args)
     fflush(stdout);
 #endif
 
-    Director::getInstance()->getConsole()->log(buf);
-
+    auto director = Director::getInstanceIfOperational();
+    if (director)
+       director->getConsole()->log(buf);
 }
 
 // FIXME: Deprecated

@@ -122,15 +122,17 @@ public:
         DEFAULT = _3D,
     };
     
-    /** 
+    /**
      * Returns a shared instance of the director. 
      * @js _getInstance
      */
     static Director* getInstance();
 
-
-    /** returns a shared instance of the director while passing additional init paramters */
-    static Director* initInstance(Renderer* renderer);
+    /**
+     * Returns a shared instance of the director if it is initialized and operational.
+     * Otherwise returns nullptr.
+     */
+    static Director* getInstanceIfOperational();
 
     /**
      * @deprecated Use getInstance() instead.
@@ -148,7 +150,7 @@ public:
      * @lua NA
      */
     virtual ~Director();
-    virtual bool init(Renderer* renderer = nullptr);
+    virtual bool init();
 
     // attribute
 

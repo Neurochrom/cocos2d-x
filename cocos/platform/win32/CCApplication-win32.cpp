@@ -70,10 +70,6 @@ int Application::run()
 
     initGLContextAttrs();
 
-    Renderer* renderer = createCustomRenderer();
-    if (renderer != nullptr)
-        Director::initInstance(renderer);
-
     // Initialize instance and cocos2d.
     if (!applicationDidFinishLaunching())
     {
