@@ -43,7 +43,15 @@ def check_environment_variables():
 def select_toolchain_version():
 
     ndk_root = check_environment_variables()
-    if os.path.isdir(os.path.join(ndk_root,"toolchains/arm-linux-androideabi-4.9")):
+    if False:
+       'nothig'
+    #if os.path.isdir(os.path.join(ndk_root,"toolchains/arm-linux-androideabi-4.8")):
+    #    os.environ['NDK_TOOLCHAIN_VERSION'] = '4.8'
+    #    print "The Selected NDK toolchain version was 4.8 !"
+    #elif os.path.isdir(os.path.join(ndk_root,"toolchains/arm-linux-androideabi-clang3.6")):
+    #    os.environ['NDK_TOOLCHAIN_VERSION'] = 'clang3.6'
+    #    print "The Selected NDK toolchain version was clang3.6 !"
+    elif os.path.isdir(os.path.join(ndk_root,"toolchains/arm-linux-androideabi-4.9")):
         os.environ['NDK_TOOLCHAIN_VERSION'] = '4.9'
         print "The Selected NDK toolchain version was 4.9 !"
     elif os.path.isdir(os.path.join(ndk_root,"toolchains/arm-linux-androideabi-4.8")):
@@ -64,20 +72,27 @@ def do_build(cocos_root, ndk_root, app_android_root,ndk_build_param,sdk_root,and
         command = '%s -j%d -C %s NDK_DEBUG=%d' % (ndk_path, num_of_cpu, app_android_root, build_mode=='debug')
     else:
         command = '%s -j%d -C %s NDK_DEBUG=%d %s' % (ndk_path, num_of_cpu, app_android_root, build_mode=='debug', ' '.join(str(e) for e in ndk_build_param))
-    if os.system(command) != 0:
+    retval = os.system(command)
+    if retval != 0:
+        print "Build dynamic library for project [ " + app_android_root + " ] probably failed - return value was " + str(retval)
         raise Exception("Build dynamic library for project [ " + app_android_root + " ] fails!")
-    elif android_platform is not None:
-          sdk_tool_path = os.path.join(sdk_root, "tools/android")
-          cocoslib_path = os.path.join(cocos_root, "cocos/platform/android/java")
-          command = '%s update lib-project -t %s -p %s' % (sdk_tool_path,android_platform,cocoslib_path)
-          if os.system(command) != 0:
-              raise Exception("update cocos lib-project [ " + cocoslib_path + " ] fails!")
-          command = '%s update project -t %s -p %s -s' % (sdk_tool_path,android_platform,app_android_root)
-          if os.system(command) != 0:
-              raise Exception("update project [ " + app_android_root + " ] fails!")
-          buildfile_path = os.path.join(app_android_root, "build.xml")
-          command = 'ant clean %s -f %s -Dsdk.dir=%s' % (build_mode,buildfile_path,sdk_root)
-          os.system(command)
+    if android_platform is not None:
+        print "Ant build. Android platform selected: " + android_platform
+        sdk_tool_path = os.path.join(sdk_root, "tools/android")
+        cocoslib_path = os.path.join(cocos_root, "cocos/platform/android/java")
+        command = '%s update lib-project -t %s -p %s' % (sdk_tool_path,android_platform,cocoslib_path)
+        if os.system(command) != 0:
+            raise Exception("update cocos lib-project [ " + cocoslib_path + " ] fails!")
+        command = '%s update project -t %s -p %s -s' % (sdk_tool_path,android_platform,app_android_root)
+        if os.system(command) != 0:
+            raise Exception("update project [ " + app_android_root + " ] fails!")
+        buildfile_path = os.path.join(app_android_root, "build.xml")
+        command = 'ant clean %s -f %s -Dsdk.dir=%s' % (build_mode,buildfile_path,sdk_root)
+        os.system(command)
+    else:
+        print "No Android platform selected. Skipping Ant build."
+        print "To build your app fully run:"
+        print "ant clean " + build_mode + " -f build.xml -Dsdk.dir=$ANDROID_SDK_ROOT"
 
 def copy_files(src, dst):
 
@@ -143,6 +158,4 @@ if __name__ == '__main__':
     (opts, args) = parser.parse_args()
 
     build(opts.ndk_build_param,opts.android_platform,opts.build_mode)
-    print "To build your app run:"
-    print "ant clean debug -f build.xml -Dsdk.dir=$ANDROID_SDK_ROOT"
     print "Goodbye!"
