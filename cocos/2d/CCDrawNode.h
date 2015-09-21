@@ -295,6 +295,9 @@ public:
     */
     void setBlendFunc(const BlendFunc &blendFunc);
 
+    void setLineWidth(float width) { _lineWidth = width; }
+    void setPointSize(float size) { _pointSize = size; }
+
     /**
      * @js NA
      */
@@ -331,16 +334,17 @@ protected:
     int         _bufferCapacity;
     GLsizei     _bufferCount;
     V2F_C4B_T2F *_buffer;
-    
+
     int         _bufferCapacityGLPoint;
     GLsizei     _bufferCountGLPoint;
     V2F_C4B_T2F *_bufferGLPoint;
-    Color4F     _pointColor;
-    int         _pointSize;
-    
+
     int         _bufferCapacityGLLine;
     GLsizei     _bufferCountGLLine;
     V2F_C4B_T2F *_bufferGLLine;
+
+    float       _pointSize;
+    float       _lineWidth;
 
     BlendFunc   _blendFunc;
     CustomCommand _customCommand;

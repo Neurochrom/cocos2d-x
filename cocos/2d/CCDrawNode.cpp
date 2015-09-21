@@ -120,6 +120,8 @@ DrawNode::DrawNode()
 , _bufferCapacityGLLine(0)
 , _bufferCountGLLine(0)
 , _bufferGLLine(nullptr)
+, _pointSize(1)
+, _lineWidth(2)
 , _dirty(false)
 , _dirtyGLPoint(false)
 , _dirtyGLLine(false)
@@ -395,7 +397,7 @@ void DrawNode::onDrawGLLine(const Mat4 &transform, uint32_t flags)
         // texcood
         glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(V2F_C4B_T2F), (GLvoid *)offsetof(V2F_C4B_T2F, texCoords));
     }
-    glLineWidth(2);
+    glLineWidth(_lineWidth);
     glDrawArrays(GL_LINES, 0, _bufferCountGLLine);
     
     if (Configuration::getInstance()->supportsShareableVAO())
@@ -437,7 +439,7 @@ void DrawNode::onDrawGLPoint(const Mat4 &transform, uint32_t flags)
         glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(V2F_C4B_T2F), (GLvoid *)offsetof(V2F_C4B_T2F, colors));
         glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(V2F_C4B_T2F), (GLvoid *)offsetof(V2F_C4B_T2F, texCoords));
     }
-    
+    glPointSize(_pointSize);
     glDrawArrays(GL_POINTS, 0, _bufferCountGLPoint);
     
     if (Configuration::getInstance()->supportsShareableVAO())
