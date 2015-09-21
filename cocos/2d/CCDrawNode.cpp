@@ -34,6 +34,12 @@
 #include "2d/CCActionCatmullRom.h"
 #include "platform/CCGL.h"
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#define CC_USE_GL_POINT_SIZE 1
+#else
+#define CC_USE_GL_POINT_SIZE 0
+#endif
+
 NS_CC_BEGIN
 
 // Vec2 == CGPoint in 32-bits, but not in 64-bits (OS X)
@@ -439,7 +445,9 @@ void DrawNode::onDrawGLPoint(const Mat4 &transform, uint32_t flags)
         glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(V2F_C4B_T2F), (GLvoid *)offsetof(V2F_C4B_T2F, colors));
         glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(V2F_C4B_T2F), (GLvoid *)offsetof(V2F_C4B_T2F, texCoords));
     }
+#if CC_USE_GL_POINT_SIZE
     glPointSize(_pointSize);
+#endif
     glDrawArrays(GL_POINTS, 0, _bufferCountGLPoint);
     
     if (Configuration::getInstance()->supportsShareableVAO())
@@ -937,6 +945,18 @@ const BlendFunc& DrawNode::getBlendFunc() const
 void DrawNode::setBlendFunc(const BlendFunc &blendFunc)
 {
     _blendFunc = blendFunc;
+}
+
+void DrawNode::setLineWidth(float width)
+{
+    _lineWidth = width;
+}
+
+void DrawNode::setPointSize(float size)
+{
+#if CC_USE_GL_POINT_SIZE
+    _pointSize = size;
+#endif
 }
 
 NS_CC_END

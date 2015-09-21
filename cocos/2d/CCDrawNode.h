@@ -295,8 +295,8 @@ public:
     */
     void setBlendFunc(const BlendFunc &blendFunc);
 
-    void setLineWidth(float width) { _lineWidth = width; }
-    void setPointSize(float size) { _pointSize = size; }
+    void setLineWidth(float width);
+    void setPointSize(float size);
 
     /**
      * @js NA
