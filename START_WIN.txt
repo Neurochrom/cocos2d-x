@@ -21,7 +21,7 @@ Open git bash
  py --version
 should give 2.7.x e.g. 2.7.6 (even with python 3.x installed)
 
-Go to cocos2d and run
+Go to cocos2d-x and run
  py setup.py
 
 Restart git bash. Go to cocos2d-x\tools\cocos2d-console\bin and run
@@ -35,13 +35,15 @@ Setting up git for the new project
 
 In git bash whilst in C:\destinationfolder_without_NameOfGame\NameOfGame do
  git init
-Add a proper .gitignore
+Edit .gitignore if necessary.
 Add stuff and do a commit
 It's best to reference cocos as a submodule. From a windows console (cmd) do
  mklink /J cocos2d ..\cocos2d-x
  git submodule add "https://github.com/Neurochrom/cocos2d-x.git" cocos2d
 
-In git bash
+// You can also use the mklinks.bat file to create the link above.
+
+Then (you can switch to git bash for this if you want)
  git add .gitmodules
  git commit -m "Cocos2d-x as a submodule."
  git add cocos2d
@@ -94,3 +96,6 @@ To add/remove source files to your project modify
 proj.android/Android.mk
 
 To plainly add all needed .cpp files (with no ant tricks) the find command can be useful.
+
+You can also use the omega.sh and omega-release.sh scripts from a bash console.
+Remember to replace YOUR_APP_NAME_HERE in them with you your app name first.
