@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="NsightTegraProject">
+    <NsightTegraProjectRevisionNumber>11</NsightTegraProjectRevisionNumber>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Tegra-Android">
+      <Configuration>Debug</Configuration>
+      <Platform>Tegra-Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Tegra-Android">
+      <Configuration>Release</Configuration>
+      <Platform>Tegra-Android</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Shipping|Tegra-Android">
+      <Configuration>Shipping</Configuration>
+      <Platform>Tegra-Android</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{48A781D3-E908-46F5-BD86-498F66F9BD77}</ProjectGuid>
+    <RootNamespace>android_vs_nsight_tegra</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">
+    <ConfigurationType>Utility</ConfigurationType>
+    <AndroidTargetAPI>android-10</AndroidTargetAPI>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
+    <ConfigurationType>Utility</ConfigurationType>
+    <AndroidTargetAPI>android-10</AndroidTargetAPI>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Shipping|Tegra-Android'">
+    <ConfigurationType>Utility</ConfigurationType>
+    <AndroidTargetAPI>android-10</AndroidTargetAPI>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Tegra-Android'">
+    <AntBuild>
+      <AntBuildPath>C:\Users\pc\Documents\pcprog\cocos2d-x\cocos\platform\android\java</AntBuildPath>
+    </AntBuild>
+    <NdkBuild>
+      <NdkProjectPath>C:\Users\pc\Documents\pcprog\cocos2d-x\cocos\platform\android\</NdkProjectPath>
+    </NdkBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Tegra-Android'">
+    <AntBuild>
+      <AntBuildPath>C:\Users\pc\Documents\pcprog\cocos2d-x\cocos\platform\android\java</AntBuildPath>
+    </AntBuild>
+    <NdkBuild>
+      <NdkProjectPath>C:\Users\pc\Documents\pcprog\cocos2d-x\cocos\platform\android\</NdkProjectPath>
+    </NdkBuild>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping|Tegra-Android'">
+    <AntBuild>
+      <AntBuildPath>C:\Users\pc\Documents\pcprog\cocos2d-x\cocos\platform\android\java</AntBuildPath>
+    </AntBuild>
+    <NdkBuild>
+      <NdkProjectPath>C:\Users\pc\Documents\pcprog\cocos2d-x\cocos\platform\android\</NdkProjectPath>
+    </NdkBuild>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <AndroidBuild Include="..\java\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidBuild Include="..\java\ant.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidBuild Include="..\java\build.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidBuild Include="..\java\bin\AndroidManifest.xml" />
+    <Xml Include="..\java\lint.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidBuild Include="..\java\local.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidBuild Include="..\java\project.properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\gen\com\enhance\gameservice\IGameTuningService.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\gen\org\cocos2dx\lib\BuildConfig.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxAccelerometer.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxActivity.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxBitmap.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxEditBoxDialog.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxEditText.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxGLSurfaceView.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxHandler.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxHelper.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxHttpURLConnection.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxJavascriptJavaBridge.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxLocalStorage.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxLuaJavaBridge.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxMusic.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxRenderer.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxSound.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxTextInputWraper.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxTypefaces.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxVideoHelper.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxVideoView.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxWebView.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxWebViewHelper.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\GameControllerAdapter.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\GameControllerDelegate.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\GameControllerUtils.java" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CCApplication-android.cpp" />
+    <ClCompile Include="..\CCCommon-android.cpp" />
+    <ClCompile Include="..\CCDevice-android.cpp" />
+    <ClCompile Include="..\CCEnhanceAPI-android.cpp" />
+    <ClCompile Include="..\CCFileUtils-android.cpp" />
+    <ClCompile Include="..\CCGLViewImpl-android.cpp" />
+    <ClCompile Include="..\javaactivity-android.cpp" />
+    <ClCompile Include="..\jni\CocosPlayClient.cpp" />
+    <ClCompile Include="..\jni\DPIJni.cpp" />
+    <ClCompile Include="..\jni\IMEJni.cpp" />
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp" />
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp" />
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.cpp" />
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp" />
+    <ClCompile Include="..\jni\JniHelper.cpp" />
+    <ClCompile Include="..\jni\TouchesJni.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CCApplication-android.h" />
+    <ClInclude Include="..\CCEnhanceAPI-android.h" />
+    <ClInclude Include="..\CCFileUtils-android.h" />
+    <ClInclude Include="..\CCGL-android.h" />
+    <ClInclude Include="..\CCGLViewImpl-android.h" />
+    <ClInclude Include="..\CCPlatformDefine-android.h" />
+    <ClInclude Include="..\CCStdC-android.h" />
+    <ClInclude Include="..\jni\CocosPlayClient.h" />
+    <ClInclude Include="..\jni\DPIJni.h" />
+    <ClInclude Include="..\jni\IMEJni.h" />
+    <ClInclude Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.h" />
+    <ClInclude Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.h" />
+    <ClInclude Include="..\jni\JniHelper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\java\src\com\enhance\gameservice\IGameTuningService.aidl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <AndroidBuild Include="..\java\AndroidManifest.xml" />
+    <AndroidBuild Include="..\java\ant.properties" />
+    <AndroidBuild Include="..\java\build.xml" />
+    <AndroidBuild Include="..\java\local.properties" />
+    <AndroidBuild Include="..\java\project.properties" />
+    <AndroidBuild Include="..\java\bin\AndroidManifest.xml">
+      <Filter>bin</Filter>
+    </AndroidBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\java\lint.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="bin">
+      <UniqueIdentifier>{3276694b-36b2-4596-8efe-813cce83ad04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen">
+      <UniqueIdentifier>{ac1091f1-eaae-4e7e-8b16-37d6f0b710a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\com">
+      <UniqueIdentifier>{1aa536ba-a9dd-4472-91d1-0455ed911f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\com\enhance">
+      <UniqueIdentifier>{bd9fb07f-1ceb-441a-b08e-480c929e3234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\com\enhance\gameservice">
+      <UniqueIdentifier>{382ca746-8dc8-4686-aedf-07849c98a28c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\org">
+      <UniqueIdentifier>{e199304f-2ba5-4da8-92f0-3600098a949f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\org\cocos2dx">
+      <UniqueIdentifier>{87323de4-787f-4216-9440-1b3e01b3a284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gen\org\cocos2dx\lib">
+      <UniqueIdentifier>{629b4776-b6fc-4d48-8636-add71769cdef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{e3026d09-906f-4c36-9def-1f0cbf29f4ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\com">
+      <UniqueIdentifier>{c3d52cf3-876b-4538-bb47-6804da525797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\org">
+      <UniqueIdentifier>{5a3c5a56-0a64-4eb9-b172-3172204b5c7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\org\cocos2dx">
+      <UniqueIdentifier>{b8324410-9b68-465e-a759-913054740bad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\org\cocos2dx\lib">
+      <UniqueIdentifier>{d20c0bb1-aac7-4545-bf36-048ce1ae17cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jni">
+      <UniqueIdentifier>{9f056880-d95b-4d95-a837-45cae137fcd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\com\enhance">
+      <UniqueIdentifier>{562f420b-a165-4bf1-b4d7-715beaf30546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\com\enhance\gameservice">
+      <UniqueIdentifier>{f2c7900c-f60b-4f42-bb5e-4c4389fcd149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cpp">
+      <UniqueIdentifier>{150a4b91-49c7-49a2-84b6-f0f6980bda56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <JCompile Include="..\java\gen\com\enhance\gameservice\IGameTuningService.java">
+      <Filter>gen\com\enhance\gameservice</Filter>
+    </JCompile>
+    <JCompile Include="..\java\gen\org\cocos2dx\lib\BuildConfig.java">
+      <Filter>gen\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxAccelerometer.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxActivity.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxBitmap.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxEditBoxDialog.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxEditText.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxGLSurfaceView.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxHandler.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxHelper.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxHttpURLConnection.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxJavascriptJavaBridge.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxLocalStorage.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxLuaJavaBridge.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxMusic.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxRenderer.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxSound.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxTextInputWraper.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxTypefaces.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxVideoHelper.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxVideoView.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxWebView.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\Cocos2dxWebViewHelper.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\GameControllerAdapter.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\GameControllerDelegate.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+    <JCompile Include="..\java\src\org\cocos2dx\lib\GameControllerUtils.java">
+      <Filter>src\org\cocos2dx\lib</Filter>
+    </JCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\CocosPlayClient.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\TouchesJni.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\JniHelper.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\DPIJni.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\IMEJni.cpp">
+      <Filter>jni</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCFileUtils-android.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\javaactivity-android.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCApplication-android.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCEnhanceAPI-android.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCDevice-android.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCGLViewImpl-android.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CCCommon-android.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\jni\CocosPlayClient.h">
+      <Filter>jni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.h">
+      <Filter>jni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\JniHelper.h">
+      <Filter>jni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.h">
+      <Filter>jni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\IMEJni.h">
+      <Filter>jni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\jni\DPIJni.h">
+      <Filter>jni</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCPlatformDefine-android.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCEnhanceAPI-android.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCGLViewImpl-android.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCApplication-android.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCFileUtils-android.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCStdC-android.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CCGL-android.h">
+      <Filter>cpp</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\java\src\com\enhance\gameservice\IGameTuningService.aidl">
+      <Filter>src\com\enhance\gameservice</Filter>
+    </None>
+  </ItemGroup>
+</Project>
