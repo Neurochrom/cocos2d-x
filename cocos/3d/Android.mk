@@ -6,6 +6,7 @@ LOCAL_MODULE := cocos3d_static
 LOCAL_MODULE_FILENAME := libcocos3d
 
 LOCAL_SRC_FILES := \
+_assert_no_libcocos3d_.cpp \
 CCRay.cpp \
 CCAABB.cpp \
 CCOBB.cpp \
