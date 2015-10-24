@@ -31,7 +31,9 @@ import java.util.Map;
 import java.util.Set;
 import java.lang.Runnable;
 
+/*
 import com.chukong.cocosplay.client.CocosPlayClient;
+*/
 
 import android.app.Activity;
 import android.content.ComponentName;  //Enhance API modification
@@ -74,8 +76,10 @@ public class Cocos2dxHelper {
     private static Activity sActivity = null;
     private static Cocos2dxHelperListener sCocos2dxHelperListener;
     private static Set<OnActivityResultListener> onActivityResultListeners = new LinkedHashSet<OnActivityResultListener>();
+
     //Enhance API modification begin
     private static IGameTuningService mGameServiceBinder = null;
+
     private static final int BOOST_TIME = 7;
     //Enhance API modification end
 
@@ -95,10 +99,13 @@ public class Cocos2dxHelper {
             Cocos2dxHelper.sCocos2dxHelperListener = (Cocos2dxHelperListener)activity;
                     
             Cocos2dxHelper.sPackageName = applicationInfo.packageName;
+            /*
             if (CocosPlayClient.isEnabled() && !CocosPlayClient.isDemo()) {
                 Cocos2dxHelper.sFileDirectory = CocosPlayClient.getGameRoot();
             }
-            else {
+            else
+            */
+            {
                 Cocos2dxHelper.sFileDirectory = activity.getFilesDir().getAbsolutePath();
             }
             

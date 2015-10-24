@@ -35,7 +35,9 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
 
+/*
 import com.chukong.cocosplay.client.CocosPlayClient;
+*/
 
 public class Cocos2dxSound {
     // ===========================================================
@@ -97,10 +99,12 @@ public class Cocos2dxSound {
     }
 
     public int preloadEffect(final String path) {
+        /*
         if (CocosPlayClient.isEnabled() && !CocosPlayClient.isDemo()) {
             CocosPlayClient.updateAssets(path);
         }
         CocosPlayClient.notifyFileLoaded(path);
+        */
         Integer soundID = this.mPathSoundIDMap.get(path);
 
         if (soundID == null) {

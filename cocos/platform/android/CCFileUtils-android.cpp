@@ -31,7 +31,9 @@ THE SOFTWARE.
 #include "jni/Java_org_cocos2dx_lib_Cocos2dxHelper.h"
 #include "android/asset_manager.h"
 #include "android/asset_manager_jni.h"
+#ifdef COCOSPLAY_ENABLED
 #include "jni/CocosPlayClient.h"
+#endif
 #include <stdlib.h>
 
 #define  LOG_TAG    "cocos2d-x"
@@ -77,12 +79,14 @@ FileUtilsAndroid::~FileUtilsAndroid()
 
 bool FileUtilsAndroid::init()
 {
+#ifdef COCOSPLAY_ENABLED
     cocosplay::lazyInit();
     if (cocosplay::isEnabled() && !cocosplay::isDemo())
     {
         _defaultResRootPath = cocosplay::getGameRoot();
     }
     else
+#endif
     {
         _defaultResRootPath = "assets/";
     }
@@ -149,10 +153,12 @@ bool FileUtilsAndroid::isFileExistInternal(const std::string& strFilePath) const
         return false;
     }
 
+#ifdef COCOSPLAY_ENABLED
     if (cocosplay::isEnabled() && !cocosplay::isDemo())
     {
         return cocosplay::fileExists(strFilePath);
     }
+#endif
 
     bool bFound = false;
     
@@ -210,7 +216,9 @@ Data FileUtilsAndroid::getData(const std::string& filename, bool forString)
     unsigned char* data = nullptr;
     ssize_t size = 0;
     string fullPath = fullPathForFilename(filename);
+#ifdef COCOSPLAY_ENABLED
     cocosplay::updateAssets(fullPath);
+#endif
 
     if (fullPath[0] != '/')
     {
@@ -302,7 +310,9 @@ Data FileUtilsAndroid::getData(const std::string& filename, bool forString)
     else
     {
         ret.fastSet(data, size);
+#ifdef COCOSPLAY_ENABLED
         cocosplay::notifyFileLoaded(fullPath);
+#endif
     }
 
     return ret;
@@ -333,7 +343,9 @@ unsigned char* FileUtilsAndroid::getFileData(const std::string& filename, const 
     }
     
     string fullPath = fullPathForFilename(filename);
+#ifdef COCOSPLAY_ENABLED
     cocosplay::updateAssets(fullPath);
+#endif
 
     if (fullPath[0] != '/')
     {
@@ -405,10 +417,12 @@ unsigned char* FileUtilsAndroid::getFileData(const std::string& filename, const 
         msg.append(filename).append(") failed!");
         CCLOG("%s", msg.c_str());
     }
+#ifdef COCOSPLAY_ENABLED
     else
     {
         cocosplay::notifyFileLoaded(fullPath);
     }
+#endif
     return data;
 }
 

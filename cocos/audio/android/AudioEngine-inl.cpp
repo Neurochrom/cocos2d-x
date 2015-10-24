@@ -38,7 +38,9 @@
 #include "base/CCDirector.h"
 #include "base/CCScheduler.h"
 #include "platform/android/CCFileUtils-android.h"
+#ifdef COCOSPLAY_ENABLED
 #include "platform/android/jni/CocosPlayClient.h"
+#endif
 
 using namespace cocos2d;
 using namespace cocos2d::experimental;
@@ -249,14 +251,18 @@ int AudioEngineImpl::play2d(const std::string &filePath ,bool loop ,float volume
 
         auto& player = _audioPlayers[currentAudioID];
         auto fullPath = FileUtils::getInstance()->fullPathForFilename(filePath);
+#ifdef COCOSPLAY_ENABLED
         cocosplay::updateAssets(fullPath);
+#endif
         auto initPlayer = player.init(_engineEngine, _outputMixObject, fullPath, volume, loop);
         if (!initPlayer){
             _audioPlayers.erase(currentAudioID);
             log("%s,%d message:create player for %s fail", __func__, __LINE__, filePath.c_str());
             break;
         }
+#ifdef COCOSPLAY_ENABLED
         cocosplay::notifyFileLoaded(fullPath);
+#endif
 
         audioId = currentAudioID++;
         player._audioID = audioId;
