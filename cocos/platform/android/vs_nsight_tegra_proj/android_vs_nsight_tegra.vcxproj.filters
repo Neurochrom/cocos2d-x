@@ -150,9 +150,6 @@
     <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxRenderer.cpp">
       <Filter>jni</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\CocosPlayClient.cpp">
-      <Filter>jni</Filter>
-    </ClCompile>
     <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.cpp">
       <Filter>jni</Filter>
     </ClCompile>
@@ -197,9 +194,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\jni\CocosPlayClient.h">
-      <Filter>jni</Filter>
-    </ClInclude>
     <ClInclude Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxHelper.h">
       <Filter>jni</Filter>
     </ClInclude>

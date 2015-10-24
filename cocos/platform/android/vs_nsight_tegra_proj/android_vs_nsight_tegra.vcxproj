@@ -169,7 +169,6 @@
     <ClCompile Include="..\CCFileUtils-android.cpp" />
     <ClCompile Include="..\CCGLViewImpl-android.cpp" />
     <ClCompile Include="..\javaactivity-android.cpp" />
-    <ClCompile Include="..\jni\CocosPlayClient.cpp" />
     <ClCompile Include="..\jni\DPIJni.cpp" />
     <ClCompile Include="..\jni\IMEJni.cpp" />
     <ClCompile Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxAccelerometer.cpp" />
@@ -187,7 +186,6 @@
     <ClInclude Include="..\CCGLViewImpl-android.h" />
     <ClInclude Include="..\CCPlatformDefine-android.h" />
     <ClInclude Include="..\CCStdC-android.h" />
-    <ClInclude Include="..\jni\CocosPlayClient.h" />
     <ClInclude Include="..\jni\DPIJni.h" />
     <ClInclude Include="..\jni\IMEJni.h" />
     <ClInclude Include="..\jni\Java_org_cocos2dx_lib_Cocos2dxBitmap.h" />
