@@ -193,7 +193,22 @@ deprecated/CCDictionary.cpp \
 deprecated/CCNotificationCenter.cpp \
 deprecated/CCSet.cpp \
 deprecated/CCString.cpp \
-physics/CCPhysicsBody.cpp \
+../external/ConvertUTF/ConvertUTFWrapper.cpp \
+../external/ConvertUTF/ConvertUTF.c \
+../external/tinyxml2/tinyxml2.cpp \
+../external/unzip/ioapi_mem.cpp \
+../external/unzip/ioapi.cpp \
+../external/unzip/unzip.cpp \
+../external/edtaa3func/edtaa3func.cpp \
+../external/xxhash/xxhash.c \
+../external/poly2tri/common/shapes.cc \
+../external/poly2tri/sweep/advancing_front.cc \
+../external/poly2tri/sweep/cdt.cc \
+../external/poly2tri/sweep/sweep_context.cc \
+../external/poly2tri/sweep/sweep.cc \
+../external/clipper/clipper.cpp
+
+# physics/CCPhysicsBody.cpp \
 physics/CCPhysicsContact.cpp \
 physics/CCPhysicsJoint.cpp \
 physics/CCPhysicsShape.cpp \
@@ -211,21 +226,6 @@ navmesh/CCNavMeshAgent.cpp \
 navmesh/CCNavMeshDebugDraw.cpp \
 navmesh/CCNavMeshObstacle.cpp \
 navmesh/CCNavMeshUtils.cpp \
-../external/ConvertUTF/ConvertUTFWrapper.cpp \
-../external/ConvertUTF/ConvertUTF.c \
-../external/tinyxml2/tinyxml2.cpp \
-../external/unzip/ioapi_mem.cpp \
-../external/unzip/ioapi.cpp \
-../external/unzip/unzip.cpp \
-../external/edtaa3func/edtaa3func.cpp \
-../external/xxhash/xxhash.c \
-../external/poly2tri/common/shapes.cc \
-../external/poly2tri/sweep/advancing_front.cc \
-../external/poly2tri/sweep/cdt.cc \
-../external/poly2tri/sweep/sweep_context.cc \
-../external/poly2tri/sweep/sweep.cc \
-../external/clipper/clipper.cpp
-
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                     $(LOCAL_PATH)/. \
