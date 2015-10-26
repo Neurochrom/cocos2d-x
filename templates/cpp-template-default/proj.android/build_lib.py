@@ -68,10 +68,13 @@ def do_build(cocos_root, ndk_root, app_android_root,ndk_build_param,sdk_root,and
     num_of_cpu = get_num_of_cpu()
 
     app_android_root = app_android_root.replace(' ', '\\ ')
+    # NDK_APP_OUT seems to work better than NDK_OUT and overrides it
     if ndk_build_param == None:
-        command = '%s -j%d -C %s NDK_DEBUG=%d' % (ndk_path, num_of_cpu, app_android_root, build_mode=='debug')
+        command = '%s -j%d -C %s NDK_APP_OUT=../../cocos2d-x/obj-android-%s NDK_DEBUG=%d' % (ndk_path, num_of_cpu, app_android_root, build_mode, build_mode=='debug')
     else:
-        command = '%s -j%d -C %s NDK_DEBUG=%d %s' % (ndk_path, num_of_cpu, app_android_root, build_mode=='debug', ' '.join(str(e) for e in ndk_build_param))
+        command = '%s -j%d -C %s NDK_APP_OUT=../../cocos2d-x/obj-android-%s NDK_DEBUG=%d %s' % (ndk_path, num_of_cpu, app_android_root, build_mode, build_mode=='debug', ' '.join(str(e) for e in ndk_build_param))
+    print "Will execute"
+    print command
     retval = os.system(command)
     if retval != 0:
         print "Build dynamic library for project [ " + app_android_root + " ] probably failed - return value was " + str(retval)
