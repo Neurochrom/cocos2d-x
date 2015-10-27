@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -vxe
 py build_lib.py -b debug
 ant clean debug -f build.xml -Dsdk.dir=$ANDROID_SDK_ROOT
 adb -d install -r bin/YOUR_APP_NAME_HERE-debug.apk

@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -vxe
 py build_lib.py -b release
 ant clean release -f build.xml -Dsdk.dir=$ANDROID_SDK_ROOT
 adb -d install -r bin/YOUR_APP_NAME_HERE-release.apk
