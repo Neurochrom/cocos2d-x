@@ -1,6 +1,8 @@
 #ifndef _LABELTESTLAYERLOADER_H_
 #define _LABELTESTLAYERLOADER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "LabelTestLayer.h"
 
 /* Forward declaration. */
@@ -13,5 +15,7 @@ class LabelTestLayerLoader : public cocosbuilder::LayerLoader {
     protected:
         CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(LabelTestLayer);
 };
+
+#endif
 
 #endif

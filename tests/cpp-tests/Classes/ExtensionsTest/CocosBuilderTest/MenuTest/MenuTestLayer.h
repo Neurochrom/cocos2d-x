@@ -1,6 +1,8 @@
 #ifndef _MENUTESTLAYER_H_
 #define _MENUTESTLAYER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "cocosbuilder/CocosBuilder.h"
@@ -27,5 +29,7 @@ class MenuTestLayer
     private:
         cocos2d::Label * mMenuItemStatusLabelBMFont;
 };
+
+#endif
 
 #endif

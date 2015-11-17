@@ -95,9 +95,11 @@ CC_CONSTRUCTOR_ACCESS:
     virtual bool init() override;
 
 protected:
+#ifdef COCOS_MENU_ENABLED
     cocos2d::MenuItemImage* _priorTestItem;
     cocos2d::MenuItemImage* _restartTestItem;
     cocos2d::MenuItemImage* _nextTestItem;
+#endif
 
     cocos2d::Label* _titleLabel;
     cocos2d::Label* _subtitleLabel;

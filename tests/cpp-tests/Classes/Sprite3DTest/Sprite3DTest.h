@@ -25,6 +25,8 @@
 #ifndef _SPRITE3D_TEST_H_
 #define _SPRITE3D_TEST_H_
 
+#ifdef COCOS_3D
+
 #include "BaseTest.h"
 #include <string>
 
@@ -578,5 +580,7 @@ public:
 protected:
     cocos2d::Sprite3D* _sprite;
 };
+
+#endif
 
 #endif

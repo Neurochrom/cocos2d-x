@@ -22,6 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#ifdef COCOS_3D
+
 #include "DrawNode3D.h"
 
 NS_CC_BEGIN
@@ -229,3 +231,5 @@ void DrawNode3D::setBlendFunc(const BlendFunc &blendFunc)
 }
 
 NS_CC_END
+
+#endif

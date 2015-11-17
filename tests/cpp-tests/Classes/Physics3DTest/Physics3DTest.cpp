@@ -23,6 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#if defined(COCOS_3D) && CC_ENABLE_BULLET_INTEGRATION
+
 #include "Physics3DTest.h"
 
 #include "3d/CCTerrain.h"
@@ -740,5 +742,7 @@ bool Physics3DCollisionCallbackDemo::init()
     physicsScene->setPhysics3DDebugCamera(_camera);
     return true;
 }
+
+#endif
 
 #endif

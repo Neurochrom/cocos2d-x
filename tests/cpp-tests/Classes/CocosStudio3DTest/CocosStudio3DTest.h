@@ -25,6 +25,8 @@
 #ifndef _COCOSSTUDIO3D_TEST_H_
 #define _COCOSSTUDIO3D_TEST_H_
 
+#ifdef COCOS_3D
+
 #include "../BaseTest.h"
 #include <string>
 
@@ -73,5 +75,6 @@ public:
     virtual std::string title() const override;
 };
 
+#endif
 
 #endif

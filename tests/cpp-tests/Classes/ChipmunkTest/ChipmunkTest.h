@@ -5,7 +5,9 @@
 #define __CHIPMUNKTEST_H__
 
 #include "cocos2d.h"
+#if CC_ENABLE_CHIPMUNK_INTEGRATION
 #include "chipmunk.h"
+#endif
 #include "../BaseTest.h"
 #include "extensions/cocos-ext.h"
 
@@ -31,9 +33,9 @@ private:
     cocos2d::Texture2D* _spriteTexture; // weak ref
 #if CC_ENABLE_CHIPMUNK_INTEGRATION    
     cocos2d::extension::PhysicsDebugNode* _debugLayer; // weak ref
-#endif
     cpSpace* _space; // strong ref
     cpShape* _walls[4];
+#endif
 };
 
 DEFINE_TEST_SUITE(ChipmunkTests);

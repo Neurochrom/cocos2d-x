@@ -1,3 +1,5 @@
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "MenuTestLayer.h"
 
 USING_NS_CC;
@@ -42,3 +44,5 @@ void MenuTestLayer::onMenuItemBClicked(cocos2d::Ref *pSender) {
 void MenuTestLayer::onMenuItemCClicked(cocos2d::Ref *pSender) {
     this->mMenuItemStatusLabelBMFont->setString("Menu Item C clicked.");
 }
+
+#endif

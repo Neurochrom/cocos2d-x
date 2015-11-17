@@ -1,3 +1,5 @@
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "TestHeaderLayer.h"
 
 USING_NS_CC;
@@ -23,3 +25,5 @@ void TestHeaderLayer::onNodeLoaded(cocos2d::Node * node, cocosbuilder::NodeLoade
 void TestHeaderLayer::onBackClicked(cocos2d::Ref *pSender) {
     Director::getInstance()->popScene();
 }
+
+#endif

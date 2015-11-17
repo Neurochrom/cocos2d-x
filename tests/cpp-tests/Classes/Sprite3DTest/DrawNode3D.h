@@ -25,6 +25,8 @@
 #ifndef __DRAW_NODE_3D_H__
 #define __DRAW_NODE_3D_H__
 
+#ifdef COCOS_3D
+
 #include "cocos2d.h"
 
 NS_CC_BEGIN
@@ -111,5 +113,7 @@ private:
 };
 
 NS_CC_END
+
+#endif
 
 #endif // __DRAW_NODE_3D_H__

@@ -1,3 +1,5 @@
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "HelloCocosBuilderLayer.h"
 
 #include "../TestHeader/TestHeaderLayerLoader.h"
@@ -193,3 +195,5 @@ void HelloCocosBuilderLayer::onTimelineCallbackSoundClicked(Ref * sender, Contro
 {
     this->openTest("ccb/ccb/TestTimelineCallback.ccbi", "TimelineCallbackTestLayer", TimelineCallbackTestLayerLoader::loader());
 }
+
+#endif

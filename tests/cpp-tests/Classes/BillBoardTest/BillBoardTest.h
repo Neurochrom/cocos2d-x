@@ -25,6 +25,8 @@
 #ifndef _BILLBOARD_TEST_H_
 #define _BILLBOARD_TEST_H_
 
+#ifdef COCOS_3D
+
 #include "../BaseTest.h"
 #include <string>
 
@@ -70,5 +72,7 @@ protected:
 };
 
 DEFINE_TEST_SUITE(BillBoardTests);
+
+#endif
 
 #endif

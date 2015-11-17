@@ -1,3 +1,5 @@
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "TimelineCallbackTestLayer.h"
 
 USING_NS_CC;
@@ -48,3 +50,5 @@ void TimelineCallbackTestLayer::onCallback2(Node* sender)
     this->_helloLabel->runAction(RotateBy::create(1,-360));
     this->_helloLabel->setString("Callback 2");
 }
+
+#endif

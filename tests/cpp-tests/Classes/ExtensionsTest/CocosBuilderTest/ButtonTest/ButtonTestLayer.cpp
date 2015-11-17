@@ -1,3 +1,5 @@
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "ButtonTestLayer.h"
 
 USING_NS_CC;
@@ -62,3 +64,5 @@ void ButtonTestLayer::onControlButtonClicked(cocos2d::Ref *pSender, Control::Eve
             assert(false); // OH SHIT!
     }
 }
+
+#endif

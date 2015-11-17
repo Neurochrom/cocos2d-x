@@ -23,6 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#ifdef COCOS_3D
+
 #include "BillBoardTest.h"
 #include "3d/CCBillBoard.h"
 
@@ -306,3 +308,5 @@ void BillBoardTest::rotateCameraCallback(Ref* sender,float value)
     rotation3D.y+= value;
     _camera->setRotation3D(rotation3D);
 }
+
+#endif

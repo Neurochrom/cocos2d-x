@@ -16,7 +16,9 @@ class RootTests : public TestList
 public:
     RootTests()
     {
+#ifdef COCOS_3D
         addTest("Node: Scene3D", [](){return new (std::nothrow) Scene3DTests(); });
+#endif
         addTest("ActionManager", [](){return new (std::nothrow) ActionManagerTests(); });
         addTest("Actions - Basic", [](){ return new (std::nothrow) ActionsTests(); });
         addTest("Actions - Ease", [](){return new (std::nothrow) ActionsEaseTests(); });
@@ -40,7 +42,9 @@ public:
         addTest("Curl", []() { return new CurlTests(); });
 #endif
         addTest("Current Language", []() { return new CurrentLanguageTests(); });
+#ifdef COCOS_3D
         addTest("CocosStudio3D Test", []() { return new CocosStudio3DTests(); });
+#endif
         addTest("EventDispatcher", []() { return new EventDispatcherTests(); });
         addTest("Effects - Advanced", []() { return new EffectAdvanceTests(); });
         addTest("Effects - Basic", [](){return new EffectTests(); });
@@ -50,14 +54,18 @@ public:
         addTest("Interval", [](){return new IntervalTests(); });
         addTest("Material System", [](){return new MaterialSystemTest(); });
         addTest("Navigation Mesh", [](){return new NavMeshTests(); });
+#ifdef COCOS_3D
         addTest("Node: BillBoard Test", [](){  return new BillBoardTests(); });
         addTest("Node: Camera 3D Test", [](){  return new Camera3DTests(); });
+#endif
         addTest("Node: Clipping", []() { return new ClippingNodeTests(); });
         addTest("Node: Draw", [](){return new DrawPrimitivesTests(); });
         addTest("Node: Label - New API", [](){return new NewLabelTests(); });
         addTest("Node: Label - Old API", [](){return new LabelTests(); });
         addTest("Node: Layer", [](){return new LayerTests(); });
+#ifdef COCOS_3D
         addTest("Node: Light", [](){return new LightTests(); });
+#endif
         addTest("Node: Menu", [](){return new MenuTests(); });
         addTest("Node: MotionStreak", [](){return new MotionStreakTests(); });
         addTest("Node: Node", [](){return new CocosNodeTests(); });
@@ -65,12 +73,16 @@ public:
         addTest("Node: Particles", [](){return new ParticleTests(); });
         addTest("Node: Particle3D (PU)", [](){return new Particle3DTests(); });
         addTest("Node: Physics", []() { return new PhysicsTests(); });
+#if defined(COCOS_3D) && CC_ENABLE_BULLET_INTEGRATION
         addTest( "Node: Physics3D", []() { return new Physics3DTests(); } );
+#endif
         addTest("Node: RenderTexture", [](){return new RenderTextureTests(); });
         addTest("Node: Scene", [](){return new SceneTests(); });
         addTest("Node: Spine", [](){return new SpineTests(); });
         addTest("Node: Sprite", [](){return new SpriteTests(); });
+#ifdef COCOS_3D
         addTest("Node: Sprite3D", [](){  return new Sprite3DTests(); });
+#endif
         addTest("Node: SpritePolygon", [](){return new (std::nothrow) SpritePolygonTest(); });
         addTest("Node: Terrain", [](){  return new TerrainTests(); });
         addTest("Node: TileMap", [](){return new TileMapTests(); });

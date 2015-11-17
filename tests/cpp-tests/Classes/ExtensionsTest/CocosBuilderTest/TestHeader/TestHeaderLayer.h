@@ -1,6 +1,8 @@
 #ifndef _TESTHEADERLAYER_H_
 #define _TESTHEADERLAYER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "cocosbuilder/CocosBuilder.h"
@@ -19,5 +21,7 @@ class TestHeaderLayer
     
         void onBackClicked(cocos2d::Ref * sender);
 };
+
+#endif
 
 #endif

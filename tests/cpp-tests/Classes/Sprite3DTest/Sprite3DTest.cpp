@@ -23,6 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#ifdef COCOS_3D
+
 #include "Sprite3DTest.h"
 #include "DrawNode3D.h"
 
@@ -2649,3 +2651,5 @@ std::string Sprite3DTestMeshLight::subtitle() const
 {
     return "";
 }
+
+#endif

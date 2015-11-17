@@ -23,6 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#ifdef COCOS_3D
+
 #include "CocosStudio3DTest.h"
 #include "cocostudio/CocoStudio.h"
 
@@ -154,3 +156,5 @@ std::string CSParticle3DTest::title() const
 {
     return "Particle3DReader Test";
 }
+
+#endif

@@ -1,6 +1,8 @@
 #ifndef _BUTTONTESTLAYER_H_
 #define _BUTTONTESTLAYER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "cocosbuilder/CocosBuilder.h"
@@ -25,5 +27,7 @@ public:
 private:
     cocos2d::Label * mControlEventLabel;
 };
+
+#endif
 
 #endif

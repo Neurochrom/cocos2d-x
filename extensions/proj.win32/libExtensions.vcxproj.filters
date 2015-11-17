@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\GUI\CCControlExtension\CCControl.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlButton.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlColourPicker.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlHuePicker.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlPotentiometer.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlSaturationBrightnessPicker.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlSlider.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlStepper.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlSwitch.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCControlUtils.cpp" />
+    <ClCompile Include="..\GUI\CCControlExtension\CCInvocation.cpp" />
+    <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp" />
+    <ClCompile Include="..\GUI\CCScrollView\CCTableView.cpp" />
+    <ClCompile Include="..\GUI\CCScrollView\CCTableViewCell.cpp" />
+    <ClCompile Include="..\physics-nodes\CCPhysicsDebugNode.cpp" />
+    <ClCompile Include="..\physics-nodes\CCPhysicsSprite.cpp" />
+    <ClCompile Include="..\assets-manager\AssetsManager.cpp">
+      <Filter>assets-manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets-manager\Downloader.cpp">
+      <Filter>assets-manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets-manager\Manifest.cpp">
+      <Filter>assets-manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets-manager\AssetsManagerEx.cpp">
+      <Filter>assets-manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets-manager\CCEventListenerAssetsManagerEx.cpp">
+      <Filter>assets-manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\assets-manager\CCEventAssetsManagerEx.cpp">
+      <Filter>assets-manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\GUI\CCControlExtension\CCControl.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlButton.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlColourPicker.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlExtensions.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlHuePicker.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlPotentiometer.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlSaturationBrightnessPicker.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlSlider.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlStepper.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlSwitch.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCControlUtils.h" />
+    <ClInclude Include="..\GUI\CCControlExtension\CCInvocation.h" />
+    <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h" />
+    <ClInclude Include="..\cocos-ext.h" />
+    <ClInclude Include="..\ExtensionMacros.h" />
+    <ClInclude Include="..\GUI\CCScrollView\CCTableView.h" />
+    <ClInclude Include="..\GUI\CCScrollView\CCTableViewCell.h" />
+    <ClInclude Include="..\physics-nodes\CCPhysicsDebugNode.h" />
+    <ClInclude Include="..\physics-nodes\CCPhysicsSprite.h" />
+    <ClInclude Include="..\assets-manager\AssetsManager.h">
+      <Filter>assets-manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets-manager\Manifest.h">
+      <Filter>assets-manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets-manager\Downloader.h">
+      <Filter>assets-manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets-manager\AssetsManagerEx.h">
+      <Filter>assets-manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets-manager\CCEventListenerAssetsManagerEx.h">
+      <Filter>assets-manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\assets-manager\CCEventAssetsManagerEx.h">
+      <Filter>assets-manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="assets-manager">
+      <UniqueIdentifier>{03b96351-19ec-451f-b5fa-512e2dd22941}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

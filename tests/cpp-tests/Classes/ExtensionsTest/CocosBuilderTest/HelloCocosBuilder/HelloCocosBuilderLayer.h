@@ -1,6 +1,8 @@
 #ifndef _HELLOCOCOSBUILDERLAYER_H_
 #define _HELLOCOCOSBUILDERLAYER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "cocosbuilder/CocosBuilder.h"
@@ -52,5 +54,7 @@ class HelloCocosBuilderLayer
         bool mCustomPropertyBoolean;
         std::string mCustomPropertyString;
 };
+
+#endif
 
 #endif

@@ -168,6 +168,7 @@ void TestList::runThisTest()
         TTFConfig ttfConfig("fonts/arial.ttf", 20);
         auto label = Label::createWithTTF(ttfConfig, "Back");
 
+#ifdef COCOS_MENU_ENABLED
         auto menuItem = MenuItemLabel::create(label, std::bind(&TestBase::backsUpOneLevel, this));
         auto menu = Menu::create(menuItem, nullptr);
 
@@ -175,9 +176,11 @@ void TestList::runThisTest()
         menuItem->setPosition(Vec2(VisibleRect::right().x - 50, VisibleRect::bottom().y + 25));
 
         scene->addChild(menu, 1);
+#endif
     }
     else
     {
+#ifdef COCOS_MENU_ENABLED
         //Add close and "Start AutoTest" button.
         auto closeItem = MenuItemImage::create(s_pathClose, s_pathClose, [](Ref* sender){
             TestController::getInstance()->stopAutoTest();
@@ -198,6 +201,7 @@ void TestList::runThisTest()
         auto menu = Menu::create(closeItem, autoTestItem, nullptr);
         menu->setPosition(Vec2::ZERO);
         scene->addChild(menu, 1);
+#endif
     }
 
     director->replaceScene(scene);
@@ -341,10 +345,13 @@ void TestSuite::enterPreviousTest()
 
 //TestCase
 TestCase::TestCase()
-: _priorTestItem(nullptr)
-, _restartTestItem(nullptr)
-, _nextTestItem(nullptr)
-, _titleLabel(nullptr)
+:
+#ifdef COCOS_MENU_ENABLED
+_priorTestItem(nullptr),
+_restartTestItem(nullptr),
+_nextTestItem(nullptr),
+#endif
+_titleLabel(nullptr)
 , _subtitleLabel(nullptr)
 , _testSuite(nullptr)
 , _runTime(0.0f)
@@ -404,6 +411,7 @@ bool TestCase::init()
         addChild(_subtitleLabel, 9999);
         _subtitleLabel->setPosition(VisibleRect::center().x, VisibleRect::top().y - 60);
         
+#ifdef COCOS_MENU_ENABLED
         _priorTestItem = MenuItemImage::create(s_pathB1, s_pathB2, CC_CALLBACK_1(TestCase::priorTestCallback, this));
         _restartTestItem = MenuItemImage::create(s_pathR1, s_pathR2, CC_CALLBACK_1(TestCase::restartTestCallback, this));
         _nextTestItem = MenuItemImage::create(s_pathF1, s_pathF2, CC_CALLBACK_1(TestCase::nextTestCallback, this));
@@ -421,6 +429,7 @@ bool TestCase::init()
         backItem->setPosition(Vec2(VisibleRect::right().x - 50, VisibleRect::bottom().y + 25));
 
         addChild(menu, 9999);
+#endif
 
         return true;
     }
@@ -440,12 +449,14 @@ void TestCase::onEnter()
         setTestSuite(TestController::getInstance()->getCurrTestSuite());
     }
 
+#ifdef COCOS_MENU_ENABLED
     if (_testSuite && _testSuite->getChildTestCount() < 2)
     {
         _priorTestItem->setVisible(false);
         _nextTestItem->setVisible(false);
         _restartTestItem->setVisible(false);
     }
+#endif
 }
 
 void TestCase::restartTestCallback(Ref* sender)

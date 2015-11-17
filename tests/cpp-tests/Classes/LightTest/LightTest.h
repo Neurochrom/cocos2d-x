@@ -25,6 +25,8 @@
 #ifndef _LIGHT_TEST_H_
 #define _LIGHT_TEST_H_
 
+#ifdef COCOS_3D
+
 #include "../BaseTest.h"
 
 DEFINE_TEST_SUITE(LightTests);
@@ -59,6 +61,8 @@ private:
     cocos2d::Label* _pointLightLabel;
     cocos2d::Label* _spotLightLabel;
 };
+
+#endif
 
 #endif
 

@@ -25,6 +25,8 @@
 #ifndef _PHYSICS3D_TEST_H_
 #define _PHYSICS3D_TEST_H_
 
+#if defined(COCOS_3D) && CC_ENABLE_BULLET_INTEGRATION
+
 #include "../BaseTest.h"
 #include <string>
 
@@ -146,6 +148,8 @@ public:
 
 private:
 };
+
+#endif
 
 #endif
 

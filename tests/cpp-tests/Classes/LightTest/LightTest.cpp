@@ -1,3 +1,5 @@
+#ifdef COCOS_3D
+
 #include "LightTest.h"
 
 USING_NS_CC;
@@ -280,3 +282,5 @@ void LightTest::SwitchLight( Ref* sender, LightType lightType )
         break;
     }
 }
+
+#endif

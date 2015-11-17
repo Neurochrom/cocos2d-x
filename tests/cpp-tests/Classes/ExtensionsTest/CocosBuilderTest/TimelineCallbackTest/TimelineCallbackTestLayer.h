@@ -1,6 +1,8 @@
 #ifndef _TIMELINE_TESTLAYER_H_
 #define _TIMELINE_TESTLAYER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "cocos2d.h"
 #include "audio/include/SimpleAudioEngine.h"
 #include "extensions/cocos-ext.h"
@@ -27,5 +29,7 @@ class TimelineCallbackTestLayer
 private:
     cocos2d::Label* _helloLabel;
 };
+
+#endif
 
 #endif /* _TIMELINE_TESTLAYER_H_ */

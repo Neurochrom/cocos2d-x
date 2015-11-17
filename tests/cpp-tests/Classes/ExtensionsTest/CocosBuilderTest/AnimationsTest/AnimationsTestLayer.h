@@ -1,6 +1,8 @@
 #ifndef _ANIMATIONSTESTLAYER_H_
 #define _ANIMATIONSTESTLAYER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "cocosbuilder/CocosBuilder.h"
@@ -30,5 +32,7 @@ public:
 private:
     cocosbuilder::CCBAnimationManager *mAnimationManager;
 };
+
+#endif
 
 #endif

@@ -1,3 +1,5 @@
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "AnimationsTestLayer.h"
 
 USING_NS_CC;
@@ -56,3 +58,5 @@ void AnimationsTestLayer::onControlButtonJumpClicked(Ref *pSender, Control::Even
 void AnimationsTestLayer::onControlButtonFunkyClicked(Ref *pSender, Control::EventType pControlEvent) {
     mAnimationManager->runAnimationsForSequenceNamedTweenDuration("Funky", 0.3f);
 }
+
+#endif

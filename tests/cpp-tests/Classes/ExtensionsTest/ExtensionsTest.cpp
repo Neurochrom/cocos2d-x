@@ -30,7 +30,9 @@ ExtensionsTests::ExtensionsTests()
 #endif
     addTest("NotificationCenterTest", [](){ return new (std::nothrow) NotificationCenterTests; });
     addTest("CCControlButtonTest", [](){ return new (std::nothrow) ControlTests; });
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
     addTest("CocosBuilderTest", [](){ return new (std::nothrow) CocosBuilderTests; });
+#endif
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_EMSCRIPTEN) && (CC_TARGET_PLATFORM != CC_PLATFORM_NACL)
     addTest("HttpClientTest", [](){ return new (std::nothrow) HttpClientTests; });
 #endif

@@ -1,6 +1,8 @@
 #ifndef _SPRITETESTLAYERLOADER_H_
 #define _SPRITETESTLAYERLOADER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "SpriteTestLayer.h"
 
 /* Forward declaration. */
@@ -13,5 +15,7 @@ class SpriteTestLayerLoader : public cocosbuilder::LayerLoader {
     protected:
         CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(SpriteTestLayer);
 };
+
+#endif
 
 #endif

@@ -1,6 +1,8 @@
 #ifndef _SCROLLVIEWTESTLAYERLOADER_H_
 #define _SCROLLVIEWTESTLAYERLOADER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "ScrollViewTestLayer.h"
 
 /* Forward declaration. */
@@ -13,5 +15,7 @@ class ScrollViewTestLayerLoader : public cocosbuilder::LayerLoader {
     protected:
         CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(ScrollViewTestLayer);
 };
+
+#endif
 
 #endif

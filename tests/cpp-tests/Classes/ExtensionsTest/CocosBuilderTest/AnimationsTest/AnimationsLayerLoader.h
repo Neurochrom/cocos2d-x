@@ -1,6 +1,8 @@
 #ifndef _ANIMATIONSTESTLAYERLOADER_H_
 #define _ANIMATIONSTESTLAYERLOADER_H_
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "AnimationsTestLayer.h"
 
 /* Forward declaration. */
@@ -13,5 +15,7 @@ class AnimationsTestLayerLoader : public cocosbuilder::LayerLoader {
     protected:
         CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(AnimationsTestLayer);
 };
+
+#endif
 
 #endif

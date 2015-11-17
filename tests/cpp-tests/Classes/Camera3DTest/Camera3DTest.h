@@ -25,6 +25,8 @@ THE SOFTWARE.
 #ifndef _CAMERA3D_TEST_H_
 #define _CAMERA3D_TEST_H_
 
+#ifdef COCOS_3D
+
 #include "../BaseTest.h"
 #include "../Sprite3DTest/DrawNode3D.h"
 #include <string>
@@ -266,5 +268,7 @@ public:
     
     virtual void onEnter() override;
 };
+
+#endif
 
 #endif

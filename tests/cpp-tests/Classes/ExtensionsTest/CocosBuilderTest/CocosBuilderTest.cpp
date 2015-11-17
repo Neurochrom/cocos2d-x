@@ -22,6 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#ifdef COCOS_BUILDER_SUPPORT_ENABLED
+
 #include "CocosBuilderTest.h"
 #include "../../testResource.h"
 #include "HelloCocosBuilder/HelloCocosBuilderLayerLoader.h"
@@ -60,3 +62,5 @@ bool CocosBuilderTestScene::init() {
 
     return false;
 }
+
+#endif

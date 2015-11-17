@@ -23,6 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#ifdef COCOS_3D
+
 #include "Camera3DTest.h"
 #include "testResource.h"
 
@@ -1478,3 +1480,5 @@ void CameraFrameBufferTest::onEnter()
     fbo->setClearColor(Color4F(1,1,1,1));
     addChild(camera);
 }
+
+#endif

@@ -32,13 +32,13 @@ PhysicsTests::PhysicsTests()
 static const Color4F STATIC_COLOR(1.0f, 0.0f, 0.0f, 1.0f);
 static const int DRAG_BODYS_TAG = 0x80;
 
+#if CC_USE_PHYSICS
 void PhysicsDemo::toggleDebug()
 {
-#if CC_USE_PHYSICS
     _debugDraw = !_debugDraw;
     getPhysicsWorld()->setDebugDrawMask(_debugDraw ? PhysicsWorld::DEBUGDRAW_ALL : PhysicsWorld::DEBUGDRAW_NONE);
-#endif
 }
+#endif
 
 #if CC_USE_PHYSICS == 0
 void PhysicsDemoDisabled::onEnter()
