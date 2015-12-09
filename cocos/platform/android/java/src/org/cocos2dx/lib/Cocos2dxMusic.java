@@ -41,7 +41,7 @@ public class Cocos2dxMusic {
     // Constants
     // ===========================================================
 
-    private static final String TAG = Cocos2dxMusic.class.getSimpleName();
+    private static final String TAG = "cocos2d-x"; //Cocos2dxMusic.class.getSimpleName();
 
     // ===========================================================
     // Fields
@@ -127,6 +127,7 @@ public class Cocos2dxMusic {
                 } else {
                     mBackgroundMediaPlayer.start();
                 }
+                Log.d(Cocos2dxMusic.TAG, "Java playBackgroundMusic " + path + " looping:" + (isLoop ? "true" : "false"));
                 mBackgroundMediaPlayer.setLooping(isLoop);
                 mPaused = false;
                 mIsLoop = isLoop;
