@@ -90,7 +90,12 @@ public:
     static void onGLFWframebuffersize(GLFWwindow* window, int w, int h)
     {
         if (_view)
-            _view->onGLFWframebuffersize(window, w, h);
+        {
+            if (w && h)
+                _view->onGLFWframebuffersize(window, w, h);
+            else
+                log("GLFWframebuffersize resize to 0 ignored!");
+        }
     }
 
     static void onGLFWWindowSizeFunCallback(GLFWwindow *window, int width, int height)

@@ -250,8 +250,11 @@ Vec2 Camera::project(const Vec3& src) const
 Vec2 Camera::projectGL(const Vec3& src) const
 {
     Vec2 screenPos;
-    
+
     auto viewport = Director::getInstance()->getWinSize();
+    if (viewport.width == 0)
+       return Vec2(0, 0);
+
     Vec4 clipPos;
     getViewProjectionMatrix().transformVector(Vec4(src.x, src.y, src.z, 1.0f), &clipPos);
     
