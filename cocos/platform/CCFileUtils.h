@@ -297,7 +297,9 @@ public:
      *  @return  The path that can be write/read a file in
      */
     virtual std::string getWritablePath() const = 0;
-    
+
+    virtual std::string getExternalStoragePath() const { return getWritablePath(); }
+
     /**
      *  Sets writable path.
      */

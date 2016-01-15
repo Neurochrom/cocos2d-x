@@ -158,7 +158,21 @@ std::string getFileDirectoryJNI() {
     JniMethodInfo t;
     std::string ret("");
 
-    if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getCocos2dxWritablePath", "()Ljava/lang/String;")) {
+	if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getCocos2dxWritablePath", "()Ljava/lang/String;")) {
+        jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
+        t.env->DeleteLocalRef(t.classID);
+        ret = JniHelper::jstring2string(str);
+        t.env->DeleteLocalRef(str);
+    }
+
+    return ret;
+}
+
+std::string getExternalStorageDirectoryJNI() {
+    JniMethodInfo t;
+    std::string ret("");
+
+	if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "getCocos2dxExternalStoragePath", "()Ljava/lang/String;")) {
         jstring str = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID);
         t.env->DeleteLocalRef(t.classID);
         ret = JniHelper::jstring2string(str);
