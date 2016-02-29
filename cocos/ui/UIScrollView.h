@@ -423,9 +423,13 @@ protected:
     void bounceChildren(float dt);
     void checkBounceBoundary();
     bool checkNeedBounce();
+
+public:
     void startAutoScrollChildrenWithOriginalSpeed(const Vec2& dir, float v, bool attenuated, float acceleration);
     void startAutoScrollChildrenWithDestination(const Vec2& des, float second, bool attenuated);
     void jumpToDestination(const Vec2& des);
+
+protected:
     void stopAutoScrollChildren();
     void startBounceChildren(float v);
     void stopBounceChildren();
